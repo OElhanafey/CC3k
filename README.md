@@ -13,19 +13,19 @@
 <b>Urja</b>
 - Character
  - Player
-  - Shade
-  - Drow
-  - Vampire
-  - Troll
-  - Goblin
+   - Shade
+    - Drow
+    - Vampire
+    - Troll
+    - Goblin
  - NPC
-  - Human
-  - Dwarf
-  - Elf
-  - Orc
-  - Merchant
-  - Dragon
-  - Halfling
+   - Human
+    - Dwarf
+    - Elf
+    - Orc
+    - Merchant
+    - Dragon
+    - Halfling
 
 <b>Oscar</b>
 - Gold
