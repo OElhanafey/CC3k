@@ -1,10 +1,9 @@
 #include <vector>
+#include "cell.h"
 
-class Cell;
 class Floor {
-    std::vector<std::vector<Cell> > grid;
-  public:
-    Floor();
-    ~Floor();
-    print();
-}
+    		std::vector< std::vector<Cell> > grid;
+  	public:
+    		Floor();
+    		void print();
+};
