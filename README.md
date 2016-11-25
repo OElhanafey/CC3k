@@ -1,16 +1,35 @@
 # CC3k
 
-Chakshu
+<b>Chakshu</b>
 - Potion
+ - Restore Health
+ - Boost Attack
+ - Boost Defence
+ - Poison Health
+ - Wound Attack
+ - Wound Defence
+- Chamber
 
-Urja
+<b>Urja</b>
 - Character
+ - Player
+  - Shade
+  - Drow
+  - Vampire
+  - Troll
+  - Goblin
+ - NPC
+  - Human
+  - Dwarf
+  - Elf
+  - Orc
+  - Merchant
+  - Dragon
+  - Halfling
 
-Oscar
+<b>Oscar</b>
 - Gold
 - Cell
-
-To Do:
--Chamber
--Floor
--Random Generation
+- Floor
+  - Generation from file
+  - Random Generation
