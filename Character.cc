@@ -96,7 +96,7 @@ void Character::strike(Character& c){
         c.setHP(0);
     }
     else {
-        c.setHP(n.getHP() - damage);
+        c.setHP(c.getHP() - damage);
     }
 }
 

@@ -5,7 +5,7 @@ Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int
     canMove(canMove)
     {}
 
-
+/*
 Human::Human(int x, int y, Floor *grid):
     Enemy(x,y,'H',grid,140,20,20) {}
 
@@ -24,5 +24,7 @@ Enemy(x,y,'M',grid,30,70,5) {}
 Dragon::Dragon(int x, int y, Floor *grid):
 Enemy(x,y,'D',grid,150,20,20,false) {}
 
-Hafling::Halfling(int x, int y, Floor *grid):
+Halfling::Halfling(int x, int y, Floor *grid):
 Enemy(x,y,'L',grid,100,15,20) {}
+
+*/

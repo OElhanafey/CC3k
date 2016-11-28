@@ -14,14 +14,14 @@ class Enemy: public Character{
 public:
     Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, int accuracy, bool canMove = true);
     // virtual void move(std::string dir);
-    virtual void strike(Npc &);
-    virtual void beStruckBy(Npc &);
+    //virtual void strike(Npc &);
+    //virtual void beStruckBy(Npc &);
     // virtual void action();
     // virtual void death();
-    virtual ~Enemy();
+   /* virtual*/ ~Enemy();
 };
 
-class Human: public Enemy{
+/*class Human: public Enemy{
 public:
     Human(int x, int y, Floor *grid);
     void death();
@@ -57,5 +57,5 @@ class Halfling: public Enemy{
 public:
     Halfling(int x, int y, Floor *grid);
 };
-
+*/
 #endif /* Enemy_h */

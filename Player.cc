@@ -17,7 +17,7 @@ Player::~Player() {}
 // Print Action
 // Include the gold, once the hp is 0 for npc.
 // Notify enemies to make a move
-void Player::strike(Npc &n){
+/*void Player::strike(Npc &n){
     int damage = ((100/(100+n.getDef()))*(this->getAtk()));
     if((n.getHP() - damage) < 0) {
         n.setHP(0);
@@ -29,7 +29,7 @@ void Player::strike(Npc &n){
 
 void Player::beStruckBy(Npc &n){
     n.strike(*this);
-}
+}*/
 
 Shade::Shade(int x, int y, Floor *grid): Player(x,y,grid,125,25,25,"Shade"){}
 

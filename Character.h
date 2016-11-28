@@ -21,8 +21,8 @@ public:
     void setDef(int def);
     void setgold(int g);
     void shift(std::string dir) override;
-    void strike(Character &c);
-    void beStruckBy(Character &c);
+    void strike(Character &c);// override;
+    void beStruckBy(Character &c);// override;
     //    virtual void moveChar(std::string dir) = 0;
     ~Character();
 };
