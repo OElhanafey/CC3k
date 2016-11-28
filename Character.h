@@ -9,9 +9,8 @@ class Character:public GameObject{
 protected:
     int health, attack, defense;
     int accuracy;
-    int gold;
 public:
-    Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, int gold);
+    Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, int accuracy);
     int getHP() const;
     int getAtk() const;
     int getDef() const;

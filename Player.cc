@@ -1,7 +1,8 @@
 #include "Player.h"
 
 // Figure out the default potionEffect.
-Player::Player(int x, int y, int a, int b, int c): Character(x,y,a,b,c){
+Player::Player(int x, int y, char symbol, Floor *grid, int health, int attack, int defense,
+               std::string race): Character(x,y,symbol, grid, health, attack, defense, accuracy), race(race){
     setsym('@');
     floor = 1;
 }

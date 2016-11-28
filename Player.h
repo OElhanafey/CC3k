@@ -12,12 +12,12 @@ class Npc;
 
 class Player: public Character{
 protected:
+    std::string race;
     int floor;
     int maxhp, maxatk, maxdef;
-    std::string race;
     int potionEffect;
 public:
-    Player(int x, int y, int a, int b, int c);
+    Player(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, int accuracy, std::string race);
     virtual void strike(Npc &);
     virtual void beStruckBy(Npc &);
     virtual void usePotion(Potion& );

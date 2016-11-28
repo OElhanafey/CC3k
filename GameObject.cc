@@ -1,8 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(int x, int y, char symbol): x(x), y(y), symbol(symbol){
-    grid = nullptr;
-}
+GameObject::GameObject(int x, int y, char symbol, Floor *grid): x(x), y(y), symbol(symbol), grid(grid){}
 
 GameObject::~GameObject(){}
 

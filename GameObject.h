@@ -11,7 +11,7 @@ protected:
     char symbol;
     Floor *grid;
 public:
-    GameObject(int x, int y, char symbol);
+    GameObject(int x, int y, char symbol, Floor *grid);
     int getx();
     int gety();
     char getSymbol() const;

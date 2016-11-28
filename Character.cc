@@ -5,8 +5,8 @@ using namespace std;
 
 // Character Constructor, has the cell's location, the symbol, to represent
 
-Character::Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, int gold):
-GameObject(x,y,symbol, grid), health(health), attack(attack), defense(defense), gold(gold){}
+Character::Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, int accuracy):
+GameObject(x,y,symbol, grid), health(health), attack(attack), defense(defense), accuracy(accuracy){}
 
 Character::~Character() {}
 
