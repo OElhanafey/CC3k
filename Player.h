@@ -5,10 +5,10 @@
 #include <string>
 #include <iostream>
 #include "Character.h"
-#include "Npc.h"
+#include "Enemy.h"
 
 class Potion;
-class Npc;
+class Enemy;
 
 class Player: public Character{
 protected:
@@ -17,11 +17,7 @@ protected:
     std::string race;
     int potionEffect;
 public:
-<<<<<<< HEAD
-    Player(int x, int y, Floor *grid, int health, int attack, int defense, int accuracy, std::string race);
-=======
     Player(int x, int y, Floor *grid, int health, int attack, int defense, int accuracy, std::string race, int potionEffect = 1);
->>>>>>> 9f6f7208a87d36ce993e6d907ea4d0c263534d28
     virtual void strike(Npc &);
     virtual void beStruckBy(Npc &);
     virtual void usePotion(Potion& );
