@@ -1,4 +1,3 @@
-//Hello
 #include "gameObject.h"
 
 class Gold: public GameObject {
