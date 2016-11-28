@@ -5,7 +5,8 @@ using namespace std;
 
 // Character Constructor, has the cell's location, the symbol, to represent
 
-Character::Character(int x, int y, char symbol, int health, int attack, int defense, int gold):GameObject(x,y,symbol), health(health), attack(attack), defense(defense), gold(gold){}
+Character::Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, int gold):
+GameObject(x,y,symbol, grid), health(health), attack(attack), defense(defense), gold(gold){}
 
 Character::~Character() {}
 
@@ -41,16 +42,7 @@ void Character::setgold(int g){
     gold = g;
 }
 
-/*
-    floor[newx][newy].getIsValid() {
-        floor[newx][newy].add(this);
-        floor[x][y].remove();
-    }
-}
-*/
-
-//
-void Character::moveChar(std::string dir){
+void Character::shift(std::string dir){
     int new_x,new_y;
     if(dir == "no"){
         new_x = getx()-1;
@@ -84,17 +76,10 @@ void Character::moveChar(std::string dir){
         new_x = getx()+1;
         new_y = gety()-1;
     }
-    if(this->getSymbol() == '@'){
-        if(grid[new_x][new_y].getPlayerValid()){
-        grid[new_x][new_y].add(*this);
-        grid[getx()][gety()].remove();
-        }
-    }
-    else{
-        if(grid[new_x][new_y].getEnemyValid()){
-            grid[new_x][new_y].add(this);
-            grid[getx()][gety()].remove();
-        }
-    }
+    /*    Floor *g = this->getGrid();
+     bool valid = g->isCellValid(new_x, new_y, getSymbol());
+     /  if (valid) {
+     */
+    setx(new_x);
+    sety(new_y);
 }
-

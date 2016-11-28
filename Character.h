@@ -1,4 +1,3 @@
-
 #ifndef Character_h
 #define Character_h
 
@@ -12,7 +11,7 @@ protected:
     int accuracy;
     int gold;
 public:
-    Character(int x, int y, char symbol, int health, int attack, int defense, int gold);
+    Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, int gold);
     int getHP() const;
     int getAtk() const;
     int getDef() const;
@@ -21,10 +20,11 @@ public:
     void setAtk(int at);
     void setDef(int def);
     void setgold(int g);
-    virtual void strike(Character &) = 0;
-    virtual void beStruckBy(Character &) = 0;
-    void moveChar(std::string dir);
-    virtual ~Character() = 0;
+    void shift(std::string dir) override;
+    //    virtual void strike(Character &) = 0;
+    //    virtual void beStruckBy(Character &) = 0;
+    //    virtual void moveChar(std::string dir) = 0;
+    ~Character();
 };
 
 #endif /* Character_h */
