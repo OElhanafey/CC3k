@@ -17,7 +17,7 @@ protected:
     std::string race;
     int potionEffect;
 public:
-    Player(int x, int y, Floor *grid, int health, int attack, int defense, int accuracy, std::string race, int potionEffect = 1);
+    Player(int x, int y, Floor *grid, int health = 125, int attack, int defense, int accuracy, std::string race, int potionEffect = 1);
     virtual void strike(Npc &);
     virtual void beStruckBy(Npc &);
     virtual void usePotion(Potion& );
