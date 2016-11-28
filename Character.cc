@@ -88,3 +88,27 @@ void Character::shift(std::string dir){
     setx(new_x);
     sety(new_y);
 }
+
+
+void Character::strike(Character& c){
+    int damage = ((100/(100+c.getDef()))*(this->getAtk()));
+    if((c.getHP() - damage) < 0) {
+        c.setHP(0);
+    }
+    else {
+        c.setHP(n.getHP() - damage);
+    }
+}
+
+void Character::beStruckBy(Character &c){
+    c.strike(*this);
+}
+
+
+
+
+
+
+
+
+
