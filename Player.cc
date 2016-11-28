@@ -1,11 +1,15 @@
 #include "Player.h"
 
 // Figure out the default potionEffect.
-Player::Player(int x, int y, char symbol, Floor *grid, int health, int attack, int defense,
-               std::string race): Character(x,y,symbol, grid, health, attack, defense, accuracy), race(race){
-    setsym('@');
-    floor = 1;
-}
+Player::Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect):
+    Character(x,y,'@', grid, health, attack, defense, 1),
+    level(1),
+    maxhp(health),
+    maxatk(attack),
+    maxdef(defense),
+    race(race),
+    potionEffect(potionEffect)
+    {}
 
 Player::~Player() {}
 
@@ -27,40 +31,13 @@ void Player::beStruckBy(Npc &n){
     n.strike(*this);
 }
 
-Shade::Shade(int x, int y): Player(-1,-1,125,25,25){
-    race = "Shade";
-    maxhp = 125;
-    maxatk = 25;
-    maxdef = 25;
-    potionEffect = 1;
-}
+Shade::Shade(int x, int y, Floor *grid): Player(x,y,grid,125,25,25,"Shade"){}
 
-Drow::Drow(int x, int y): Player(x,y,150,25,15){
-    race = "Drow";
-    maxhp = 150;
-    maxatk = 25;
-    maxdef = 25;
-    potionEffect = 1.5;
-}
+Drow::Drow(int x, int y, Floor *grid): Player(x,y,grid,150,25,15,"Drow",1.5){}
 
-Vampire::Vampire(int x, int y): Player(x,y,50,25,25){
-    race = "Vampire";
-    maxatk = 25;
-    maxdef = 25;
-    potionEffect = 1;
-}
+Vampire::Vampire(int x, int y, Floor *grid): Player(x,y,grid,50,25,25,"Vampire"){}
 
-Troll::Troll(int x, int y): Player(x,y,120,25,15){
-    race = "Troll";
-    maxhp = 120;
-    maxatk = 25;
-    maxdef = 15;
-}
+Troll::Troll(int x, int y, Floor *grid): Player(x,y,grid,120,25,15,"Troll"){}
 
-Goblin::Goblin(int x, int y): Player(x,y,110,15,20){
-    race = "Goblin";
-    maxhp = 110;
-    maxatk = 15;
-    maxdef = 20;
-}
+Goblin::Goblin(int x, int y, Floor *grid): Player(x,y,grid,110,15,20,"Goblin"){}
 
