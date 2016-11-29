@@ -40,12 +40,17 @@ void Cell::add(GameObject* object) {
 	isPlayerValid = false;
     }
 }
-// When the player is on the pathway or the doorway and when they move, it is replaced by # or + not . (remember to modify this)
+
 void Cell::remove() {
     obj = nullptr;
     symbol = origSym;
+    if(symbol == '+' || symbol == '#') {
+	isEnemyValid = false;
+    }
+    else {
+	isEnemyValid = true;
+    }
     isPlayerValid = true;
-    isEnemyValid = true;
 }
 
 bool Cell::getPlayerValid() {
