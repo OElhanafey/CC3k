@@ -2,15 +2,15 @@
 
 // Figure out the default potionEffect.
 Player::Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect):
-    Character(x,y,'@', grid, health, attack, defense, 1),
-    merchantHostile(false);
-    level(1),
-    maxhp(health),
-    maxatk(attack),
-    maxdef(defense),
-    race(race),
-    potionEffect(potionEffect)
-    {}
+	Character(x,y,'@', grid, health, attack, defense, 1),
+	merchantHostile(false),
+	level(1),
+	maxhp(health),
+	maxatk(attack),
+	maxdef(defense),
+	race(race),
+	potionEffect(potionEffect)
+{}
 
 Player::~Player() {}
 
@@ -23,7 +23,7 @@ bool Player::getMerchantHostile(){
 }
 
 void Player::setMerchantHostile(){
-	return true;
+	merchantHostile = true;
 }
 
 Shade::Shade(int x, int y, Floor *grid): Player(x,y,grid,125,25,25,"Shade"){}

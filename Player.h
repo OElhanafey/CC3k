@@ -21,10 +21,10 @@ protected:
 public:
     Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect = 1);
     std::string getRace();
-    void strike(GameObject &) override;
+//    void strike(GameObject &) override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;	
-    virtual void beStruckBy(GameObject &) override;
+  //  void beStruckBy(GameObject &) override;
 //    virtual void usePotion(Potion& );
 //    virtual void checkPotion(Potion& );
    /* virtual*/ ~Player();

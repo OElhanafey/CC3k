@@ -10,7 +10,7 @@ int main() {
 	Floor *theFloor = new Floor();
 //	theFloor.print()
 	GameObject *obj = new Shade(1,2,theFloor);
-	GameObject *e = new Human(1,3, theFloor);
+	GameObject *e = new Elf(1,3, theFloor);
 	if (obj->getSymbol() != 'P' || obj->getSymbol() != 'G' ) {
 	   //Character *c = dynamic_cast<Character *> (obj);
 	   std::cout << obj->getHP() << std::endl;

@@ -13,9 +13,12 @@ class Enemy: public Character{
     bool canMove;
 public:
     Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool canMove = true);
+     std::string getRace() override;
+     bool getMerchantHostile() override;
+     void setMerchantHostile() override;
     // virtual void move(std::string dir);
-    //virtual void strike(Npc &);
-    //virtual void beStruckBy(Npc &);
+//    void strike(GameObject &) override;
+//  void beStruckBy(GameObject &) override;
     // virtual void action();
     // virtual void death();
    /* virtual*/ ~Enemy();

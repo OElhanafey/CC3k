@@ -5,6 +5,14 @@ Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int
     canMove(canMove)
     {}
 
+std::string Enemy::getRace(){
+	return "";
+}
+
+bool Enemy::getMerchantHostile(){
+	return 0;
+}
+void Enemy::setMerchantHostile(){}
 
 Human::Human(int x, int y, Floor *grid):
     Enemy(x,y,'H',grid,140,20,20) {}
