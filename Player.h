@@ -13,14 +13,18 @@ class Enemy;
 
 class Player: public Character{
 protected:
+    bool merchantHostile;
     int level;
     int maxhp, maxatk, maxdef;
     std::string race;
     int potionEffect;
 public:
     Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect = 1);
-//    virtual void strike(Npc &);
-//    virtual void beStruckBy(Npc &);
+    std::string getRace();
+    void strike(GameObject &) override;
+    bool getMerchantHostile() override;
+    void setMerchantHostile() override;	
+    virtual void beStruckBy(GameObject &) override;
 //    virtual void usePotion(Potion& );
 //    virtual void checkPotion(Potion& );
    /* virtual*/ ~Player();

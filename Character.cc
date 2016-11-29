@@ -1,5 +1,6 @@
 #include "Character.h"
 #include <string>
+#include <math.h>
 #include "floor.h"
 using namespace std;
 
@@ -15,15 +16,15 @@ Character::Character(int x, int y, char symbol, Floor *grid,int health, int atta
 
 Character::~Character() {}
 
-int Character::getHP() const {
+int Character::getHP() {
     return health;
 }
 
-int Character::getAtk() const{
+int Character::getAtk() {
     return attack;
 }
 
-int Character::getDef() const{
+int Character::getDef() {
     return defense;
 }
 
@@ -90,18 +91,37 @@ void Character::shift(std::string dir){
 }
 
 
-void Character::strike(Character& c){
-    int damage = ((100/(100+c.getDef()))*(this->getAtk()));
+void Character::strike(GameObject &c){
+	//std::cout <<  <<std::endl; 
+	if(this->getRace() == "Troll"){
+	if((this->getHP() + 5) > 120){
+		this->setHP(120);
+		}
+	else{
+	this->setHP((this->getHP) + 5);
+	}
+	}
+	double temp = c.getDef(); 
+	double damage = ceil((100/(100+temp))*(this->getAtk()));
+    std::cout << damage << std::endl;
     if((c.getHP() - damage) < 0) {
         c.setHP(0);
     }
     else {
         c.setHP(c.getHP() - damage);
+	std::cout << c.getHP() << std::endl;
     }
 }
 
-void Character::beStruckBy(Character &c){
+void Character::beStruckBy(GameObject &c){
     c.strike(*this);
+	if(this->getSymbol() == 'M'){
+		c.setMerchantHostile();
+	}
+	else if((c.getSymbol()) == "E"){
+		if(!(this->getRace() == "Drow"))
+		c.strike(*this);
+	}
 }
 
 

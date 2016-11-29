@@ -28,4 +28,4 @@ void GameObject::setsym(char s){
     symbol = s;
 }
 
-
+//int GameObject::getHP(){}

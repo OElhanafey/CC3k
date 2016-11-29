@@ -3,6 +3,7 @@
 // Figure out the default potionEffect.
 Player::Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect):
     Character(x,y,'@', grid, health, attack, defense, 1),
+    merchantHostile(false);
     level(1),
     maxhp(health),
     maxatk(attack),
@@ -13,23 +14,17 @@ Player::Player(int x, int y, Floor *grid, int health, int attack, int defense, s
 
 Player::~Player() {}
 
-// If you are not using the smart pointer, you need to delete the enemy if the hp drops to 0.
-// Print Action
-// Include the gold, once the hp is 0 for npc.
-// Notify enemies to make a move
-/*void Player::strike(Npc &n){
-    int damage = ((100/(100+n.getDef()))*(this->getAtk()));
-    if((n.getHP() - damage) < 0) {
-        n.setHP(0);
-    }
-    else {
-        n.setHP(n.getHP() - damage);
-    }
+std::string Player::getRace(){
+	return race;
 }
 
-void Player::beStruckBy(Npc &n){
-    n.strike(*this);
-}*/
+bool Player::getMerchantHostile(){
+	return merchantHostile;
+}
+
+void Player::setMerchantHostile(){
+	return true;
+}
 
 Shade::Shade(int x, int y, Floor *grid): Player(x,y,grid,125,25,25,"Shade"){}
 

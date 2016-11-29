@@ -19,10 +19,17 @@ public:
     void setx(int n);
     void sety(int n);
     void setsym(char s);
+    virtual int getHP() = 0;
+    virtual int getAtk() = 0;   
+    virtual int getDef() = 0;
+    virtual void setHP(int) = 0;
+    virtual void setAtk(int) = 0;
+    virtual void setDef(int) = 0;
+//    virtual int getGold() = 0; 
     virtual void shift(std::string dir) = 0;
-    //virtual void strike(GameObject &c) = 0;
-    //virtual void beStruckBy(GameObject &c) = 0;
-    virtual ~GameObject() =0;
+    virtual void strike(GameObject &c) = 0;
+    virtual void beStruckBy(GameObject &c) = 0;
+     ~GameObject();
 };
 
 #endif

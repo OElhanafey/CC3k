@@ -12,7 +12,7 @@ class Player;
 class Enemy: public Character{
     bool canMove;
 public:
-    Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, int accuracy, bool canMove = true);
+    Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool canMove = true);
     // virtual void move(std::string dir);
     //virtual void strike(Npc &);
     //virtual void beStruckBy(Npc &);
@@ -21,7 +21,7 @@ public:
    /* virtual*/ ~Enemy();
 };
 
-/*class Human: public Enemy{
+class Human: public Enemy{
 public:
     Human(int x, int y, Floor *grid);
     void death();
@@ -57,5 +57,5 @@ class Halfling: public Enemy{
 public:
     Halfling(int x, int y, Floor *grid);
 };
-*/
+
 #endif /* Enemy_h */

@@ -4,17 +4,21 @@
 #include "Character.h"
 #include "cell.h"
 #include "Player.h"
-//#include "Enemy.h"
+#include "Enemy.h"
 
 int main() {
 	Floor *theFloor = new Floor();
 //	theFloor.print()
 	GameObject *obj = new Shade(1,2,theFloor);
+	GameObject *e = new Human(1,3, theFloor);
 	if (obj->getSymbol() != 'P' || obj->getSymbol() != 'G' ) {
-	   Character *c = dynamic_cast<Character *> (obj);
-	   std::cout << c->getHP() << std::endl;
+	   //Character *c = dynamic_cast<Character *> (obj);
+	   std::cout << obj->getHP() << std::endl;
 	}
 	theFloor->objectAdd(1,2,obj);
+	theFloor->objectAdd(1,3,e);
+	obj->beStruckBy(*e);
+	std::cout << e->getHP() << std::endl;
 	//theFloor->objectRemove(theFloor->getObj(obj->getx(), obj->gety())->getx(), theFloor->getObj(obj->getx(), obj->gety())->gety());
 	//obj->shift("so");
 	//theFloor->objectAdd(obj->getx(), obj->gety(), obj);
