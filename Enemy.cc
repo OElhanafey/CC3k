@@ -5,15 +5,6 @@ Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int
     canMove(canMove)
     {}
 
-std::string Enemy::getRace(){
-	return "";
-}
-
-bool Enemy::getMerchantHostile(){
-	return 0;
-}
-void Enemy::setMerchantHostile(){}
-
 void Enemy::enemyDeath(GameObject& p) {
    // If Elf, Halfling, Orc or Dwarf die, the player gets either a small or normal pile of gold
    if(getSymbol() == 'E' ||
@@ -25,11 +16,15 @@ void Enemy::enemyDeath(GameObject& p) {
       int gPile = (std::rand() % 2) + 1;
       p.setGold(p.getGold() + gPile);
    }
-   // 
+   
+   // If a merchant dies, a gold object with value 4 is left replaces merchant
    else if(getSymbol == 'M') {
       // In the coordinates for Merchant on floor
       // Change pointer pointing to Merchant to a new Gold object with value 4
    }
+   // If a Human dies:
+            // 1. One Gold item with value 2 replaces the human object at that cell
+            // 2. A second gold object near the first one if there is an empty cell available
    else if(getSymbol == 'H') {
       // In the coordinates for Human on floor
       // Check which cells around human are empty and are "enemy valid"

@@ -18,9 +18,9 @@ Character::Character(int x, int y, char symbol, Floor *grid, int health, int att
 
    Character::~Character() {}
 
-   int Character::getHP() {
-      return health;
-   }
+int Character::getHP() {
+    return health;
+}
 
 int Character::getAtk() {
    return attack;

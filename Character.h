@@ -21,14 +21,8 @@ public:
     void setDef(int def) override;
     void setgold(int g) override;
     void shift(std::string dir);
-    virtual std::string getRace() = 0;
-    virtual bool getMerchantHostile() = 0;
-    virtual void setMerchantHostile() = 0;
     void strike(GameObject &c) override;
     void beStruckBy(GameObject &c) override;
-    virtual void enemyDeath(GameObject &p) = 0;
-   // virtual void playerMove(std::string dir) = 0;
-   // virtual void enemyReaction() = 0;
     ~Character();
 };
 

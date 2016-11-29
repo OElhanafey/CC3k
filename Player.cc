@@ -26,8 +26,6 @@ void Player::setMerchantHostile(){
 	merchantHostile = true;
 }
 
-void Player::enemyDeath(GameObject &p) {}
-
 Shade::Shade(int x, int y, Floor *grid): Player(x,y,grid,125,25,25,"Shade"){}
 
 Drow::Drow(int x, int y, Floor *grid): Player(x,y,grid,150,25,15,"Drow",1.5){}
