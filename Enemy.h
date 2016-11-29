@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Character.h"
 #include "Player.h"
 
@@ -16,6 +18,7 @@ public:
      std::string getRace() override;
      bool getMerchantHostile() override;
      void setMerchantHostile() override;
+     void enemyDeath(GameObject &p) override;
     // virtual void move(std::string dir);
 //    void strike(GameObject &) override;
 //  void beStruckBy(GameObject &) override;

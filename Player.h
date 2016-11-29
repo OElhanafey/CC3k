@@ -23,7 +23,8 @@ public:
     std::string getRace();
 //    void strike(GameObject &) override;
     bool getMerchantHostile() override;
-    void setMerchantHostile() override;	
+    void setMerchantHostile() override;
+    void enemyDeath(GameObject &p) override;	
   //  void beStruckBy(GameObject &) override;
 //    virtual void usePotion(Potion& );
 //    virtual void checkPotion(Potion& );
