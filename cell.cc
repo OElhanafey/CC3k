@@ -32,11 +32,20 @@ GameObject* Cell::getObject() {
 void Cell::add(GameObject* object) {
     obj = object;
     symbol = obj->getSymbol();
+    isEnemyValid = false;
+    if(symbol == 'G') {
+	isPlayerValid = true;
+    }
+    else {
+	isPlayerValid = false;
+    }
 }
 // When the player is on the pathway or the doorway and when they move, it is replaced by # or + not . (remember to modify this)
 void Cell::remove() {
     obj = nullptr;
     symbol = origSym;
+    isPlayerValid = true;
+    isEnemyValid = true;
 }
 
 bool Cell::getPlayerValid() {
