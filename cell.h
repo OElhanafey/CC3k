@@ -2,10 +2,9 @@
 #define _CELL_H_
 //INCOMPLETE
 //Error: Enemies can walk on gold (Make validPlayer, validEnemy?)
-
 #include "GameObject.h"
 
-class GameObject;
+
 class Cell {
     int x,y;
     char symbol;
@@ -25,7 +24,6 @@ public:
     void remove();
     bool getPlayerValid();
     bool getEnemyValid();
-    bool isValid();
 };
 
 #endif

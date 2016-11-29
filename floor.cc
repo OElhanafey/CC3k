@@ -37,9 +37,14 @@ GameObject* Floor::getObj(int r, int c) {
     return grid[r][c].getObject();
 }
 
-/*bool isCellValid(Floor &f, int r, int c, char sym) {
- return f.grid[r][c].isValid();
- }*/
+bool Floor::isCellValid(int r, int c, bool isPlayer) {
+	if(isPlayer) {	
+		return grid[r][c].getPlayerValid();
+	}
+	else {
+		return grid[r][c].getEnemyValid();
+	}
+}
 
 void Floor::print() {
     for(unsigned int i=0; i<grid.size(); ++i) {

@@ -46,10 +46,3 @@ bool Cell::getPlayerValid() {
 bool Cell::getEnemyValid() {
     return isEnemyValid;
 }
-
-bool Cell::isValid(){
-    if(getSymbol() == '@') {
-        return getPlayerValid();
-    }
-    return getEnemyValid();
-}
