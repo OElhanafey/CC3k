@@ -1,7 +1,7 @@
 #ifndef GameObject_h
 #define GameObject_h
 
-#include "floor.h"
+
 #include <string>
 
 class Floor;
