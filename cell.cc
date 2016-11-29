@@ -5,7 +5,7 @@
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), obj(nullptr) {
     
 }
-Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), obj(nullptr) {
+Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym) obj(nullptr) {
     
     if(sym == '.') {
         isEnemyValid = true;
@@ -36,7 +36,7 @@ void Cell::add(GameObject* object) {
 // When the player is on the pathway or the doorway and when they move, it is replaced by # or + not . (remember to modify this)
 void Cell::remove() {
     obj = nullptr;
-    symbol = '.';
+    symbol = origSym;
 }
 
 bool Cell::getPlayerValid() {
