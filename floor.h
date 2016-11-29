@@ -14,7 +14,7 @@ public:
     void objectAdd(int r, int c, GameObject *obj);
     void objectRemove(int r, int c);
     GameObject* getObj(int r, int c);
-    //	bool isCellValid(Floor &f, int r, int c, char sym);
+    //	bool isCellValid(int r, int c, char sym);
     void print();
 };
 
