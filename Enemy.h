@@ -27,7 +27,6 @@ public:
 class Human: public Enemy{
 public:
     Human(int x, int y, Floor *grid);
-    void death();
 };
 
 class Dwarf: public Enemy{

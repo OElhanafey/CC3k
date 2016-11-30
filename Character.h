@@ -15,11 +15,11 @@ public:
     int getHP() override;
     int getAtk() override;
     int getDef() override;
-    int getgold() override;
+    int getGold() override;
     void setHP(int hp) override;
     void setAtk(int at) override;
     void setDef(int def) override;
-    void setgold(int g) override;
+    void setGold(int g) override;
     void shift(std::string dir);
     void strike(GameObject &c) override;
     void beStruckBy(GameObject &c) override;

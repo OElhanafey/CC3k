@@ -9,16 +9,16 @@
 int main() {
 	Floor *theFloor = new Floor();
 //	theFloor.print()
-	GameObject *obj = new Shade(1,2,theFloor);
-	GameObject *e = new Elf(1,3, theFloor);
+	GameObject *obj = new Vampire(1,2,theFloor);
+	GameObject *e = new Dwarf(1,3,theFloor);
 	if (obj->getSymbol() != 'P' || obj->getSymbol() != 'G' ) {
 	   //Character *c = dynamic_cast<Character *> (obj);
-	   std::cout << obj->getHP() << std::endl;
+	std::cout << obj->getHP() << " "<< e->getHP() << std::endl;
 	}
 	theFloor->objectAdd(1,2,obj);
 	theFloor->objectAdd(1,3,e);
-	obj->beStruckBy(*e);
-	std::cout << e->getHP() << std::endl;
+	e->beStruckBy(*obj);
+	std::cout << obj->getHP() << " "<< e->getHP() << std::endl;
 	//theFloor->objectRemove(theFloor->getObj(obj->getx(), obj->gety())->getx(), theFloor->getObj(obj->getx(), obj->gety())->gety());
 	//obj->shift("so");
 	//theFloor->objectAdd(obj->getx(), obj->gety(), obj);
@@ -27,5 +27,7 @@ int main() {
 //	theFloor.print();
 //	GameObject *obj = new Character(1,1,'@', 125,25,25,0);
 //	theFloor.objectAdd(1,1,obj);
-//	theFloor.print();	
+//	theFloor.print();
+	delete e;
+	delete obj;	
 }

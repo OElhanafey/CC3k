@@ -30,7 +30,7 @@ int Character::getDef() {
    return defense;
 }
 
-int Character::getgold(){
+int Character::getGold(){
    return gold;
 }
 
@@ -46,7 +46,7 @@ void Character::setDef(int def){
    defense = def;
 }
 
-void Character::setgold(int g){
+void Character::setGold(int g){
    gold = g;
 }
 
@@ -106,7 +106,7 @@ void Character::strike(GameObject &c){
    // Vampire gains 5 HP for every attack but loses 5HP for every
    // attack on dwarf
    if(this->getRace() == "Vampire"){
-      if (c.getSymbol != 'W') 
+      if (c.getSymbol() != 'W') 
 	 this->setHP(this->getHP() + 5);
       else 
 	 this->setHP(this->getHP() - 5);
@@ -117,9 +117,9 @@ void Character::strike(GameObject &c){
    double damage = ceil((100/(100+temp))*(this->getAtk()));
 
    // Orcs do 50% more damage to goblins
-   if ((this->getSymbol() = 'O') && (c.getRace() == "Goblin"))
+   if ((this->getSymbol() == 'O') && (c.getRace() == "Goblin"))
       damage *= 1.5;
-   std::cout << damage << std::endl;
+  // std::cout << damage << std::endl;
 
    // If player dies then "Game Over" exception thrown (remember to catch in main - give player option to restart or quit)
    // If enemy dies call their death function
@@ -128,11 +128,11 @@ void Character::strike(GameObject &c){
       if (c.getSymbol() == '@'){
 	 throw "Game Over";
       }
-      else c.enemyDeath();
+      else c.enemyDeath(*this);
    }
    else {
       c.setHP(c.getHP() - damage);
-      std::cout << c.getHP() << std::endl;
+  //    std::cout << c.getHP() << std::endl;
    }
 }
 

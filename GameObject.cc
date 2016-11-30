@@ -29,25 +29,25 @@ void GameObject::setsym(char s){
 }
 
 // Virtual function definitions
-virtual int GameObject::getGold() { return 0; }
-virtual void GameObject::setGold() { }
+int GameObject::getGold() { return 0; }
+void GameObject::setGold(int g) { }
 
 // Default definitions for functions specific to the Character class
-virtual int getHP() { return 0; }
-virtual int getAtk() { return 0; }
-virtual int getDef() { return 0; }
-virtual int getMaxHP() { return 0; }
-virtual int getMaxAtk() { return 0; }
-virtual int getMaxDef() { return 0; }
-virtual void setHP(int) { }
-virtual void setAtk(int) { }
-virtual void setDef(int) { }
-virtual std::string getRace() { return ""; }
-virtual void setMerchantHostile() { }
-virtual bool getMerchantHostile() { return false; }
-virtual void shift(std::string dir) { }
-virtual void playerMove(std::string dir) { }
-virtual void strike(GameObject &c) { }
-virtual void beStruckBy(GameObject &c) { }
-virtual void enemyReaction(GameObject &p) { }
-virtual void enemyDeath(GameObject &p) { }
+int GameObject::getHP() { return 0; }
+int GameObject::getAtk() { return 0; }
+int GameObject::getDef() { return 0; }
+int GameObject::getMaxHP() { return 0; }
+int GameObject::getMaxAtk() { return 0; }
+int GameObject::getMaxDef() { return 0; }
+void GameObject::setHP(int) { }
+void GameObject::setAtk(int) { }
+void GameObject::setDef(int) { }
+std::string GameObject::getRace() { return ""; }
+void GameObject::setMerchantHostile() { }
+bool GameObject::getMerchantHostile() { return false; }
+void GameObject::shift(std::string dir) { }
+void GameObject::playerMove(std::string dir) { }
+void GameObject::strike(GameObject &c) { }
+void GameObject::beStruckBy(GameObject &c) { }
+void GameObject::enemyReaction(GameObject &p) { }
+void GameObject::enemyDeath(GameObject &p) { }
