@@ -15,12 +15,13 @@ class Player: public Character{
 protected:
     bool merchantHostile;
     int level;
-    int maxhp, maxatk, maxdef;
+    int maxhp, origAtk, origDef;
     std::string race;
     int potionEffect;
 public:
     Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect = 1);
     std::string getRace();
+    int getMaxHp() override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;
 //    virtual void usePotion(Potion& );

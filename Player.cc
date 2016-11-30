@@ -6,8 +6,8 @@ Player::Player(int x, int y, Floor *grid, int health, int attack, int defense, s
 	merchantHostile(false),
 	level(1),
 	maxhp(health),
-	maxatk(attack),
-	maxdef(defense),
+	origAtk(attack),
+	origDef(defense),
 	race(race),
 	potionEffect(potionEffect)
 {}
@@ -16,6 +16,10 @@ Player::~Player() {}
 
 std::string Player::getRace(){
 	return race;
+}
+
+int Player::getMaxHp() {
+	return maxhp;
 }
 
 bool Player::getMerchantHostile(){
@@ -35,4 +39,3 @@ Vampire::Vampire(int x, int y, Floor *grid): Player(x,y,grid,50,25,25,"Vampire")
 Troll::Troll(int x, int y, Floor *grid): Player(x,y,grid,120,25,15,"Troll"){}
 
 Goblin::Goblin(int x, int y, Floor *grid): Player(x,y,grid,110,15,20,"Goblin"){}
-
