@@ -2,11 +2,13 @@
 
 class Gold: public GameObject {
 	int value;
-	bool pickedUp;
-	
+	bool pickable;
+
 	public:
-		Gold();
-		setGold();
-		getGold();
-		
+	Gold();
+	bool getPickable();
+	void setPickable(bool status);
+	void setGold();
+	int getGold();
+	~Gold();	
 }

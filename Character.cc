@@ -90,15 +90,20 @@ void Character::shift(std::string dir){
     bool isPlayer = false;
     if(getSymbol() == '@'){
         isPlayer = true;
-    }
+    } 
     bool valid = g->isCellValid(new_x, new_y, isPlayer);
     if (valid) {
+	if((g->getSymbol(new_x, new_y)) == 'G'){
+	GameObject *gold = g->getObj(new_x, new_y);  
+	if(gold->getPickable()){
+	setGold(gold->getGold()+this->getGold());
+	}
+	}
         setx(new_x);
         sety(new_y);
         objectAdd(new_x, new_y,this);
         objectRemove(old_x, old_y);
-    }
-
+    }   
 }
 
 

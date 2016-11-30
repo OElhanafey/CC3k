@@ -1,9 +1,9 @@
-//INCOMPLETE
+//INCOMPLETE:
 
 #include "cell.h"
 
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
-Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(dragonHoard), obj(nullptr) {
+Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(false), obj(nullptr) {
     if(sym == '.') {
         isEnemyValid = true;
         isPlayerValid = true;

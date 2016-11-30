@@ -33,6 +33,11 @@ void Enemy::enemyDeath(GameObject& p) {
       // if value 2 then - randomly generate among empty cells
    }
    else {
+      Floor *g = this->getGrid();
+      GameObject *gold = g->getObj();
+      gold->setPickable(true);
+      this->
+      g->objectRemove();			
       // Go into cell with coordinates HoardX HoardY on the floor
       // Switch on bool for "pickMeUp" in gold object on that cell in floor
    }
