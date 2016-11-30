@@ -87,15 +87,15 @@ void Character::shift(std::string dir){
       new_y = gety()-1;
    }
     // What is getGrid() ? Not been implemented yet.
-    Floor *g = this->getGrid();
+    //Floor *g = this->getGrid();
     bool isPlayer = false;
     if(getSymbol() == '@'){
         isPlayer = true;
     } 
-    bool valid = g->isCellValid(new_x, new_y, isPlayer);
+    bool valid = grid->isCellValid(new_x, new_y, isPlayer);
     if (valid) {
-	if((g->getSymbol(new_x, new_y)) == 'G'){
-	GameObject *gold = g->getObj(new_x, new_y);  
+	if((grid->getSymbol(new_x, new_y)) == 'G'){
+	GameObject *gold = grid->getObj(new_x, new_y);
         if(gold->getPickable()){
             setGold(gold->getGold()+this->getGold());
         }
