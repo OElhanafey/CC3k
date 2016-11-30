@@ -25,6 +25,11 @@ Floor::Floor() {
 	}
 }
 
+// Getting the grid. 
+Floor* Floor::getGrid(){
+    return grid;
+}
+
 void Floor::objectAdd(int r, int c, GameObject *obj) {
 	grid[r][c].add(obj);
 }

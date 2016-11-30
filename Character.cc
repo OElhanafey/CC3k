@@ -86,6 +86,7 @@ void Character::shift(std::string dir){
       new_x = getx()+1;
       new_y = gety()-1;
    }
+    // What is getGrid() ? Not been implemented yet.
     Floor *g = this->getGrid();
     bool isPlayer = false;
     if(getSymbol() == '@'){
@@ -95,10 +96,10 @@ void Character::shift(std::string dir){
     if (valid) {
 	if((g->getSymbol(new_x, new_y)) == 'G'){
 	GameObject *gold = g->getObj(new_x, new_y);  
-	if(gold->getPickable()){
-	setGold(gold->getGold()+this->getGold());
-	}
-	}
+        if(gold->getPickable()){
+            setGold(gold->getGold()+this->getGold());
+        }
+    }
         setx(new_x);
         sety(new_y);
         objectAdd(new_x, new_y,this);
@@ -140,7 +141,7 @@ void Character::strike(GameObject &c){
    if((c.getHP() - damage) < 0) {
       c.setHP(0);
       if (c.getSymbol() == '@'){
-	 throw "Game Over";
+          throw "Game Over";
       }
       else c.enemyDeath(*this);
    }

@@ -8,6 +8,9 @@ Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int
 Enemy::~Enemy() {}
 
 void Enemy::enemyDeath(GameObject& p) {
+    int e_x = this->getx();
+    int e_y = this->gety();
+    Floor *g = this->getGrid();
    // If Elf, Halfling, Orc or Dwarf die, the player gets either a small or normal pile of gold
    if(getSymbol() == 'E' || 
       getSymbol() == 'L' || 
@@ -17,31 +20,66 @@ void Enemy::enemyDeath(GameObject& p) {
       std::srand(time(NULL));
       int gPile = (std::rand() % 2) + 1;
       p.setGold(p.getGold() + gPile);
+      g->objectRemove(e_x, e_y);
    }
    // If a merchant dies, a gold object with value 4 is left replaces merchant
+   // In the coordinates for Merchant on floor, change pointer pointing to Merchant to a new Gold object with value 4
    else if(getSymbol() == 'M') {
-      // In the coordinates for Merchant on floor
-      // Change pointer pointing to Merchant to a new Gold object with value 4
+       GameObject *gold = new Gold(4);
+       g->objectRemove(e_x, e_y);
+       g->objectAdd(e_x, e_y, gold);
    }
    // If a Human dies:
-            // 1. One Gold item with value 2 replaces the human object at that cell
-            // 2. A second gold object near the first one if there is an empty cell available
+    /*
    else if(getSymbol() == 'H') {
+       int i = 0;
+       string dir;
+       int random_cell = 0;
+       if(g->isCellValid(e_x - 1, e_y, false)){
+           i++;
+           str = "no";
+       }
+       if(g->isCellValid(e_x + 1, e_y, false)){
+           i++;
+           str = "so";
+       }
+       if(g->isCellValid(e_x, e_y + 1, false)){
+           i++;
+           str = "we";
+       }
+       if(g->isCellValid(e_x + 1, e_y -1, false)){
+           i++;
+           str = "sw";
+       }
+       if(g->isCellValid(e_x - 1, e_y + 1, false)){
+           i++;
+           str = "ne";
+       }
+       if(g->isCellValid(e_x - 1, e_y - 1, false)){
+           i++
+           str = "nw";
+       }
+       if(g->isCellValid(e_x + 1, e_y + 1, false)){
+           i++;
+           str = "se";
+       }
+       int rand_num = i;
+       */
+    
       // In the coordinates for Human on floor
       // Check which cells around human are empty and are "enemy valid"
       // Change the pointer pointing to Human to a new Gold object with value 4 if no other cell around it is empty - otherwise value 2
       // if value 2 then - randomly generate among empty cells
    }
    else {
-      Floor *g = this->getGrid();
-      GameObject *gold = g->getObj();
+    //int hoardX
+     GameObject *gold = g->getObj();
       gold->setPickable(true);
-      this->
-      g->objectRemove();			
+      g->objectRemove(e_x, e_y);
       // Go into cell with coordinates HoardX HoardY on the floor
       // Switch on bool for "pickMeUp" in gold object on that cell in floor
    }
-}   
+}
 
 Human::Human(int x, int y, Floor *grid):
     Enemy(x,y,'H',grid,140,20,20) {}
