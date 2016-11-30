@@ -51,7 +51,9 @@ void Character::setGold(int g){
 }
 
 void Character::shift(std::string dir){
-   int new_x,new_y;
+    int old_x = getx();
+    int old_y = gety();
+    int new_x,new_y;
    if(dir == "no"){
       new_x = getx()-1;
       new_y = gety();
@@ -84,16 +86,23 @@ void Character::shift(std::string dir){
       new_x = getx()+1;
       new_y = gety()-1;
    }
-   /*    Floor *g = this->getGrid();
-	 bool valid = g->isCellValid(new_x, new_y, getSymbol());
-	 /  if (valid) {
-    */
-   setx(new_x);
-   sety(new_y);
+    Floor *g = this->getGrid();
+    bool isPlayer = false;
+    if(getSymbol() == '@'){
+        isPlayer = true;
+    }
+    bool valid = g->isCellValid(new_x, new_y, isPlayer);
+    if (valid) {
+        setx(new_x);
+        sety(new_y);
+        objectAdd(new_x, new_y,this);
+        objectRemove(old_x, old_y);
+    }
+
 }
 
 
-void Character::strike(GameObject &c){ 
+void Character::strike(GameObject &c){
    // Troll gains 5 HP every turn; Capped at Max Health
    if(this->getRace() == "Troll"){
       if(((this->getHP()) + 5) > 120){

@@ -2,8 +2,8 @@
 
 #include "cell.h"
 
-Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), obj(nullptr) {}
-Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), obj(nullptr) {
+Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
+Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(dragonHoard), obj(nullptr) {
     if(sym == '.') {
         isEnemyValid = true;
         isPlayerValid = true;
@@ -22,30 +22,41 @@ char Cell::getSymbol() {
    	return symbol;
 }
 
+bool Cell::getDragonHoard(){
+    return dragonHoard;
+}
+
+void Cell::setDragonHoard(bool status){
+    dragonHoard = status;
+}
+
 GameObject* Cell::getObject() {
    	return obj;
 }
 
 void Cell::add(GameObject* object) {
+    if(dragonHoard == true){
+        delete obj;
+    }
     obj = object;
     symbol = obj->getSymbol();
     isEnemyValid = false;
-    if(symbol == 'G') {
-	isPlayerValid = true;
-    }
-    else {
-	isPlayerValid = false;
+    isPlayerValid = false;
+    if((symbol == 'G')||(symbol == '\\')) {
+        isPlayerValid = true;
     }
 }
 
 void Cell::remove() {
     obj = nullptr;
     symbol = origSym;
+    if(dragonHoard == true){
+        GameObject *p = new Gold();
+        obj=p; //Fix the gold constructor.
+    }
+    isEnemyValid = true;
     if(symbol == '+' || symbol == '#') {
 	isEnemyValid = false;
-    }
-    else {
-	isEnemyValid = true;
     }
     isPlayerValid = true;
 }

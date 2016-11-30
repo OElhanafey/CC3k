@@ -15,16 +15,19 @@ class Cell {
     //14 - Orc 15 - Merchant 16 - Dragon
     bool isPlayerValid;
     bool isEnemyValid;
+    bool dragonHoard;
     GameObject* obj;
 public:
     Cell();
-    Cell(int x, int y, char sym);
+    Cell(int x, int y, char sym, bool dragonHoard = false);
     char getSymbol();
     GameObject *getObject();
     void add(GameObject* object);
     void remove();
     bool getPlayerValid();
     bool getEnemyValid();
+    bool getDragonHoard();
+    void setDragonHoard();
 };
 
 #endif
