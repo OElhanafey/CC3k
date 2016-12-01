@@ -91,7 +91,7 @@ void Character::shift(std::string dir){
     bool isPlayer = false;
     if(getSymbol() == '@'){
         isPlayer = true;
-    } 
+    }
     bool valid = g->isCellValid(new_x, new_y, isPlayer);
     if (valid) {
 	if((g->getSymbol(new_x, new_y)) == 'G'){

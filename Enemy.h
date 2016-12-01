@@ -23,7 +23,7 @@ public:
     // virtual void move(std::string dir);
 //    void strike(GameObject &) override;
 //  void beStruckBy(GameObject &) override;
-    // virtual void action();
+    virtual void action(GameObject &p);
     // virtual void death();
    /* virtual*/ ~Enemy();
 };
@@ -58,7 +58,7 @@ class Dragon: public Enemy{
 public:
     int getHoardX() override;
     int getHoardY() override;
-    Dragon(int x, int y, Floor *grid, int hX, int hY);
+    Dragon(int x, int y, Floor *grid, int hoardX, int hoardY);
 };
 
 class Halfling: public Enemy{
