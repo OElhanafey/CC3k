@@ -3,7 +3,7 @@
 //INCOMPLETE
 //Error: Enemies can walk on gold (Make validPlayer, validEnemy?)
 #include "GameObject.h"
-
+#include "gold.h"
 
 class Cell {
     int x,y;
@@ -19,7 +19,10 @@ class Cell {
     GameObject* obj;
 public:
     Cell();
-    Cell(int x, int y, char sym, bool dragonHoard = false);
+    Cell(int x, int y, char sym);
+    int getx();
+    int gety();
+    char getOrigSym();
     char getSymbol();
     GameObject *getObject();
     void add(GameObject* object);
@@ -27,7 +30,7 @@ public:
     bool getPlayerValid();
     bool getEnemyValid();
     bool getDragonHoard();
-    void setDragonHoard();
+    void setDragonHoard(bool status);
 };
 
 #endif

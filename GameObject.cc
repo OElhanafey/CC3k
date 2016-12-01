@@ -16,6 +16,10 @@ char GameObject::getSymbol() const{
     return symbol;
 }
 
+Floor* GameObject::getGrid() {
+   return grid;
+}
+
 void GameObject::setx(int n){
     x = n;
 }
@@ -51,3 +55,9 @@ void GameObject::strike(GameObject &c) { }
 void GameObject::beStruckBy(GameObject &c) { }
 void GameObject::enemyReaction(GameObject &p) { }
 void GameObject::enemyDeath(GameObject &p) { }
+int GameObject::getHoardX() { return -1; }
+int GameObject::getHoardY() { return -1; }
+
+// Default definitions for functions specific to the Gold class
+bool GameObject::getPickable() { return false; }
+void GameObject::setPickable(bool status) { }

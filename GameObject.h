@@ -1,8 +1,8 @@
 #ifndef GameObject_h
 #define GameObject_h
 
-
 #include <string>
+//#include "floor.h"
 
 class Floor;
 class GameObject{
@@ -17,6 +17,7 @@ public:
     int getx();
     int gety();
     char getSymbol() const;
+    Floor *getGrid();
     void setx(int n);
     void sety(int n);
     void setsym(char s);
@@ -44,6 +45,13 @@ public:
     virtual void beStruckBy(GameObject &c);
     virtual void enemyReaction(GameObject &p);
     virtual void enemyDeath(GameObject &p);
+    virtual int getHoardX();
+    virtual int getHoardY();
+
+    // Functions specific to Gold
+    virtual bool getPickable();
+    virtual void setPickable(bool status);
+
     virtual ~GameObject() = 0;
 };
 

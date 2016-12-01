@@ -21,7 +21,7 @@ protected:
 public:
     Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect = 1);
     std::string getRace();
-    int getMaxHp() override;
+//    int getMaxHp() override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;
 //    virtual void usePotion(Potion& );

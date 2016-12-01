@@ -6,7 +6,7 @@
 class GameObject;
 
 class Floor {
-   std::vector<std::vector<Cell> > grid;
+   std::vector<std::vector<Cell>> grid;
 public:
     Floor();
     void setDragonHoard(int r, int c, bool status);

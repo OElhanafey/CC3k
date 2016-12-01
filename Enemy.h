@@ -5,8 +5,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <utility>
 #include "Character.h"
 #include "Player.h"
+#include "gold.h"
+#include "floor.h"
 
 class Potion;
 class Player;
@@ -52,6 +56,8 @@ public:
 class Dragon: public Enemy{
     int hoardX, hoardY;
 public:
+    int getHoardX() override;
+    int getHoardY() override;
     Dragon(int x, int y, Floor *grid, int hX, int hY);
 };
 

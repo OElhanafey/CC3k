@@ -17,11 +17,11 @@ Player::~Player() {}
 std::string Player::getRace(){
 	return race;
 }
-
+/*
 int Player::getMaxHp() {
 	return maxhp;
 }
-
+*/
 bool Player::getMerchantHostile(){
 	return merchantHostile;
 }
