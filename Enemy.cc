@@ -34,7 +34,6 @@ void Enemy::enemyDeath(GameObject& p) {
    }
    // If a Human dies:
    else if(getSymbol() == 'H') {
-       validCellEnemy(e_x, e_y, g);
       std::vector<std::pair<int,int>> validDir;
       if(g->isCellValid(e_x - 1, e_y, false)){
 	 validDir.emplace_back(std::make_pair (e_x - 1, e_y));
@@ -108,7 +107,7 @@ bool validRadius(int x, int y, Floor *grid){
     return within_radius;
 }
 
-vector<std::string> validCellEnemy(int x, int y, Floor *g){
+std::vector<std::string> validCellEnemy(int x, int y, Floor *g){
     std::vector<std::string> validDir;
     if(g->isCellValid(x - 1, y, false)) validDir.emplace_back("no");
     if(g->isCellValid(x + 1, y, false)) validDir.emplace_back("so");
@@ -130,17 +129,17 @@ void Enemy::action(GameObject &p){
     int e_x = this->getx();
     int e_y = this->gety();
     int dX, dY; //Dragon hoardx, hoardy location.
-    if(getSymbol == 'D'){
+    if(getSymbol() == 'D'){
         dX = getHoardX();
         dY = getHoardY();
     }
     bool oneBlock = validRadius(e_x, e_y, g);
     bool dragonGoldBlock = validRadius(dX, dY, g);
     if(oneBlock || dragonGoldBlock){
-        p.beStruckBy(this);
+        p.beStruckBy(*this);
     }
     else{
-        vector <std::string> moveEnemy = validCellEnemy(e_x, e_y, g);
+        std::vector <std::string> moveEnemy = validCellEnemy(e_x, e_y, g);
         if(moveEnemy.size() != 0){
             std::srand(time(NULL));
             int i = std::rand() % moveEnemy.size();
