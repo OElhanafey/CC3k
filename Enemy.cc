@@ -124,6 +124,7 @@ std::vector<std::string> validCellEnemy(int x, int y, Floor *g){
 // then the enemy strikes.
 // But if the player is not within one block radius of the enemy or the dragon hoard, then the
 // enemy moves randomly within the one block radius (Note only, where the enemy cell is valid).
+
 void Enemy::action(GameObject &p){
     Floor *g = this->getGrid();
     int e_x = this->getx();

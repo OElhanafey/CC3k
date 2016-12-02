@@ -43,7 +43,7 @@ public:
     virtual void playerMove(std::string dir);
     virtual void strike(GameObject &c);
     virtual void beStruckBy(GameObject &c);
-    virtual void enemyReaction(GameObject &p);
+    virtual void action(GameObject &p);
     virtual void enemyDeath(GameObject &p);
     virtual int getHoardX();
     virtual int getHoardY();

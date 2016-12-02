@@ -23,7 +23,7 @@ public:
     // virtual void move(std::string dir);
 //    void strike(GameObject &) override;
 //  void beStruckBy(GameObject &) override;
-    virtual void action(GameObject &p);
+    void action(GameObject &p);
     // virtual void death();
    /* virtual*/ ~Enemy();
 };

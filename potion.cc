@@ -9,6 +9,7 @@ void RestoreHp::usePotion(Player& player) {
 		player.setHP(player.getHP+10);
 	}
 }
+
 void BoostAtk::usePotion(Player& player) {
 	player.setAtk(player.getAtk()+5);
 }

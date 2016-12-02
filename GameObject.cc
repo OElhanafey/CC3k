@@ -53,7 +53,7 @@ void GameObject::shift(std::string dir) { }
 void GameObject::playerMove(std::string dir) { }
 void GameObject::strike(GameObject &c) { }
 void GameObject::beStruckBy(GameObject &c) { }
-void GameObject::enemyReaction(GameObject &p) { }
+void GameObject::action(GameObject &p) { }
 void GameObject::enemyDeath(GameObject &p) { }
 int GameObject::getHoardX() { return -1; }
 int GameObject::getHoardY() { return -1; }
