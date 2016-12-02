@@ -7,8 +7,29 @@ Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int
 
 Enemy::~Enemy() {}
 
+bool getEnemyMovable() { return movable; }
+void setEnemyMovable() {
+   if (movable) { 
+      movable = false;
+   }
+   else movable = true;
+}
+
 int Dragon::getHoardX() { return hoardX; }
 int Dragon::getHoardY() { return hoardY; }
+
+static std::vector<std::string> validDirections(int x, int y, Floor *g){
+   std::vector<std::string> validDir;
+   if(g->isCellValid(x - 1, y, false)) validDir.emplace_back("no");
+   if(g->isCellValid(x + 1, y, false)) validDir.emplace_back("so");
+   if(g->isCellValid(x, y + 1, false)) validDir.emplace_back("ea");
+   if(g->isCellValid(x, y - 1, false)) validDir.emplace_back("we");
+   if(g->isCellValid(x + 1, y -1, false)) validDir.emplace_back("sw");
+   if(g->isCellValid(x - 1, y + 1, false)) validDir.emplace_back("ne");
+   if(g->isCellValid(x - 1, y - 1, false)) validDir.emplace_back("nw");
+   if(g->isCellValid(x + 1, y + 1, false)) validDir.emplace_back("se");
+   return validDir;
+}
 
 void Enemy::enemyDeath(GameObject& p) {
    int e_x = this->getx();
@@ -32,7 +53,7 @@ void Enemy::enemyDeath(GameObject& p) {
       g->objectRemove(e_x, e_y);
       g->objectAdd(e_x, e_y, gold);
    }
-   // If a Human dies:
+   // If a Human dies (MODIFY THIS LATER TO REDUCE REPEATING CODE):
    else if(getSymbol() == 'H') {
       std::vector<std::pair<int,int>> validDir;
       if(g->isCellValid(e_x - 1, e_y, false)){
@@ -85,40 +106,34 @@ void Enemy::enemyDeath(GameObject& p) {
    }
 }
 
-// Helper functions to check if the Player is within one block radius or not.
+// Helper function to check is a player is within a 1 block radius of an enemy
+static bool isNearby(GameObject &enemy, GameObject &player) {
+   bool playerNearby = false;
 
-// If the cell is player, then the player is within one block, so strike, by checking if the bool within_radius is true.
-// If the bool radius is false, then you need to move.
-// You need to randomly generate a position where enemy can move, so before doing that you need to store the valid enemy cells
-// in a vector, and then randomnly generate and make the enemy move there. You can do object add/remove for enemy.
+   // Enemy's coordinates
+   int eX = enemy.getx();
+   int eY = enemy.gety();
 
-bool validRadius(int x, int y, Floor *grid){
-    bool within_radius = false;
-    if(((grid->getSymbol(x+1, y)) == '@') ||
-       ((grid->getSymbol(x-1, y)) == '@') ||
-       ((grid->getSymbol(x, y+1)) == '@') ||
-       ((grid->getSymbol(x, y-1)) == '@') ||
-       ((grid->getSymbol(x+1, y+1)) == '@') ||
-       ((grid->getSymbol(x-1, y-1)) == '@') ||
-       ((grid->getSymbol(x+1, y-1)) == '@') ||
-       ((grid->getSymbol(x-1, y+1)) == '@')) {
-        within_radius = true;
-    }
-    return within_radius;
+   // Player's coordinates
+   int pX = player.getx();
+   int pY = player.gety();
+
+   // Check if player is within a 1 block radius of the Enemy
+   if ( (abs(pX - eX) <= 1) && (abs(pY - eY) <= 1) ) {
+      playerNearby = true;
+   }
+
+   if( (enemy.getSymbol() == 'D') && !playerNearby ) {
+      int dX = enemy.getHoardX();
+      int dY = enemy.getHoardY();
+      // Check if player is within a 1 block radius of the dragon hoard
+      if ( (abs(pX - dX) <= 1) && (abs(pY - dY) <= 1) ){
+	 playerNearby = true;
+      }
+   }
+   return playerNearby;
 }
 
-std::vector<std::string> validCellEnemy(int x, int y, Floor *g){
-    std::vector<std::string> validDir;
-    if(g->isCellValid(x - 1, y, false)) validDir.emplace_back("no");
-    if(g->isCellValid(x + 1, y, false)) validDir.emplace_back("so");
-    if(g->isCellValid(x, y + 1, false)) validDir.emplace_back("ea");
-    if(g->isCellValid(x, y - 1, false)) validDir.emplace_back("we");
-    if(g->isCellValid(x + 1, y -1, false)) validDir.emplace_back("sw");
-    if(g->isCellValid(x - 1, y + 1, false)) validDir.emplace_back("ne");
-    if(g->isCellValid(x - 1, y - 1, false)) validDir.emplace_back("nw");
-    if(g->isCellValid(x + 1, y + 1, false)) validDir.emplace_back("se");
-    return validDir;
-}
 
 // Action function, if the player is within one block radius of the enemy or the dragon Hoard
 // then the enemy strikes.
@@ -126,47 +141,47 @@ std::vector<std::string> validCellEnemy(int x, int y, Floor *g){
 // enemy moves randomly within the one block radius (Note only, where the enemy cell is valid).
 
 void Enemy::action(GameObject &p){
-    Floor *g = this->getGrid();
-    int e_x = this->getx();
-    int e_y = this->gety();
-    int dX, dY; //Dragon hoardx, hoardy location.
-    if(getSymbol() == 'D'){
-        dX = getHoardX();
-        dY = getHoardY();
-    }
-    bool oneBlock = validRadius(e_x, e_y, g);
-    bool dragonGoldBlock = validRadius(dX, dY, g);
-    if(oneBlock || dragonGoldBlock){
-        p.beStruckBy(*this);
-    }
-    else{
-        std::vector <std::string> moveEnemy = validCellEnemy(e_x, e_y, g);
-        if(moveEnemy.size() != 0){
-            std::srand(time(NULL));
-            int i = std::rand() % moveEnemy.size();
-            this->shift(moveEnemy[i]);
-        }
-    }
+   Floor *g = getGrid();
+   bool playerNearby = isNearby(*this, p);
+
+   // Enemy's coordinates
+   int eX = getx();
+   int eY = gety();
+
+   // If player is nearby strike the player
+   if(playerNearby){
+      p.beStruckBy(*this);
+   }
+
+   else{
+      if (movable) {
+	 std::vector <std::string> directions = validDirections(eX, eY, g);
+	 if(directions.size() != 0) {
+	    std::srand(time(NULL));
+	    int i = std::rand() % directions.size();
+	    shift(directions[i]);
+	 }
+      }
+   }
 }
 
 Human::Human(int x, int y, Floor *grid):
-Enemy(x,y,'H',grid,140,20,20) {}
+   Enemy(x,y,'H',grid,140,20,20) {}
 
-Dwarf::Dwarf(int x, int y, Floor *grid):
-Enemy(x,y,'W',grid,100,20,30) {}
+   Dwarf::Dwarf(int x, int y, Floor *grid):
+      Enemy(x,y,'W',grid,100,20,30) {}
 
-Elf::Elf(int x, int y, Floor *grid):Enemy(x,y,'E',grid,140,30,10) {}
+      Elf::Elf(int x, int y, Floor *grid):Enemy(x,y,'E',grid,140,30,10) {}
 
-Orc::Orc(int x, int y, Floor *grid):
-Enemy(x,y,'O',grid,180,30,25) {}
+      Orc::Orc(int x, int y, Floor *grid):
+	 Enemy(x,y,'O',grid,180,30,25) {}
 
-Merchant::Merchant(int x, int y, Floor *grid):
-Enemy(x,y,'M',grid,30,70,5) {}
+	 Merchant::Merchant(int x, int y, Floor *grid):
+	    Enemy(x,y,'M',grid,30,70,5) {}
 
-Dragon::Dragon(int x, int y, Floor *grid, int hoardX, int hoardY):
-Enemy(x,y,'D',grid,150,20,20,false) {}
+	    Dragon::Dragon(int x, int y, Floor *grid, int hoardX, int hoardY):
+	       Enemy(x,y,'D',grid,150,20,20,false) {}
 
-Halfling::Halfling(int x, int y, Floor *grid):
-Enemy(x,y,'L',grid,100,15,20) {}
-
+	       Halfling::Halfling(int x, int y, Floor *grid):
+		  Enemy(x,y,'L',grid,100,15,20) {}
 

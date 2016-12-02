@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <vector>
@@ -16,15 +17,13 @@ class Potion;
 class Player;
 
 class Enemy: public Character{
-    bool canMove;
+    bool movable;
 public:
-    Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool canMove = true);
+    Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool movable = true);
+    bool getEnemyMovable() override;
+    void setEnemyMovable() override;
     void enemyDeath(GameObject &p) override;
-    // virtual void move(std::string dir);
-//    void strike(GameObject &) override;
-//  void beStruckBy(GameObject &) override;
     void action(GameObject &p);
-    // virtual void death();
    /* virtual*/ ~Enemy();
 };
 

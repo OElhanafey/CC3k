@@ -57,6 +57,8 @@ void GameObject::action(GameObject &p) { }
 void GameObject::enemyDeath(GameObject &p) { }
 int GameObject::getHoardX() { return -1; }
 int GameObject::getHoardY() { return -1; }
+bool GameObject::getEnemyMovable() { return false; }
+void GameObject::setEnemyMovable() { }
 
 // Default definitions for functions specific to the Gold class
 bool GameObject::getPickable() { return false; }

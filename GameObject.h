@@ -47,6 +47,8 @@ public:
     virtual void enemyDeath(GameObject &p);
     virtual int getHoardX();
     virtual int getHoardY();
+    virtual int getEnemyMovable();
+    virtual int setEnemyMovable();
 
     // Functions specific to Gold
     virtual bool getPickable();
