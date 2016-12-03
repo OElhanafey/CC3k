@@ -9,6 +9,7 @@ class Potion: public GameObject {
 	static bool usedWD;
 
 public:
+  //  Potion(){};
 	virtual void usePotion(Player& player) = 0;
 }
 

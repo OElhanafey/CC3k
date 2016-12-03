@@ -23,7 +23,7 @@ public:
     bool getEnemyMovable() override;
     void setEnemyMovable() override;
     void enemyDeath(GameObject &p) override;
-    void action(GameObject &p);
+    void action(GameObject &p) override;
    /* virtual*/ ~Enemy();
 };
 

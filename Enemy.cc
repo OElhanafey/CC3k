@@ -1,8 +1,8 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool canMove):
+Enemy::Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool movable):
    Character(x,y,symbol,grid,health,attack,defense,0.5),
-   canMove(canMove)
+   movable(movable)
 {}
 
 Enemy::~Enemy() {}
@@ -135,10 +135,7 @@ static bool isNearby(GameObject &enemy, GameObject &player) {
 }
 
 
-// Action function, if the player is within one block radius of the enemy or the dragon Hoard
-// then the enemy strikes.
-// But if the player is not within one block radius of the enemy or the dragon hoard, then the
-// enemy moves randomly within the one block radius (Note only, where the enemy cell is valid).
+// Action function, if the player is within one block radius of the enemy or the dragon Hoard then the enemy strikes. But if the player is not within one block radius of the enemy or the dragon hoard, then the enemy moves randomly within the one block radius (Note only, where the enemy cell is valid).
 
 void Enemy::action(GameObject &p){
    Floor *g = getGrid();
@@ -166,22 +163,23 @@ void Enemy::action(GameObject &p){
 }
 
 Human::Human(int x, int y, Floor *grid):
-   Enemy(x,y,'H',grid,140,20,20) {}
+Enemy(x,y,'H',grid,140,20,20) {}
 
-   Dwarf::Dwarf(int x, int y, Floor *grid):
-      Enemy(x,y,'W',grid,100,20,30) {}
+Dwarf::Dwarf(int x, int y, Floor *grid):
+Enemy(x,y,'W',grid,100,20,30) {}
 
-      Elf::Elf(int x, int y, Floor *grid):Enemy(x,y,'E',grid,140,30,10) {}
+Elf::Elf(int x, int y, Floor *grid):
+Enemy(x,y,'E',grid,140,30,10) {}
 
-      Orc::Orc(int x, int y, Floor *grid):
-	 Enemy(x,y,'O',grid,180,30,25) {}
+Orc::Orc(int x, int y, Floor *grid):
+Enemy(x,y,'O',grid,180,30,25) {}
 
-	 Merchant::Merchant(int x, int y, Floor *grid):
-	    Enemy(x,y,'M',grid,30,70,5) {}
+Merchant::Merchant(int x, int y, Floor *grid):
+Enemy(x,y,'M',grid,30,70,5) {}
 
-	    Dragon::Dragon(int x, int y, Floor *grid, int hoardX, int hoardY):
-	       Enemy(x,y,'D',grid,150,20,20,false) {}
+Dragon::Dragon(int x, int y, Floor *grid, int hoardX, int hoardY):
+Enemy(x,y,'D',grid,150,20,20,false) {}
 
-	       Halfling::Halfling(int x, int y, Floor *grid):
-		  Enemy(x,y,'L',grid,100,15,20) {}
+Halfling::Halfling(int x, int y, Floor *grid):
+Enemy(x,y,'L',grid,100,15,20) {}
 
