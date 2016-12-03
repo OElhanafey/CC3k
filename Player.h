@@ -18,8 +18,10 @@ protected:
     std::string race;
     int potionEffect;
 public:
-    Player(int x, int y, Floor *grid, int health, int attack, int defense, std::string race, int potionEffect = 1);
+    Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect = 1);
     std::string getRace();
+    int getMaxHp() override;
+    int getPotionEffect() override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;
 //    virtual void usePotion(Potion& );
@@ -29,30 +31,30 @@ public:
 
 class Shade: public Player{
 public:
-    Shade(int x, int y, Floor *grid);
+    Shade(int x, int y);
 };
 
 class Drow: public Player{
 public:
-    Drow(int x, int y, Floor *grid);
+    Drow(int x, int y;
 //    void usePotion(Potion& );
 };
 
 class Vampire: public Player{
 public:
-    Vampire(int x, int y, Floor *grid);
+    Vampire(int x, int y);
 //    void strike(Npc &) override;
 };
 
 class Troll: public Player{
 public:
-    Troll(int x, int y, Floor *grid);
+    Troll(int x, int y;
 //    void strike(Character &) override;
 };
 
 class Goblin: public Player{
 public:
-    Goblin(int x, int y, Floor *grid);
+    Goblin(int x, int y);
 //    void strike(Character &) override;
 };
 

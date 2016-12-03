@@ -19,7 +19,7 @@ class Player;
 class Enemy: public Character{
     bool movable;
 public:
-    Enemy(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, bool movable = true);
+    Enemy(int x, int y, char symbol, /*Floor *grid*/, int health, int attack, int defense, bool movable = true);
     bool getEnemyMovable() override;
     void setEnemyMovable() override;
     void enemyDeath(GameObject &p) override;
@@ -29,27 +29,27 @@ public:
 
 class Human: public Enemy{
 public:
-    Human(int x, int y, Floor *grid);
+    Human(int x, int y);
 };
 
 class Dwarf: public Enemy{
 public:
-    Dwarf(int x, int y, Floor *grid);
+    Dwarf(int x, int y);
 };
 
 class Elf: public Enemy{
 public:
-    Elf(int x, int y, Floor *grid);
+    Elf(int x, int y);
 };
 
 class Orc: public Enemy{
 public:
-    Orc(int x, int y, Floor *grid);
+    Orc(int x, int y);
 };
 
 class Merchant: public Enemy{
 public:
-    Merchant(int x, int y, Floor *grid);
+    Merchant(int x, int y);
 };
 
 class Dragon: public Enemy{
@@ -57,12 +57,12 @@ class Dragon: public Enemy{
 public:
     int getHoardX() override;
     int getHoardY() override;
-    Dragon(int x, int y, Floor *grid, int hoardX, int hoardY);
+    Dragon(int x, int y, int hoardX, int hoardY);
 };
 
 class Halfling: public Enemy{
 public:
-    Halfling(int x, int y, Floor *grid);
+    Halfling(int x, int y);
 };
 
 #endif /* Enemy_h */

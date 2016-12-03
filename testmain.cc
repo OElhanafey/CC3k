@@ -168,7 +168,7 @@ int main() {
 							else if(direction == 7) enemy.getObject()->shift("se");
 							else if(direction == 8) enemy.getObject()->shift("sw");		
 						   }
-					   }
+                     }
 				}
 			}
 		}

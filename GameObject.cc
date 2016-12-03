@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(int x, int y, char symbol, Floor *grid): x(x), y(y), symbol(symbol), grid(grid){}
+GameObject::GameObject(int x, int y, char symbol): x(x), y(y), symbol(symbol){}
 
 GameObject::~GameObject(){}
 
@@ -16,9 +16,11 @@ char GameObject::getSymbol() const{
     return symbol;
 }
 
+/*
 Floor* GameObject::getGrid() {
    return grid;
 }
+*/
 
 void GameObject::setx(int n){
     x = n;
@@ -47,6 +49,8 @@ void GameObject::setHP(int) { }
 void GameObject::setAtk(int) { }
 void GameObject::setDef(int) { }
 std::string GameObject::getRace() { return ""; }
+int GameObject::getMaxHp(){ return 0;}
+int GameObject::getPotionEffect(){return 0;}
 void GameObject::setMerchantHostile() { }
 bool GameObject::getMerchantHostile() { return false; }
 void GameObject::shift(std::string dir) { }

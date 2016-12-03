@@ -20,7 +20,6 @@ Floor::Floor(std::ifstream& layout) {
 			else {
 				++xRead;
 			}
-
 		}
 	}
 }
@@ -44,6 +43,7 @@ void Floor::objectRemove(int r, int c){
 char Floor::getSymbol(int r, int c){
 	return grid[r][c].getSymbol();
 }
+
 void Floor::setDragonHoard(int r, int c, bool status){
 	grid[r][c].setDragonHoard(status);
 }

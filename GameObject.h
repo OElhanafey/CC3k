@@ -13,11 +13,11 @@ protected:
     Floor *grid;
 public:
     // Functions specific to GameObject
-    GameObject(int x, int y, char symbol, Floor *grid);
+    GameObject(int x, int y, char symbol, /*Floor *grid*/);
     int getx();
     int gety();
     char getSymbol() const;
-    Floor *getGrid();
+   // Floor *getGrid();
     void setx(int n);
     void sety(int n);
     void setsym(char s);
@@ -37,6 +37,8 @@ public:
     virtual void setAtk(int);
     virtual void setDef(int);
     virtual std::string getRace();
+    virtual int getMaxHP();
+    virtual int getPotionEffect();
     virtual void setMerchantHostile();
     virtual bool getMerchantHostile();
     virtual void shift(std::string dir);

@@ -8,12 +8,11 @@ using namespace std;
 
 // Character Constructor, has the cell's location, the symbol, a pointer to the floor, the characteristics, and the amount of gold carried.
 
-Character::Character(int x, int y, char symbol, Floor *grid, int health, int attack, int defense, double accuracy, int gold):
-GameObject(x,y,symbol, grid),
+Character::Character(int x, int y, char symbol, /*Floor *grid*/, int health, int attack, int defense, int gold):
+GameObject(x,y,symbol /*grid*/),
 health(health),
 attack(attack),
 defense(defense),
-accuracy(accuracy),
 gold(gold){}
 
 // Character Destructor:
@@ -52,7 +51,7 @@ void Character::setGold(int g){
 }
 
 // This function, moves/shifts the character in the specific direction.
-void Character::shift(std::string dir){
+void Character::shift(std::string dir, Floor *g){
     int old_x = getx();
     int old_y = gety();
     int new_x,new_y;
@@ -89,7 +88,7 @@ void Character::shift(std::string dir){
         new_y = gety()-1;
     }
     // A floor point to the grid the character is on. First checks, if the new cell where the player is trying to move is valid for player to move or not. If it is valid, and if the new cell has gold object on it, then it creates a GameObject pointer to store the gold. Now if the gold is pickable (i.e. not the dragon gold), then the gold value get's added to the gold carried by the player. The player is shifted to the new cells and removed from the old location.
-    Floor *g = this->getGrid();
+  //  Floor *g = this->getGrid();
     bool isPlayer = false;
     if(getSymbol() == '@'){
         isPlayer = true;
@@ -109,9 +108,8 @@ void Character::shift(std::string dir){
     }
 }
 
-
 // The strike function calculates the damage when one character attacks the other, and it manipulates the health points.
-void Character::strike(GameObject &c){
+void Character::strike(GameObject &c, Floor *g){
     // Troll gains 5 HP every turn; Capped at Max Health
     if(this->getRace() == "Troll"){
         if(((this->getHP()) + 5) > 120){
@@ -141,7 +139,7 @@ void Character::strike(GameObject &c){
         if (c.getSymbol() == '@'){
             throw "Game Over";
         }
-        else c.enemyDeath(*this);
+        else c.enemyDeath(*this,g);
     }
     else{
         c.setHP(c.getHP() - damage);
@@ -150,7 +148,7 @@ void Character::strike(GameObject &c){
 
 // BeStruckBY function means Character A is struck by Character B. So, B strikes A, hence it calls the strike function.
 
-void Character::beStruckBy(GameObject &c){
+void Character::beStruckBy(GameObject &c, Floor *g){
     int hit = 1; // If 1 then hit; if 0 then miss
     // Enemies have a 50% chance of striking the player (ie if player is being struck by an enemy, there is a 50% chance of calling strike(player).Players have a 50% chance of striking a halfling, i.e if halfing is being struck by player, there is a 50% chance of calling strike(halfling)
     if((this->getSymbol() == '@') || (this->getSymbol() == 'L')){
@@ -158,7 +156,7 @@ void Character::beStruckBy(GameObject &c){
         hit = std::rand() % 2;
     }
     if(hit == 1){
-        c.strike(*this);
+        c.strike(*this,g);
         // If a Merchant is attacked for the first time; set merchantHostile to true
         if(this->getSymbol() == 'M'){
             c.setMerchantHostile();
@@ -168,7 +166,7 @@ void Character::beStruckBy(GameObject &c){
             std::srand(time(NULL)+1);
             hit = std::rand() % 2;
             if(!(this->getRace() == "Drow") && (hit == 1)){
-                c.strike(*this);
+                c.strike(*this,g);
             }
         }
     }

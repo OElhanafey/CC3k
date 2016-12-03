@@ -8,10 +8,9 @@
 class Character:public GameObject{
 protected:
     int health, attack, defense;
-    double accuracy;
     int gold;
 public:
-    Character(int x, int y, char symbol, Floor *grid,int health, int attack, int defense, double accuracy, int gold = 0);
+    Character(int x, int y, char symbol, /*Floor *grid*/,int health, int attack, int defense, int gold = 0);
     int getHP() override;
     int getAtk() override;
     int getDef() override;
