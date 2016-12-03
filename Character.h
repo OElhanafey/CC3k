@@ -20,7 +20,7 @@ public:
     void setAtk(int at) override;
     void setDef(int def) override;
     void setGold(int g) override;
-    void shift(std::string dir);
+    void shift(std::string dir); // If player, check 1 block radius and output all potions in the 1 block radius
     void strike(GameObject &c) override;
     void beStruckBy(GameObject &c) override;
     ~Character();
