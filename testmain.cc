@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstdlib>
 #include "cell.h"
 #include "floor.h"
 #include "Enemy.h"
@@ -78,6 +79,7 @@ int main() {
 			}
 			else if(s == "f") {
 				//NEED TO CHANGE ENEMY MOVABLE TO STATIC
+				//When it is static flipping the switch of movable will change all Enemies movable field to false
 				//Stops enemies from moving
 			}
 			else if(s == "u") {
@@ -149,7 +151,23 @@ int main() {
 				           enemy.getSymbol() == 'M' ||
 					   enemy.getSymbol() == 'D' ||
 				           enemy.getSymbol() == 'L') {
- 						   //Strike or Move
+ 						   //First check if movable
+						   
+						   //Check if player nearby, using *player
+						   if(true) {
+							enemy.getObject()->strike(*player);
+						   }
+						   else {
+							int direction = rand() % 8 + 1;
+							if(direction == 1) enemy.getObject()->shift("no");
+							else if(direction == 2) enemy.getObject()->shift("so");
+							else if(direction == 3) enemy.getObject()->shift("ea");
+							else if(direction == 4) enemy.getObject()->shift("we");
+							else if(direction == 5) enemy.getObject()->shift("ne");
+							else if(direction == 6) enemy.getObject()->shift("nw");
+							else if(direction == 7) enemy.getObject()->shift("se");
+							else if(direction == 8) enemy.getObject()->shift("sw");		
+						   }
 					   }
 				}
 			}
