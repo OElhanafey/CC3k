@@ -171,6 +171,7 @@ int main() {
 					   }
 				}
 			}
+			floors[floorLevel].print();
 		}
 	}
 }
