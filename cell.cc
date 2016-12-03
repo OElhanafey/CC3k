@@ -1,20 +1,111 @@
 //INCOMPLETE:
 
 #include "cell.h"
-
+#include "gold.h"
+#include <memory>
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
-Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(false), obj(nullptr) {
+
+Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(false), obj(nullptr), isPlayerValid(false), isEnemyValid(false) {
    if(sym == '.') {
-      isEnemyValid = true;
-      isPlayerValid = true;
+	isEnemyValid = true;
+	isPlayerValid = true;
    }
    else if(sym == '#' || sym == '+') {
-      isPlayerValid = true;
-      isEnemyValid = false;
+	isPlayerValid = true;
+	isEnemyValid = false;
    }
-   else {
-      isPlayerValid = false;
-      isEnemyValid = false;
+   else if(sym == 'H') {
+	symbol = 'H';
+	origSym = '.';
+	//obj = new Human();
+   }
+   else if(sym == 'W') {
+        symbol = 'W';
+        origSym = '.';
+        //obj = new Dwarf();
+   }
+   else if(sym == 'E') {
+        symbol = 'E';
+        origSym = '.';
+        //obj = new Elf();
+   }
+   else if(sym == 'O') {
+        symbol = 'O';
+        origSym = '.';
+        //obj = new Orc();
+   }
+   else if(sym == 'M') {
+        symbol = 'M';
+        origSym = ',';
+        //obj = new Merchant();
+   }
+   else if(sym == 'D') {
+        symbol = 'D';
+        origSym = '.';
+        //obj = new Dragon();
+   }
+   else if(sym == 'L') {
+        symbol = 'L';
+        origSym = '.';
+        //obj = new Halfling();
+   }
+
+   else if(sym == '0') {
+	symbol = 'P';
+	origSym = '.';
+	//obj = new RestoreHp();
+   }
+   else if(sym == '1') {
+        symbol = 'P';
+        origSym = '.';
+	//obj = new BoostAtk();
+   }
+   else if(sym == '2') {
+        symbol = 'P';
+        origSym = '.';
+	//obj = new BoostDef();
+   }
+   else if(sym == '3') {
+        symbol = 'P';
+        origSym = '.';
+	//obj = new PoisonHp();
+   }
+   else if(sym == '4') {
+        symbol = 'P';
+        origSym = '.';
+	//obj = new WoundAtk();
+   }
+   else if(sym == '5') {
+        symbol = 'P';
+        origSym = '.';
+	//obj = new WoundDef();
+   }
+   else if(sym == '6') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,2);
+   }
+   else if(sym == '7') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,1);
+   }
+   else if(sym == '8') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,4);
+   }
+   else if(sym == '9') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,6);
+   }
+   else if(sym == '@') {
+	origSym = '.';
+   }
+   else if(sym == '\\') {
+	symbol = '\\';
+	origSym = '\\';
    }
 }
 

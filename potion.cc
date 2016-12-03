@@ -62,7 +62,7 @@ void PoisonHp::usePotion(Player& player) {
 }
 
 // Decreases the attack points.
-void WoundAtk::usePotion(Player& player) {
+void WoundAtk::usePotion(GameObject& player) {
 	if(player.getAtk() < 5) {
 		player.setAtk(0);
 	}
@@ -72,7 +72,7 @@ void WoundAtk::usePotion(Player& player) {
 }
 
 // Decreases the defense points.
-void WoundDef::usePotion(Player& player) {
+void WoundDef::usePotion(GameObject& player) {
 	if(player.getDef() < 5) {
 		player.setDef(0);
 	}

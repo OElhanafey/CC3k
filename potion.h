@@ -47,3 +47,4 @@ class WoundDef: public Potion {
    	WoundDef(int x, int y, Floor *grid);
 	void usePotion(Player& player) override;
 };
+
