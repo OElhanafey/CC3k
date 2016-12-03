@@ -16,37 +16,37 @@ Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), drago
    }
    else if(sym == 'H') {
 	symbol = 'H';
-	origSym = '.'
+	origSym = '.';
 	//obj = new Human();
    }
    else if(sym == 'W') {
         symbol = 'W';
-        origSym = '.'
+        origSym = '.';
         //obj = new Dwarf();
    }
    else if(sym == 'E') {
         symbol = 'E';
-        origSym = '.'
+        origSym = '.';
         //obj = new Elf();
    }
    else if(sym == 'O') {
         symbol = 'O';
-        origSym = '.'
+        origSym = '.';
         //obj = new Orc();
    }
    else if(sym == 'M') {
         symbol = 'M';
-        origSym = ','
+        origSym = ',';
         //obj = new Merchant();
    }
    else if(sym == 'D') {
         symbol = 'D';
-        origSym = '.'
+        origSym = '.';
         //obj = new Dragon();
    }
    else if(sym == 'L') {
         symbol = 'L';
-        origSym = '.'
+        origSym = '.';
         //obj = new Halfling();
    }
 
