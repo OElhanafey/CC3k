@@ -1,16 +1,68 @@
 //INCOMPLETE:
 
 #include "cell.h"
-
+#include "gold.h"
+#include <memory>
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
+
 Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(false), obj(nullptr) {
    if(sym == '.') {
-      isEnemyValid = true;
-      isPlayerValid = true;
+	isEnemyValid = true;
+	isPlayerValid = true;
    }
    else if(sym == '#' || sym == '+') {
-      isPlayerValid = true;
-      isEnemyValid = false;
+	isPlayerValid = true;
+	isEnemyValid = false;
+   }
+   else if(sym == '0') {
+	symbol = 'P';
+	origSym = '.';
+   }
+   else if(sym == '1') {
+        symbol = 'P';
+        origSym = '.';
+   }
+   else if(sym == '2') {
+        symbol = 'P';
+        origSym = '.';
+   }
+   else if(sym == '3') {
+        symbol = 'P';
+        origSym = '.';
+   }
+   else if(sym == '4') {
+        symbol = 'P';
+        origSym = '.';
+   }
+   else if(sym == '5') {
+        symbol = 'P';
+        origSym = '.';
+   }
+   else if(sym == '6') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,2);
+   }
+   else if(sym == '7') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,1);
+   }
+   else if(sym == '8') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,4);
+   }
+   else if(sym == '9') {
+        symbol = 'G';
+        origSym = '.';
+	//obj = new Gold(x,y,6);
+   }
+   else if(sym == '@') {
+	origSym = '.';
+   }
+   else if(sym == '\\') {
+	
    }
    else {
       isPlayerValid = false;

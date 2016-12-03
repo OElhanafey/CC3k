@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include "cell.h"
 #include "floor.h"
@@ -14,15 +15,16 @@ int main() {
 	while(1) {
 		std::cout << "Welcome to ChamberCrawler3000! Press 'F' to generate a floor from a file or 'G' to randomly generate it." << std::endl;
 		std::cin >> s;
-		if(s.eof() || s == "q") {
-			return;
+		std::vector<Floor> floors;
+		GameObject* player;
+		if(std::cin.eof() || s == "q") {
+			return 0;
 		}
-		else if(s == 'F') {
-			std::cout << "Please enter the file name."
+		else if(s == "F") {
+			std::cout << "Please enter the file name.";
 			std::cin >> s;
 			std::ifstream layout;
 			layout.open(s);
-			std::vector<Floor> floors;
 			int floorCount = 0;
 			while(floorCount < 5) {
 				Floor board(layout);
@@ -38,7 +40,7 @@ int main() {
 				layout.open("floorLayout.txt");
 				Floor board(layout);
 				floors.emplace_back(board);
-				layout.close("floorLayout.txt");
+				layout.close();
 				++floorCount;
 			}
 			layout.open("floorLayout.txt");
@@ -46,29 +48,29 @@ int main() {
 		//Race Choice
 		std::cout << "Please choose a race." << std::endl;
 		std::cin >> s;
-		if(s.eof() || s == "q") {
-			return;
+		if(std::cin.eof() || s == "q") {
+			return 0;
 		}
 		else if(s == "drow") {
-			GameObject* player = new Drow(x,y,grid);
+			player = new Drow(0,0,&floors[0]);
 		}
 		else if(s == "vampire") {
-			GameObject* player = new Vampire(x,y,grid);
+			player = new Vampire(0,0,&floors[0]);
 		}
 		else if(s == "troll") {
-			GameObject* player = new Troll(x,y,grid);
+			player = new Troll(0,0,&floors[0]);
 		}
 		else if(s == "goblin") {
-			GameObject* player = new Goblin(x,y,grid);
+			player = new Goblin(0,0,&floors[0]);
 		}
 		else {
-			GameObject* player = new Shade(x,y,grid);
+			player = new Shade(0,0,&floors[0]);
 		}
 		while(1) {
 			int floorLevel = 0;
 			std::cin >> s;
-			if(s.eof() || s == "q") {
-				//Exit
+			if(std::cin.eof() || s == "q") {
+				return 0;
 			}
 			else if(s == "r") {
 				delete player;
@@ -80,19 +82,35 @@ int main() {
 			}
 			else if(s == "u") {
 				std::cin >> s;
-				if(s == "no") ;
-				else if(s == "so") ;
-				else if(s == "ea") ;
-				else if(s == "we") ;
-				else if(s == "ne") ;
-				else if(s == "nw") ;
-				else if(s == "se") ;
-				else if(s == "sw") ;
+				int newX = player->getx();
+				int newY = player->gety();
+				if(s == "no") ++newY;
+				else if(s == "so") --newY;
+				else if(s == "ea") ++newX;
+				else if(s == "we") --newX;
+				else if(s == "ne") {
+					++newX;
+					++newY;
+				}
+				else if(s == "nw") {
+					--newX;
+					++newY;
+				}
+				else if(s == "se") {
+					++newX;
+					--newY;
+				}
+				else if(s == "sw") {
+					--newX;
+					--newY;
+				}
+				Cell potionCell = floors[floorLevel].getGrid()[newY][newX];
+				potionCell.getObject()->usePotion(*player);
 			}
 			else if(s == "a") {
 				std::cin >> s;
-				int x = player.getx();
-				int y = player.gety();
+				int x = player->getx();
+				int y = player->gety();
 				if(s == "no") ++y;
 				else if(s == "so") --y;
 				else if(s == "ea") ++x;
@@ -113,25 +131,25 @@ int main() {
 					--x;
 					--y;
 				}
-				Cell enemyCell = floors[floorLevel].getGrid(x,y);
-				player.strike(enemyCell.getObj());
+				Cell enemyCell = floors[floorLevel].getGrid()[y][x];
+				player->strike(*(enemyCell.getObject()));
 			}
 			else {
-				player.shift(s);
+				player->shift(s);
 			}
 
 			//Enemy's turn
 			for(int i=0; i<25; ++i) {
-				for(int j=0; j<79 ++j) {
-					Cell enemy = floors[floorLevel].getGrid(j,i);
+				for(int j=0; j<79; ++j) {
+					Cell enemy = floors[floorLevel].getGrid()[i][j];
 					if(enemy.getSymbol() == 'H' ||
 					   enemy.getSymbol() == 'W' ||
    			   		   enemy.getSymbol() == 'E' ||
 					   enemy.getSymbol() == 'O' ||
-				        enemy.getSymbol() == 'M' ||
+				           enemy.getSymbol() == 'M' ||
 					   enemy.getSymbol() == 'D' ||
-				        enemy.getSymbol() == 'L') {
-						   //Strike or Move
+				           enemy.getSymbol() == 'L') {
+ 						   //Strike or Move
 					   }
 				}
 			}

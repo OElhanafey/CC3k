@@ -1,7 +1,7 @@
 #include "potion.h"
 
 // Boosts up the health
-void RestoreHp::usePotion(Player& player) {
+void RestoreHp::usePotion(GameObject& player) {
 	//Will need to change for vampire which have no maxhp
     //Drow potion effects are 1.5
     if(player.getRace() == "Vampire"){
@@ -18,7 +18,7 @@ void RestoreHp::usePotion(Player& player) {
 }
 
 // Increases the attack points
-void BoostAtk::usePotion(Player& player) {
+void BoostAtk::usePotion(GameObject& player) {
 	player.setAtk(player.getAtk()+5);
 }
 
@@ -28,7 +28,7 @@ void BoostDef::usePotion(Player& player) {
 }
 
 // Decreases the health points. Cannot fall before 0.
-void PoisonHp::usePotion(Player& player) {
+void PoisonHp::usePotion(GameObject& player) {
 	if(player.getHP() < 10) {
 		player.setHP(0);
 	}
@@ -38,7 +38,7 @@ void PoisonHp::usePotion(Player& player) {
 }
 
 // Decreases the attack points.
-void WoundAtk::usePotion(Player& player) {
+void WoundAtk::usePotion(GameObject& player) {
 	if(player.getAtk() < 5) {
 		player.setAtk(0);
 	}
@@ -48,7 +48,7 @@ void WoundAtk::usePotion(Player& player) {
 }
 
 // Decreases the defense points.
-void WoundDef::usePotion(Player& player) {
+void WoundDef::usePotion(GameObject& player) {
 	if(player.getDef() < 5) {
 		player.setDef(0);
 	}

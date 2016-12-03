@@ -5,11 +5,12 @@
 
 class GameObject;
 
-class Floor {
-   std::vector<std::vector<Cell>> grid;
+class Floor { 
+    std::vector<std::vector<Cell>> grid;
 public:
     Floor(std::ifstream& layout);
-    Cell getGrid(int x, int y);
+    void setGrid(int y, int x, Cell set);
+    std::vector<std::vector<Cell> > getGrid();
     void setDragonHoard(int r, int c, bool status);
     bool getDragonHoard(int r, int c);
     void objectAdd(int r, int c, GameObject *obj);

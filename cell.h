@@ -1,10 +1,8 @@
 #ifndef _CELL_H_
 #define _CELL_H_
-//INCOMPLETE
-//Error: Enemies can walk on gold (Make validPlayer, validEnemy?)
 #include "GameObject.h"
-#include "gold.h"
 
+class Floor;
 class Cell {
     int x,y;
     char symbol;

@@ -10,24 +10,24 @@ class Potion: public GameObject {
 
 public:
   //  Potion(){};
-	virtual void usePotion(Player& player) = 0;
+	virtual void usePotion(GameObject& player) = 0;
 }
 
 class RestoreHp: public Potion {
-	void usePotion(Player& player);
+	void usePotion(GameObject& player);
 }
 class BoostAtk: public Potion {
-	void usePotion(Player& player);
+	void usePotion(GameObject& player);
 }
 class BoostDef: public Potion {
-	void usePotion(Player& player);
+	void usePotion(GameObject& player);
 }
 class PoisonHp: public Potion {
-	void usePotion(Player& player);
+	void usePotion(GameObject& player);
 }
 class WoundAtk: public Potion {
-	void usePotion(Player& player);
+	void usePotion(GameObject& player);
 }
 class WoundDef: public Potion {
-	void usePotion(Player& player);
+	void usePotion(GameObject& player);
 }

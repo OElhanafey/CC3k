@@ -2,8 +2,8 @@
 #define GameObject_h
 
 #include <string>
-//#include "floor.h"
 
+class Player;
 class Floor;
 class GameObject{
 protected:
@@ -45,10 +45,11 @@ public:
     virtual void beStruckBy(GameObject &c);
     virtual void action(GameObject &p);
     virtual void enemyDeath(GameObject &p);
+    virtual void usePotion(GameObject& player);
     virtual int getHoardX();
     virtual int getHoardY();
-    virtual int getEnemyMovable();
-    virtual int setEnemyMovable();
+    virtual bool getEnemyMovable();
+    virtual void setEnemyMovable();
 
     // Functions specific to Gold
     virtual bool getPickable();
