@@ -1,14 +1,14 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int x, int y, char symbol, /*Floor *grid*/, int health, int attack, int defense, bool movable):
+Enemy::Enemy(int x, int y, char symbol, int health, int attack, int defense, bool movable):
    Character(x,y,symbol,health,attack,defense,0.5),
    movable(movable)
 {}
 
 Enemy::~Enemy() {}
 
-bool getEnemyMovable() { return movable; }
-void setEnemyMovable() {
+bool Enemy::getEnemyMovable() { return movable; }
+void Enemy::setEnemyMovable() {
    if (movable) { 
       movable = false;
    }
@@ -49,7 +49,7 @@ void Enemy::enemyDeath(GameObject& p, Floor *g) {
    // If a merchant dies, a gold object with value 4 is left replaces merchant
    // In the coordinates for Merchant on floor, change pointer pointing to Merchant to a new Gold object with value 4
    else if(getSymbol() == 'M') {
-      GameObject *gold = new Gold(e_x, e_y, g, 4);
+      GameObject *gold = new Gold(e_x, e_y, 4);
       g->objectRemove(e_x, e_y);
       g->objectAdd(e_x, e_y, gold);
    }
@@ -85,10 +85,10 @@ void Enemy::enemyDeath(GameObject& p, Floor *g) {
 	 goldVal = 2;
 	 std::srand(time(NULL));
 	 int i = std::rand() % validDir.size();
-	 GameObject *gold = new Gold(validDir[i].first, validDir[i].second, g, goldVal);
+	 GameObject *gold = new Gold(validDir[i].first, validDir[i].second, goldVal);
 	 g->objectAdd(validDir[i].first, validDir[i].second, gold);
       }
-      GameObject *gold = new Gold(e_x, e_y, g, goldVal);
+      GameObject *gold = new Gold(e_x, e_y, goldVal);
       g->objectRemove(e_x, e_y);
       g->objectAdd(e_x, e_y, gold);
 
@@ -182,4 +182,3 @@ Enemy(x,y,'D',150,20,20,false) {}
 
 Halfling::Halfling(int x, int y):
 Enemy(x,y,'L',100,15,20) {}
-

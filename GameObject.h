@@ -45,7 +45,6 @@ public:
     virtual void beStruckBy(GameObject &c, Floor *g);
     virtual void action(GameObject &p, Floor *g);
     virtual void enemyDeath(GameObject &p, Floor *g);
-    virtual void usePotion(GameObject& player);
     virtual int getHoardX();
     virtual int getHoardY();
     virtual bool getEnemyMovable();
@@ -54,6 +53,10 @@ public:
     // Functions specific to Gold
     virtual bool getPickable();
     virtual void setPickable(bool status);
+
+    // Functions specific to Potion
+    virtual std::string potionType();
+    virtual void usePotion(GameObject &p);
 
     virtual ~GameObject() = 0;
 };

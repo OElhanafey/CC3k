@@ -42,8 +42,6 @@ void GameObject::setGold(int g) { }
 int GameObject::getHP() { return 0; }
 int GameObject::getAtk() { return 0; }
 int GameObject::getDef() { return 0; }
-//int GameObject::getMaxAtk() { return 0; }
-//int GameObject::getMaxDef() { return 0; }
 void GameObject::setHP(int) { }
 void GameObject::setAtk(int) { }
 void GameObject::setDef(int) { }
@@ -55,7 +53,6 @@ bool GameObject::getMerchantHostile() { return false; }
 void GameObject::shift(std::string dir, Floor *g) { }
 void GameObject::strike(GameObject &c, Floor *g) { }
 void GameObject::beStruckBy(GameObject &c, Floor *g) { }
-void GameObject::usePotion(GameObject& player) { }
 void GameObject::action(GameObject &p, Floor *g) { }
 void GameObject::enemyDeath(GameObject &p, Floor *g) { }
 int GameObject::getHoardX() { return -1; }
@@ -66,3 +63,7 @@ void GameObject::setEnemyMovable() { }
 // Default definitions for functions specific to the Gold class
 bool GameObject::getPickable() { return false; }
 void GameObject::setPickable(bool status) { }
+
+// Default definitions for functions specific to the Potion class
+std::string GameObject::potionType() { return ""; }
+void GameObject::usePotion(GameObject &p) { }

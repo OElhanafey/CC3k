@@ -145,7 +145,7 @@ void Cell::add(GameObject* object) {
 
 void Cell::remove() {
    if(dragonHoard == true){
-      GameObject *p = new Gold(getx(), gety(), obj->getGrid(), 6);
+      GameObject *p = new Gold(getx(), gety(), 6);
       obj=p;
       symbol = obj->getSymbol();
       isEnemyValid = false;

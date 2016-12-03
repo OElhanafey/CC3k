@@ -1,6 +1,6 @@
 #include "gold.h"
 
-Gold::Gold(int x, int y, /* Floor *grid */, int value): GameObject(x, y, 'G'), value(value) {
+Gold::Gold(int x, int y, int value): GameObject(x, y, 'G'), value(value) {
 	if(value == 6) {
 		pickable = false;
 	}
