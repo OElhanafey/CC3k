@@ -19,11 +19,11 @@ class Player;
 class Enemy: public Character{
     bool movable;
 public:
-    Enemy(int x, int y, char symbol, /*Floor *grid*/, int health, int attack, int defense, bool movable = true);
+    Enemy(int x, int y, char symbol, int health, int attack, int defense, bool movable = true);
     bool getEnemyMovable() override;
     void setEnemyMovable() override;
-    void enemyDeath(GameObject &p) override;
-    void action(GameObject &p) override;
+    void enemyDeath(GameObject &p, Floor *g) override;
+    void action(GameObject &p, Floor *g) override;
    /* virtual*/ ~Enemy();
 };
 

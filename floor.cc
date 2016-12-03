@@ -3,31 +3,29 @@
 #include "floor.h"
 #include "gold.h"
 
-Floor::Floor(std::ifstream& layout) {
+Floor::Floor() {
 	grid.resize(25, std::vector<Cell>(79));
+	std::ifstream layout;
 	int xRead = 0;
 	int yRead = 0;
-	while(yRead < 25) {
+	layout.open("floorLayout.txt");
+	while(!layout.eof()) {
 		char read;
 		layout >> std::noskipws >> read;
 		if(read != '\n') {
-			Cell cellRead(yRead, xRead, read);
-			grid[yRead][xRead] = cellRead;
-			if(xRead == 78) {
-				xRead = 0;
-				++yRead;
-			}
-			else {
+			Cell cellRead(xRead, yRead, read);
+			grid[xRead][yRead] = cellRead;
+			if(yRead == 78) {
+				yRead = 0;
 				++xRead;
 			}
+			else {
+				++yRead;
+			}
+
 		}
 	}
 }
-
-std::vector<std::vector<Cell> > Floor::getGrid() {
-	return grid;
-}
-
 void Floor::setGrid(int y, int x, Cell set) {
 	grid[y][x] = set;
 }     	                       

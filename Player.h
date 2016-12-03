@@ -36,7 +36,7 @@ public:
 
 class Drow: public Player{
 public:
-    Drow(int x, int y;
+    Drow(int x, int y);
 //    void usePotion(Potion& );
 };
 
@@ -48,7 +48,7 @@ public:
 
 class Troll: public Player{
 public:
-    Troll(int x, int y;
+    Troll(int x, int y);
 //    void strike(Character &) override;
 };
 

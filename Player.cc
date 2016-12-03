@@ -1,8 +1,8 @@
 #include "Player.h"
 
 // Figure out the default potionEffect.
-Player::Player(int x, int y, /*Floor *grid*/, int health, int attack, int defense, std::string race, int potionEffect):
-	Character(x,y,'@', /*grid*/, health, attack, defense, 1),
+Player::Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect):
+	Character(x,y,'@',health, attack, defense, 1),
 	merchantHostile(false),
 	level(1),
 	maxhp(health),

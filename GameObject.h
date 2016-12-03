@@ -10,10 +10,10 @@ protected:
     int x;
     int y;
     char symbol;
-    Floor *grid;
+//    Floor *grid;
 public:
     // Functions specific to GameObject
-    GameObject(int x, int y, char symbol, /*Floor *grid*/);
+    GameObject(int x, int y, char symbol);
     int getx();
     int gety();
     char getSymbol() const;
@@ -30,23 +30,21 @@ public:
     virtual int getHP();
     virtual int getAtk();
     virtual int getDef();
-    virtual int getMaxHP();
-    virtual int getMaxAtk();
-    virtual int getMaxDef();
+    virtual int getMaxHp();
+//    virtual int getMaxAtk();
+//    virtual int getMaxDef();
     virtual void setHP(int);
     virtual void setAtk(int);
     virtual void setDef(int);
     virtual std::string getRace();
-    virtual int getMaxHP();
     virtual int getPotionEffect();
     virtual void setMerchantHostile();
     virtual bool getMerchantHostile();
-    virtual void shift(std::string dir);
-    virtual void playerMove(std::string dir);
-    virtual void strike(GameObject &c);
-    virtual void beStruckBy(GameObject &c);
-    virtual void action(GameObject &p);
-    virtual void enemyDeath(GameObject &p);
+    virtual void shift(std::string dir,Floor *g);
+    virtual void strike(GameObject &c, Floor *g);
+    virtual void beStruckBy(GameObject &c, Floor *g);
+    virtual void action(GameObject &p, Floor *g);
+    virtual void enemyDeath(GameObject &p, Floor *g);
     virtual void usePotion(GameObject& player);
     virtual int getHoardX();
     virtual int getHoardY();

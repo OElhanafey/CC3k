@@ -42,9 +42,8 @@ void GameObject::setGold(int g) { }
 int GameObject::getHP() { return 0; }
 int GameObject::getAtk() { return 0; }
 int GameObject::getDef() { return 0; }
-int GameObject::getMaxHP() { return 0; }
-int GameObject::getMaxAtk() { return 0; }
-int GameObject::getMaxDef() { return 0; }
+//int GameObject::getMaxAtk() { return 0; }
+//int GameObject::getMaxDef() { return 0; }
 void GameObject::setHP(int) { }
 void GameObject::setAtk(int) { }
 void GameObject::setDef(int) { }
@@ -53,13 +52,12 @@ int GameObject::getMaxHp(){ return 0;}
 int GameObject::getPotionEffect(){return 0;}
 void GameObject::setMerchantHostile() { }
 bool GameObject::getMerchantHostile() { return false; }
-void GameObject::shift(std::string dir) { }
-void GameObject::playerMove(std::string dir) { }
-void GameObject::strike(GameObject &c) { }
-void GameObject::beStruckBy(GameObject &c) { }
+void GameObject::shift(std::string dir, Floor *g) { }
+void GameObject::strike(GameObject &c, Floor *g) { }
+void GameObject::beStruckBy(GameObject &c, Floor *g) { }
 void GameObject::usePotion(GameObject& player) { }
-void GameObject::action(GameObject &p) { }
-void GameObject::enemyDeath(GameObject &p) { }
+void GameObject::action(GameObject &p, Floor *g) { }
+void GameObject::enemyDeath(GameObject &p, Floor *g) { }
 int GameObject::getHoardX() { return -1; }
 int GameObject::getHoardY() { return -1; }
 bool GameObject::getEnemyMovable() { return false; }

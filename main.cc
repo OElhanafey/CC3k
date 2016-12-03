@@ -9,17 +9,17 @@
 int main() {
 	Floor *theFloor = new Floor();
 //	theFloor.print()
-	GameObject *obj = new Vampire(3,8,theFloor);
-	GameObject *e = new Human(4,9,theFloor);
+	GameObject *obj = new Vampire(3,8);
+	GameObject *e = new Human(4,9);
 	if (obj->getSymbol() != 'P' || obj->getSymbol() != 'G' ) {
 	   //Character *c = dynamic_cast<Character *> (obj);
 	std::cout << obj->getHP() << " "<< e->getHP() << std::endl;
 	}
 	theFloor->objectAdd(3,8,obj);
 	theFloor->objectAdd(4,9,e);
-	obj->shift("so");
-	e->beStruckBy(*obj);
-	e->beStruckBy(*obj);
+	obj->shift("so",theFloor);
+	e->beStruckBy(*obj, theFloor);
+	e->beStruckBy(*obj, theFloor);
 
 	std::cout << obj->getHP() << " "<< e->getHP() << std::endl;
 	//theFloor->objectRemove(theFloor->getObj(obj->getx(), obj->gety())->getx(), theFloor->getObj(obj->getx(), obj->gety())->gety());
@@ -27,7 +27,7 @@ int main() {
 	//theFloor->objectAdd(obj->getx(), obj->gety(), obj);
 	theFloor->print();
 
-	e->action(*obj);
+	e->action(*obj,theFloor);
 	theFloor->print();
 //	theFloor.setCell(1, 2, '@');
 //	theFloor.print();

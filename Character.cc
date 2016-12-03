@@ -8,7 +8,7 @@ using namespace std;
 
 // Character Constructor, has the cell's location, the symbol, a pointer to the floor, the characteristics, and the amount of gold carried.
 
-Character::Character(int x, int y, char symbol, /*Floor *grid*/, int health, int attack, int defense, int gold):
+Character::Character(int x, int y, char symbol, int health, int attack, int defense, int gold):
 GameObject(x,y,symbol /*grid*/),
 health(health),
 attack(attack),

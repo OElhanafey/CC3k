@@ -147,7 +147,7 @@ void Enemy::action(GameObject &p, Floor *g){
 
    // If player is nearby strike the player
    if(playerNearby){
-      p.beStruckBy(*this);
+      p.beStruckBy(*this,g);
    }
 
    else{
@@ -156,7 +156,7 @@ void Enemy::action(GameObject &p, Floor *g){
 	 if(directions.size() != 0) {
 	    std::srand(time(NULL));
 	    int i = std::rand() % directions.size();
-	    shift(directions[i]);
+	    shift(directions[i],g);
 	 }
       }
    }
