@@ -14,37 +14,42 @@ class Potion: public GameObject {
 
 public:
   	Potion(int x, int y, Floor *grid);
-	std::string potionType() override;
 	~Potion();
 };
 
 class RestoreHp: public Potion {
    	RestoreHp(int x, int y, Floor *grid);
-	void usePotion(Player& player) override;
+    std::string potionType() override;
+	void usePotion(GameObject& player) override;
 };
 
 class BoostAtk: public Potion {
    	BoostAtk(int x, int y, Floor *grid);
-	void usePotion(Player& player) override;
+    std::string potionType() override;
+	void usePotion(GameObject& player) override;
 };
 
 class BoostDef: public Potion {
    	BoostDef(int x, int y, Floor *grid);
-	void usePotion(Player& player) override;
+    std::string potionType() override;
+	void usePotion(GameObject& player) override;
 };
 
 class PoisonHp: public Potion {
    	PoisonHp(int x, int y, Floor *grid);
-	void usePotion(Player& player) override;
+    std::string potionType() override;
+	void usePotion(GameObject& player) override;
 };
 
 class WoundAtk: public Potion {
    	WoundAtk(int x, int y, Floor *grid);
-	void usePotion(Player& player) override;
+    std::string potionType() override;
+	void usePotion(GameObject& player) override;
 };
 
 class WoundDef: public Potion {
    	WoundDef(int x, int y, Floor *grid);
-	void usePotion(Player& player) override;
+    std::string potionType() override;
+	void usePotion(GameObject& player) override;
 };
 
