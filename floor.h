@@ -8,7 +8,8 @@ class GameObject;
 class Floor {
    std::vector<std::vector<Cell>> grid;
 public:
-    Floor();
+    Floor(std::ifstream& layout);
+    Cell getGrid(int x, int y);
     void setDragonHoard(int r, int c, bool status);
     bool getDragonHoard(int r, int c);
     void objectAdd(int r, int c, GameObject *obj);
