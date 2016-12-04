@@ -71,32 +71,6 @@ void Human::enemyDeath(GameObject& p, Floor *g) {
         }
     }
     
-    /*
-    if(g->isCellValid(e_x - 1, e_y, false)){
-        validDir.emplace_back(std::make_pair (e_x - 1, e_y));
-    }
-    if(g->isCellValid(e_x + 1, e_y, false)){
-        validDir.emplace_back(std::make_pair (e_x + 1, e_y));
-    }
-    if(g->isCellValid(e_x, e_y + 1, false)){
-        validDir.emplace_back(std::make_pair (e_x, e_y + 1));
-    }
-    if(g->isCellValid(e_x, e_y - 1, false)) {
-        validDir.emplace_back(std::make_pair (e_x, e_y - 1));
-    }
-    if(g->isCellValid(e_x + 1, e_y -1, false)){
-        validDir.emplace_back(std::make_pair (e_x + 1, e_y - 1));
-    }
-    if(g->isCellValid(e_x - 1, e_y + 1, false)){
-        validDir.emplace_back(std::make_pair (e_x - 1, e_y + 1));
-    }
-    if(g->isCellValid(e_x - 1, e_y - 1, false)){
-        validDir.emplace_back(std::make_pair (e_x - 1, e_y - 1));
-    }
-    if(g->isCellValid(e_x + 1, e_y + 1, false)){
-        validDir.emplace_back(std::make_pair (e_x + 1, e_y + 1));
-    }
-     */
     int goldVal = 4;
     if (validDir.size() != 0) {
         goldVal = 2;

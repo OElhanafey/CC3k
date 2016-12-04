@@ -98,6 +98,14 @@ void Character::shift(std::string dir, Floor *g){
     }
     bool valid = g->isCellValid(new_x, new_y, isPlayer);
     if (valid) {
+        if(this->getRace() == "Troll"){ //Every time troll moves, gets 5 points. 
+            if(((this->getHP()) + 5) > 120){
+                this->setHP(120);
+            }
+            else{
+                this->setHP((this->getHP()) + 5);
+            }
+        }
         if((g->getSymbol(new_x, new_y)) == 'G'){
             GameObject *gold = g->getObj(new_x, new_y);
             if(gold->getPickable()){
