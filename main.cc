@@ -31,8 +31,8 @@ int main() {
 	//theFloor->objectAdd(obj->getx(), obj->gety(), obj);
 	theFloor->print();
 
-	e->action(*obj,theFloor);
-	theFloor->print();
+//	e->action(*obj,theFloor);
+//	theFloor->print();
 //	theFloor.setCell(1, 2, '@');
 //	theFloor.print();
 //	GameObject *obj = new Character(1,1,'@', 125,25,25,0);

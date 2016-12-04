@@ -17,11 +17,8 @@ class Potion;
 class Player;
 
 class Enemy: public Character{
-    bool movable;
 public:
-    Enemy(int x, int y, char symbol, int health, int attack, int defense, bool movable = true);
-    bool getEnemyMovable() override;
-    void setEnemyMovable() override;
+    Enemy(int x, int y, char symbol, int health, int attack, int defense);
     void enemyDeath(GameObject &p, Floor *g) override;
     void action(GameObject &p, Floor *g) override;
    /* virtual*/ ~Enemy();
@@ -30,6 +27,7 @@ public:
 class Human: public Enemy{
 public:
     Human(int x, int y);
+    void enemyDeath(GameObject &p, Floor *g) override;
 };
 
 class Dwarf: public Enemy{
@@ -50,6 +48,7 @@ public:
 class Merchant: public Enemy{
 public:
     Merchant(int x, int y);
+    void enemyDeath(GameObject &p, Floor *g) override;
 };
 
 class Dragon: public Enemy{
@@ -57,6 +56,7 @@ class Dragon: public Enemy{
 public:
     int getHoardX() override;
     int getHoardY() override;
+    void enemyDeath(GameObject &p, Floor *g) override;
     Dragon(int x, int y, int hoardX, int hoardY);
 };
 

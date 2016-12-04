@@ -53,12 +53,17 @@ bool GameObject::getMerchantHostile() { return false; }
 void GameObject::shift(std::string dir, Floor *g) { }
 void GameObject::strike(GameObject &c, Floor *g) { }
 void GameObject::beStruckBy(GameObject &c, Floor *g) { }
+void GameObject::callAction(Floor *g){ }
 void GameObject::action(GameObject &p, Floor *g) { }
 void GameObject::enemyDeath(GameObject &p, Floor *g) { }
 int GameObject::getHoardX() { return -1; }
 int GameObject::getHoardY() { return -1; }
 bool GameObject::getEnemyMovable() { return false; }
 void GameObject::setEnemyMovable() { }
+std::vector<std::pair<std::string,int>> GameObject::potionsNearby(Floor *g) {
+    std::vector<std::pair<std::string,int>> p;
+    return p;
+};
 
 // Default definitions for functions specific to the Gold class
 bool GameObject::getPickable() { return false; }

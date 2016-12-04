@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include <utility>
+#include <vector>
 #include "Character.h"
 #include "GameObject.h"
 #include "Enemy.h"
@@ -13,6 +15,7 @@ class Enemy;
 class Player: public Character{
 protected:
     bool merchantHostile;
+    bool enemyMovable;
     int level;
     int maxhp, origAtk, origDef;
     std::string race;
@@ -20,12 +23,14 @@ protected:
 public:
     Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect = 1);
     std::string getRace();
+    bool getEnemyMovable() override;
+    void setEnemyMovable() override;
     int getMaxHp() override;
     int getPotionEffect() override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;
-//    virtual void usePotion(Potion& );
-//    virtual void checkPotion(Potion& );
+    void callAction(Floor *g) override;
+    std::vector<std::pair<std::string,int>> potionsNearby(Floor *g) override;
    /* virtual*/ ~Player();
 };
 

@@ -6,6 +6,9 @@
 #include "floor.h"
 using namespace std;
 
+std::pair<int,int> Character::radius[8] = {std::make_pair(-1,0), std::make_pair(1,0), std::make_pair(0,1), std::make_pair(0,-1),
+					std::make_pair(1,-1), std::make_pair(-1,1), std::make_pair(1,1), std::make_pair(-1,-1)};
+
 // Character Constructor, has the cell's location, the symbol, a pointer to the floor, the characteristics, and the amount of gold carried.
 
 Character::Character(int x, int y, char symbol, int health, int attack, int defense, int gold):
@@ -48,7 +51,7 @@ void Character::setDef(int def){
 
 void Character::setGold(int g){
     gold = g;
-}
+} 
 
 // This function, moves/shifts the character in the specific direction.
 void Character::shift(std::string dir, Floor *g){
@@ -105,6 +108,7 @@ void Character::shift(std::string dir, Floor *g){
         sety(new_y);
         g->objectAdd(new_x, new_y,this);
         g->objectRemove(old_x, old_y);
+        this->callAction(g);
     }
 }
 
@@ -147,7 +151,6 @@ void Character::strike(GameObject &c, Floor *g){
 }
 
 // BeStruckBY function means Character A is struck by Character B. So, B strikes A, hence it calls the strike function.
-
 void Character::beStruckBy(GameObject &c, Floor *g){
     int hit = 1; // If 1 then hit; if 0 then miss
     // Enemies have a 50% chance of striking the player (ie if player is being struck by an enemy, there is a 50% chance of calling strike(player).Players have a 50% chance of striking a halfling, i.e if halfing is being struck by player, there is a 50% chance of calling strike(halfling)
@@ -170,5 +173,6 @@ void Character::beStruckBy(GameObject &c, Floor *g){
             }
         }
     }
+    c.callAction(g);
 }
 

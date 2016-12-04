@@ -4,12 +4,16 @@
 #include "GameObject.h"
 #include <iostream>
 #include <string>
+#include <vector>
+#include <utility>
 
 class Character:public GameObject{
 protected:
     int health, attack, defense;
     int gold;
+    
 public:
+    static std::pair<int,int> radius[8];
     Character(int x, int y, char symbol,int health, int attack, int defense, int gold = 0);
     int getHP() override;
     int getAtk() override;

@@ -2,6 +2,8 @@
 #define GameObject_h
 
 #include <string>
+#include <vector>
+#include <utility>
 
 class Player;
 class Floor;
@@ -43,12 +45,14 @@ public:
     virtual void shift(std::string dir,Floor *g);
     virtual void strike(GameObject &c, Floor *g);
     virtual void beStruckBy(GameObject &c, Floor *g);
+    virtual void callAction(Floor *g);
     virtual void action(GameObject &p, Floor *g);
     virtual void enemyDeath(GameObject &p, Floor *g);
     virtual int getHoardX();
     virtual int getHoardY();
     virtual bool getEnemyMovable();
     virtual void setEnemyMovable();
+    virtual std::vector<std::pair<std::string,int>> potionsNearby(Floor *g);
 
     // Functions specific to Gold
     virtual bool getPickable();
