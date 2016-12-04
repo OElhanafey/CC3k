@@ -1,33 +1,62 @@
+#ifndef _POTION_H_
+#define _POTION_H_
+
+#include <string>
 #include "GameObject.h"
 
 class Potion: public GameObject {
-	static bool usedRH;
-	static bool usedBA;
-	static bool usedBD;
-	static bool usedPH;
-	static bool usedWA;
-	static bool usedWD;
+   public:
+   static std::string usedRH;
+   static std::string usedBA;
+   static std::string usedBD;
+   static std::string usedPH;
+   static std::string usedWA;
+   static std::string usedWD;
 
-public:
-  //  Potion(){};
-	virtual void usePotion(GameObject& player) = 0;
-}
+   Potion(int x, int y);
+   virtual ~Potion();
+};
 
 class RestoreHp: public Potion {
-	void usePotion(GameObject& player);
-}
+   public:
+   RestoreHp(int x, int y);
+   std::string potionType() override;
+   void usePotion(GameObject& player) override;
+};
+
 class BoostAtk: public Potion {
-	void usePotion(GameObject& player);
-}
+   public:
+   BoostAtk(int x, int y);
+   std::string potionType() override;
+   void usePotion(GameObject& player) override;
+};
+
 class BoostDef: public Potion {
-	void usePotion(GameObject& player);
-}
+   public:
+   BoostDef(int x, int y);
+   std::string potionType() override;
+   void usePotion(GameObject& player) override;
+};
+
 class PoisonHp: public Potion {
-	void usePotion(GameObject& player);
-}
+   public:
+   PoisonHp(int x, int y);
+   std::string potionType() override;
+   void usePotion(GameObject& player) override;
+};
+
 class WoundAtk: public Potion {
-	void usePotion(GameObject& player);
-}
+   public:
+   WoundAtk(int x, int y);
+   std::string potionType() override;
+   void usePotion(GameObject& player) override;
+};
+
 class WoundDef: public Potion {
-	void usePotion(GameObject& player);
-}
+   public:
+   WoundDef(int x, int y);
+   std::string potionType() override;
+   void usePotion(GameObject& player) override;
+};
+
+#endif

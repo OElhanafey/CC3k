@@ -7,7 +7,7 @@ class Gold: public GameObject {
 	bool pickable;
 
 	public:
-	Gold(int x, int y, Floor *grid, int value);
+	Gold(int x, int y, int value);
 	bool getPickable() override;
 	void setPickable(bool status) override;
 	void setGold(int gold) override;

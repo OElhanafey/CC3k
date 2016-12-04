@@ -5,7 +5,7 @@
 
 class GameObject;
 
-class Floor { 
+class Floor {
     std::vector<std::vector<Cell>> grid;
 public:
     Floor(std::ifstream& layout);

@@ -2,6 +2,8 @@
 #define GameObject_h
 
 #include <string>
+#include <vector>
+#include <utility>
 
 class Player;
 class Floor;
@@ -10,14 +12,14 @@ protected:
     int x;
     int y;
     char symbol;
-    Floor *grid;
+//    Floor *grid;
 public:
     // Functions specific to GameObject
-    GameObject(int x, int y, char symbol, Floor *grid);
+    GameObject(int x, int y, char symbol);
     int getx();
     int gety();
     char getSymbol() const;
-    Floor *getGrid();
+   // Floor *getGrid();
     void setx(int n);
     void sety(int n);
     void setsym(char s);
@@ -30,30 +32,35 @@ public:
     virtual int getHP();
     virtual int getAtk();
     virtual int getDef();
-    virtual int getMaxHP();
-    virtual int getMaxAtk();
-    virtual int getMaxDef();
+    virtual int getMaxHp();
+//    virtual int getMaxAtk();
+//    virtual int getMaxDef();
     virtual void setHP(int);
     virtual void setAtk(int);
     virtual void setDef(int);
     virtual std::string getRace();
+    virtual int getPotionEffect();
     virtual void setMerchantHostile();
     virtual bool getMerchantHostile();
-    virtual void shift(std::string dir);
-    virtual void playerMove(std::string dir);
-    virtual void strike(GameObject &c);
-    virtual void beStruckBy(GameObject &c);
-    virtual void action(GameObject &p);
-    virtual void enemyDeath(GameObject &p);
-    virtual void usePotion(GameObject& player);
+    virtual void shift(std::string dir,Floor *g);
+    virtual void strike(GameObject &c, Floor *g);
+    virtual void beStruckBy(GameObject &c, Floor *g);
+    virtual void callAction(Floor *g);
+    virtual void action(GameObject &p, Floor *g);
+    virtual void enemyDeath(GameObject &p, Floor *g);
     virtual int getHoardX();
     virtual int getHoardY();
     virtual bool getEnemyMovable();
     virtual void setEnemyMovable();
+    virtual std::vector<std::pair<std::string,int>> potionsNearby(Floor *g);
 
     // Functions specific to Gold
     virtual bool getPickable();
     virtual void setPickable(bool status);
+
+    // Functions specific to Potion
+    virtual std::string potionType();
+    virtual void usePotion(GameObject &p);
 
     virtual ~GameObject() = 0;
 };
