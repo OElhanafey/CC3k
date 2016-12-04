@@ -12,7 +12,7 @@ Floor::Floor(std::ifstream& layout, GameObject& player) {
       char read;
       layout >> std::noskipws >> read;
       if(read != '\n') {
-	 Cell cellRead(yRead, xRead, read, GameObject& player);
+	 Cell cellRead(yRead, xRead, read, player);
 	 grid[yRead][xRead] = cellRead;
 	 if(xRead == 78) {
 	    xRead = 0;

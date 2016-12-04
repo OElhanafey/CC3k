@@ -67,6 +67,8 @@ int main() {
 		else {
 			player = new Shade(0,0);
 		}
+		player->setx(3);
+		player->sety(10);
 		floors[0].print();
 		while(1) {
 			int floorLevel = 0;
@@ -138,9 +140,6 @@ int main() {
 				player->strike(*(enemyCell.getObject()), &floors[floorLevel]);
 			}
 			else {
-<<
-				player->shift(s);
-			}
 
 				player->shift(s, &floors[floorLevel]);
 
