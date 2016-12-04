@@ -22,7 +22,7 @@ std::string RestoreHp::potionType() {
 
 void RestoreHp::usePotion(GameObject& player) {
    // Change string if potion used for the first time
-   if (usedRH == "unknown potion") usedRH = "RH";
+   if (usedRH == "unknown potion") usedRH = "Restore Health";
 
    // Calculate the amount of boost in health received by a player
    int diff = player.getMaxHp() - player.getHP();
@@ -41,7 +41,7 @@ std::string BoostAtk::potionType() {
 }
 
 void BoostAtk::usePotion(GameObject& player) {
-   if (usedBA == "unknown potion") usedBA = "BA";
+   if (usedBA == "unknown potion") usedBA = "Boost Attack";
    int boost = 5 * player.getPotionEffect();
    player.setAtk(player.getAtk() + boost);
 }
@@ -55,7 +55,7 @@ std::string BoostDef::potionType() {
 }
 
 void BoostDef::usePotion(GameObject& player) {
-   if (usedBD == "unknown potion") usedBD = "BD";
+   if (usedBD == "unknown potion") usedBD = "Boost Defence";
    int boost = 5 * player.getPotionEffect();
    player.setDef(player.getDef() + boost);
 }
@@ -69,13 +69,13 @@ std::string PoisonHp::potionType() {
 }
 
 void PoisonHp::usePotion(GameObject& player) {
-   if (usedPH == "unknown potion") usedPH = "PH";
+   if (usedPH == "unknown potion") usedPH = "Poison Health";
 
    // Calculate the amount of boost in health received by a player
    int damage = 10 * player.getPotionEffect();
    if ((player.getHP() - damage) < 0) damage = player.getHP();
 
-   player.setHP(player.getHP() - damage);  
+   player.setHP(player.getHP() - damage);
 
    // Throw game over exception if health goes down to 0
    if(player.getHP() == 0) throw "Game Over";
@@ -90,7 +90,7 @@ std::string WoundAtk::potionType() {
 }
 
 void WoundAtk::usePotion(GameObject& player) {
-   if (usedWA == "unknown potion") usedWA = "WA";
+   if (usedWA == "unknown potion") usedWA = "Wound Attack";
 
    int damage = 5 * player.getPotionEffect();
    if ((player.getAtk() - 5) < 0) damage = player.getAtk();
@@ -107,7 +107,7 @@ std::string WoundDef::potionType() {
 }
 
 void WoundDef::usePotion(GameObject& player) {
-   if (usedWD == "unknown potion") usedWD = "WD";
+   if (usedWD == "unknown potion") usedWD = "Wound Defence";
 
    int damage = 5 * player.getPotionEffect();
    if ((player.getDef() - 5) < 0) damage = player.getDef();

@@ -4,7 +4,7 @@
 #include "gold.h"
 
 
-Floor::Floor(std::ifstream& layout) {
+Floor::Floor(std::ifstream& layout, GameObject& player) {
    grid.resize(25, std::vector<Cell>(79));
    int xRead = 0;
    int yRead = 0;
@@ -12,7 +12,7 @@ Floor::Floor(std::ifstream& layout) {
       char read;
       layout >> std::noskipws >> read;
       if(read != '\n') {
-	 Cell cellRead(yRead, xRead, read);
+	 Cell cellRead(yRead, xRead, read, GameObject& player);
 	 grid[yRead][xRead] = cellRead;
 	 if(xRead == 78) {
 	    xRead = 0;
@@ -27,7 +27,7 @@ Floor::Floor(std::ifstream& layout) {
 
 void Floor::setGrid(int y, int x, Cell set) {
    grid[y][x] = set;
-}     	                       
+}
 
 void Floor::objectAdd(int r, int c, GameObject *obj) {
    grid[r][c].add(obj);

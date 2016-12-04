@@ -5,7 +5,7 @@
 #include <memory>
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
 
-Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(false), obj(nullptr), isPlayerValid(false), isEnemyValid(false) {
+Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym), origSym(sym), dragonHoard(false), obj(nullptr), isPlayerValid(false), isEnemyValid(false) {
    if(sym == '.') {
 	isEnemyValid = true;
 	isPlayerValid = true;
@@ -101,7 +101,8 @@ Cell::Cell(int x, int y, char sym): x(x), y(y), symbol(sym), origSym(sym), drago
 	//obj = new Gold(x,y,6);
    }
    else if(sym == '@') {
-	origSym = '.';
+	    origSym = '.';
+      obj = *player;
    }
    else if(sym == '\\') {
 	symbol = '\\';
@@ -169,4 +170,3 @@ bool Cell::getPlayerValid() {
 bool Cell::getEnemyValid() {
    return isEnemyValid;
 }
-

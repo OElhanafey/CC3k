@@ -17,7 +17,7 @@ class Cell {
     GameObject* obj;
 public:
     Cell();
-    Cell(int x, int y, char sym);
+    Cell(int x, int y, char sym, GameObject& player);
     int getx();
     int gety();
     char getOrigSym();

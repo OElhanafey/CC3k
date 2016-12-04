@@ -28,7 +28,7 @@ int main() {
 			layout.open(s);
 			int floorCount = 0;
 			while(floorCount < 5) {
-				Floor board(layout);
+				Floor board(layout, *player);
 				floors.emplace_back(board);
 				++floorCount;
 			}
@@ -39,7 +39,7 @@ int main() {
 			int floorCount = 0;
 			while(floorCount < 5) {
 				layout.open("floorLayout.txt");
-				Floor board(layout);
+				Floor board(layout, *player);
 				floors.emplace_back(board);
 				layout.close();
 				++floorCount;
@@ -152,7 +152,7 @@ int main() {
 					   enemy.getSymbol() == 'D' ||
 				           enemy.getSymbol() == 'L') {
  						   //First check if movable
-						   
+
 						   //Check if player nearby, using *player
 						   if(true) {
 							enemy.getObject()->strike(*player);
@@ -166,7 +166,7 @@ int main() {
 							else if(direction == 5) enemy.getObject()->shift("ne");
 							else if(direction == 6) enemy.getObject()->shift("nw");
 							else if(direction == 7) enemy.getObject()->shift("se");
-							else if(direction == 8) enemy.getObject()->shift("sw");		
+							else if(direction == 8) enemy.getObject()->shift("sw");
                           }
                      }
 				}
