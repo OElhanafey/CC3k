@@ -8,7 +8,6 @@ class GameObject;
 class Floor {
     std::vector<std::vector<Cell>> grid;
 public:
-    Floor();
     Floor(std::ifstream& layout);
     void setGrid(int y, int x, Cell set);
     std::vector<std::vector<Cell> > getGrid();
