@@ -53,20 +53,21 @@ int main() {
 			return 0;
 		}
 		else if(s == "drow") {
-			player = new Drow(0,0,&floors[0]);
+			player = new Drow(0,0);
 		}
 		else if(s == "vampire") {
-			player = new Vampire(0,0,&floors[0]);
+			player = new Vampire(0,0);
 		}
 		else if(s == "troll") {
-			player = new Troll(0,0,&floors[0]);
+			player = new Troll(0,0);
 		}
 		else if(s == "goblin") {
-			player = new Goblin(0,0,&floors[0]);
+			player = new Goblin(0,0);
 		}
 		else {
-			player = new Shade(0,0,&floors[0]);
+			player = new Shade(0,0);
 		}
+		floors[0].print();
 		while(1) {
 			int floorLevel = 0;
 			std::cin >> s;
@@ -134,43 +135,17 @@ int main() {
 					--y;
 				}
 				Cell enemyCell = floors[floorLevel].getGrid()[y][x];
-				player->strike(*(enemyCell.getObject()));
+				player->strike(*(enemyCell.getObject()), &floors[floorLevel]);
 			}
 			else {
+<<
 				player->shift(s);
 			}
 
-			//Enemy's turn
-			for(int i=0; i<25; ++i) {
-				for(int j=0; j<79; ++j) {
-					Cell enemy = floors[floorLevel].getGrid()[i][j];
-					if(enemy.getSymbol() == 'H' ||
-					   enemy.getSymbol() == 'W' ||
-   			   		   enemy.getSymbol() == 'E' ||
-					   enemy.getSymbol() == 'O' ||
-				           enemy.getSymbol() == 'M' ||
-					   enemy.getSymbol() == 'D' ||
-				           enemy.getSymbol() == 'L') {
- 						   //First check if movable
+				player->shift(s, &floors[floorLevel]);
 
-						   //Check if player nearby, using *player
-						   if(true) {
-							enemy.getObject()->strike(*player);
-						   }
-						   else {
-							int direction = rand() % 8 + 1;
-							if(direction == 1) enemy.getObject()->shift("no");
-							else if(direction == 2) enemy.getObject()->shift("so");
-							else if(direction == 3) enemy.getObject()->shift("ea");
-							else if(direction == 4) enemy.getObject()->shift("we");
-							else if(direction == 5) enemy.getObject()->shift("ne");
-							else if(direction == 6) enemy.getObject()->shift("nw");
-							else if(direction == 7) enemy.getObject()->shift("se");
-							else if(direction == 8) enemy.getObject()->shift("sw");
-                          }
-                     }
-				}
 			}
+			floors[floorLevel].print();
 		}
 	}
 }

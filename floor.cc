@@ -29,6 +29,11 @@ void Floor::setGrid(int y, int x, Cell set) {
    grid[y][x] = set;
 }
 
+std::vector<std::vector <Cell> > Floor::getGrid() {
+	return grid;
+}     	                       
+
+
 void Floor::objectAdd(int r, int c, GameObject *obj) {
    grid[r][c].add(obj);
 }
