@@ -6,68 +6,79 @@ Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(fals
 
 Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym), origSym(sym), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {
    if(sym == '.') {
-	isEnemyValid = true;
-	isPlayerValid = true;
+	     isEnemyValid = true;
+	     isPlayerValid = true;
    }
    else if(sym == '#' || sym == '+') {
-	isPlayerValid = true;
-	isEnemyValid = false;
+	     isPlayerValid = true;
+	     isEnemyValid = false;
    }
    else if(sym == 'H') {
-	symbol = 'H';
-	origSym = '.';
-	//obj = new Human();
+	      symbol = 'H';
+        origSym = '.';
+        std::shared_ptr<Human> human(new Human(x,y));
+        obj = human.get();
    }
    else if(sym == 'W') {
         symbol = 'W';
         origSym = '.';
-        //obj = new Dwarf();
+        std::shared_ptr<Dwarf> dwarf(new Dwarf(x,y));
+        obj = dwarf.get();
    }
    else if(sym == 'E') {
         symbol = 'E';
         origSym = '.';
-        //obj = new Elf();
+        std::shared_ptr<Elf> elf(new Elf(x,y));
+        obj = elf.get();
    }
    else if(sym == 'O') {
         symbol = 'O';
         origSym = '.';
-        //obj = new Orc();
-   }
+        std::shared_ptr<Orc> orc(new Orc(x,y));
+        obj = orc.get();
+  }
    else if(sym == 'M') {
         symbol = 'M';
         origSym = ',';
-        //obj = new Merchant();
+        std::shared_ptr<Merchant> merchant(new Merchant(x,y));
+        obj = merchant.get();
    }
    else if(sym == 'D') {
         symbol = 'D';
         origSym = '.';
-        //obj = new Dragon();
+        std::shared_ptr<Dragon> dragon(new Dragon(x,y));
+        obj = dragon.get();
    }
    else if(sym == 'L') {
         symbol = 'L';
         origSym = '.';
-        //std::shared_ptr<Halfling> halfling(new Halfling(x,y));
+        std::shared_ptr<Halfling> halfling(new Halfling(x,y));
+        obj = halfling.get();
    }
 
    else if(sym == '0') {
-	symbol = 'P';
-	origSym = '.';
-	//obj = new RestoreHp();
+	       symbol = 'P';
+	       origSym = '.';
+         std::shared_ptr<RestoreHp> restoreHp(new RestoreHp(x,y));
+         obj = restoreHp;
    }
    else if(sym == '1') {
         symbol = 'P';
         origSym = '.';
-	//obj = new BoostAtk();
+        std::shared_ptr<RestoreHp> restoreHp(new RestoreHp(x,y));
+        obj = restoreHp;
    }
    else if(sym == '2') {
         symbol = 'P';
         origSym = '.';
-	//obj = new BoostDef();
+        std::shared_ptr<BoostDef> boostDef(new BoostDef(x,y));
+        obj = boostDef;
    }
    else if(sym == '3') {
         symbol = 'P';
         origSym = '.';
-	//obj = new PoisonHp();
+        std::shared_ptr<PoisonHp> poisonHp(new PosionHp(x,y));
+        obj = posionHp;
    }
    else if(sym == '4') {
         symbol = 'P';
