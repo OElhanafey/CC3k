@@ -46,7 +46,7 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
    else if(sym == 'L') {
         symbol = 'L';
         origSym = '.';
-        //obj = new Halfling();
+        //std::shared_ptr<Halfling> halfling(new Halfling(x,y));
    }
 
    else if(sym == '0') {

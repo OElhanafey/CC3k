@@ -89,25 +89,25 @@ int main() {
 				std::cin >> s;
 				int newX = player->getx();
 				int newY = player->gety();
-				if(s == "no") ++newY;
-				else if(s == "so") --newY;
-				else if(s == "ea") ++newX;
-				else if(s == "we") --newX;
+				if(s == "no") --newX;
+				else if(s == "so") ++newX;
+				else if(s == "ea") ++newY;
+				else if(s == "we") --newY;
 				else if(s == "ne") {
-					++newX;
 					++newY;
+					--newX;
 				}
 				else if(s == "nw") {
+					--newY;
 					--newX;
-					++newY;
 				}
 				else if(s == "se") {
+					++newY;
 					++newX;
-					--newY;
 				}
 				else if(s == "sw") {
-					--newX;
 					--newY;
+					++newX;
 				}
 				Cell potionCell = floors[floorLevel].getGrid()[newY][newX];
 				potionCell.getObject()->usePotion(*player);
@@ -116,31 +116,32 @@ int main() {
 				std::cin >> s;
 				int x = player->getx();
 				int y = player->gety();
-				if(s == "no") ++y;
-				else if(s == "so") --y;
-				else if(s == "ea") ++x;
-				else if(s == "we") --x;
+				std::cout << x << " " << y << std::endl;
+				if(s == "no") --x;
+				else if(s == "so") ++x;
+				else if(s == "ea") ++y;
+				else if(s == "we") --y;
 				else if(s == "ne") {
-					++x;
 					++y;
+					--x;
 				}
 				else if(s == "nw") {
+					--y;
 					--x;
-					++y;
 				}
 				else if(s == "se") {
+					++y;
 					++x;
-					--y;
 				}
 				else if(s == "sw")  {
-					--x;
 					--y;
+					++x;
 				}
-				Cell enemyCell = floors[floorLevel].getGrid()[y][x];
+				Cell enemyCell = floors[floorLevel].getGrid()[x][y];
+				std::cout << enemyCell.getSymbol() << enemyCell.getx() << enemyCell.gety() << std::endl;
 				player->strike(*(enemyCell.getObject()), &floors[floorLevel]);
 			}
 			else {
-
 				player->shift(s, &floors[floorLevel]);
 
 			}
