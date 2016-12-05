@@ -153,13 +153,11 @@ GameObject* Cell::getObject() {
 }
 
 void Cell::add(GameObject* object) {
-   if(symbol == 'G'){
-      delete obj;
-   }
    obj = object;
    symbol = obj->getSymbol();
+   if(symbol == 'G') isPlayerValid = true;
+   else isPlayerValid = false;
    isEnemyValid = false;
-   isPlayerValid = false;
 }
 
 void Cell::remove() {
@@ -194,4 +192,12 @@ bool Cell::getPlayerValid() {
 
 bool Cell::getEnemyValid() {
    return isEnemyValid;
+}
+
+void Cell::setPlayerValid(bool value) {
+	isPlayerValid = value;
+}
+
+void Cell::setEnemyValid(bool value) {
+	isEnemyValid = value;
 }

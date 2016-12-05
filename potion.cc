@@ -1,4 +1,5 @@
 #include "potion.h"
+#include "floor.h"
 
 std::string Potion::usedRH = "unknown potion";
 std::string Potion::usedBA = "unknown potion";

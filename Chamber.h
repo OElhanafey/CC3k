@@ -1,6 +1,6 @@
 #ifndef Chamber_h
 #define Chamber_h
-#include "floor.h"
+
 #include <vector>
 
 class Chamber{
