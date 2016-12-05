@@ -214,12 +214,13 @@ void Floor::print(GameObject &player) {
       std::cout << std::endl;
    }
     
-    // Print out all the player statistics
-    std::cout << std::setw(10);
-    std::cout << "Race : " << player.getRace() <<
-          " Gold : " << player.getGold() << "Floor: " << player.getLevel() + 1;
+    //Player stats
+    std::cout  << "Race : " << player.getRace() << " Gold : " << player.getGold();
+    std::cout.width(55);
+    std::cout << std::right  << "Floor " << player.getLevel() + 1  << std::endl;
     std::cout << "HP : " << player.getHP() << std::endl;
     std::cout << "Atk : " << player.getAtk() << std::endl;
     std::cout << "Def : " << player.getDef() << std::endl;
+    std::cout << "Action: " << player.getMessage() << std::endl;
 
 }

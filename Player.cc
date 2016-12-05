@@ -9,7 +9,7 @@ Player::Player(int x, int y, int health, int attack, int defense, std::string ra
 	maxhp(health),
 	origAtk(attack),
 	origDef(defense),
-    message(""),
+        message(""),
 	race(race),
 	potionEffect(potionEffect)
 {}
@@ -20,11 +20,11 @@ std::string Player::getRace(){
 	return race;
 }
 
-std::string getMessage(){
+std::string Player::getMessage(){
     return message;
 }
 
-void setMessage(std::string exp){
+void Player::setMessage(std::string exp){
     message = exp;
 }
 

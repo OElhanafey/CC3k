@@ -87,12 +87,7 @@ int main() {
 		}
 		int playerLevel = player->getLevel();
 		while(playerLevel == player->getLevel()) {
-                        floors[0].print();
-			std::cout << "Floor : " << player->getLevel() + 1;
-                        std::cout << "Race : " << player->getRace() << " Gold: " << player->getGold() << std::endl;
-                        std::cout << "HP : " << player->getHP() << std::endl;
-                        std::cout << "Atk : " << player->getAtk() << std::endl;
-                        std::cout << "Def : " << player->getDef() << std::endl;
+                        floors[0].print(*player);
 
 			std::cin >> s;
 			if(std::cin.eof() || s == "q") {

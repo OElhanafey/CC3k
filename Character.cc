@@ -63,6 +63,7 @@ std::string translation(std::string dir){
     else if(dir == "nw") return "NorthWest";
     else if(dir == "se") return "SouthEast";
     else if(dir == "sw") return "SouthWest";
+    else { return "Invalid Coordinate"; } 
 }
 
 // This function, moves/shifts the character in the specific direction.
@@ -137,12 +138,12 @@ void Character::shift(std::string dir, Floor *g){
         if(getSymbol() == '@'){
             callAction(g);
         }
-       /* if(isPlayer){
+        if(isPlayer){
             std::ostringstream ss;
             ss << "PC moves " << translation(dir);
             std::string s = ss.str();
             setMessage(s);
-        } */
+        } 
     }
 }
 
@@ -184,7 +185,7 @@ void Character::strike(GameObject &c, Floor *g){
         c.setHP(c.getHP() - damage);
     }
     if(this->getSymbol() == '@'){
-        double oppDamage = ceil((100/(100+getDef()))*(c.getAtk()));
+        //double oppDamage = ceil((100/(100+getDef()))*(c.getAtk()));
         std::ostringstream ss;
         ss << "PC deals " << damage << " to " << c.getSymbol() << "(" << c.getHP() << ")";
         std::string s = ss.str();

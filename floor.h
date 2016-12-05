@@ -21,7 +21,7 @@ public:
     GameObject* getObj(int r, int c);
     bool isCellValid(int r, int c, bool isPlayer);
     void generate(std::vector<Chamber> chambers, GameObject* player);
-    void print();
+    void print(GameObject& player);
 };
 
 #endif
