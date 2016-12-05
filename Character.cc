@@ -90,6 +90,10 @@ void Character::shift(std::string dir, int* floor, Floor *g){
         new_x = getx()+1;
         new_y = gety()-1;
     }
+    else {
+        new_x = getx();
+        new_y = gety();
+    }
     // A floor point to the grid the character is on. First checks, if the new cell where the player is trying to move is valid for player to move or not. If it is valid, and if the new cell has gold object on it, then it creates a GameObject pointer to store the gold. Now if the gold is pickable (i.e. not the dragon gold), then the gold value get's added to the gold carried by the player. The player is shifted to the new cells and removed from the old location.
   //  Floor *g = this->getGrid();
     bool isPlayer = false;
