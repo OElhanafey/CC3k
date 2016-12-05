@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "GameObject.h"
 #include "gold.h"
+#include "Chamber.h"
 
 int main() {
 	//Generate from file or randomly
@@ -46,6 +47,7 @@ int main() {
 		std::string read;
 		read = s;
 		std::vector<Floor> floors;
+		std::vector<Chamber> chambers;
 		while(1) {
 		if(read == "f") {
 			if(player->getLevel() == 5)  std::cout << "You have won ChamberCrawler3000!" << std::endl;
@@ -59,21 +61,30 @@ int main() {
 			else {
 				Floor board(layout, *player);
 				floors[0] = board;
+				
 			}
 		}
 		else {
-			int floorCount = 0;
-			while(floorCount < 5) {
-				layout.open("floorLayout.txt");
-				Floor board(layout, *player);
+			layout.open("floorLayout.txt");
+			Floor board(layout, *player);
+			if(player->getLevel() == 0) {
 				floors.emplace_back(board);
-				layout.close();
-				++floorCount;
+				chambers.resize(5);
+				chambers[0].buildChamber(3,3,6,28);
+				chambers[1].buildChamber(3,39,6,61);
+				chambers[1].buildChamber(5,62,5,69);
+				chambers[1].buildChamber(6,62,6,72);
+				chambers[1].buildChamber(8,61,12,75);
+				chambers[2].buildChamber(10,38,12,49);
+				chambers[3].buildChamber(18,4,21,24);
+				chambers[4].buildChamber(19,37,21,75);
+				chambers[4].buildChamber(16,65,18,75);
 			}
+			else floors[0] = board;
+			layout.close();
 		}
 		int playerLevel = player->getLevel();
 		while(playerLevel == player->getLevel()) {
-			std::cout << "Player Coordinates : " << player->getx() << " " << player->gety() << std::endl;
                         floors[0].print();
 			std::cout << "Floor : " << player->getLevel() + 1;
                         std::cout << "Race : " << player->getRace() << " Gold: " << player->getGold() << std::endl;
@@ -116,8 +127,14 @@ int main() {
 					--newY;
 					++newX;
 				}
-				Cell potionCell = floors[0].getGrid()[newX][newY];
-				potionCell.getObject()->usePotion(*player);
+				else { 
+					newX = -1;
+				}
+				if (newX > -1) {
+					Cell potionCell = floors[0].getGrid()[newX][newY];
+					if(potionCell.getSymbol() != 'P') newX = -1;
+					if(newX > -1) potionCell.getObject()->usePotion(*player);
+				}
 			}
 			else if(s == "a") {
 				std::cin >> s;
@@ -144,7 +161,7 @@ int main() {
 					++x;
 				}
 				Cell enemyCell = floors[0].getGrid()[x][y];;
-				player->strike(*(enemyCell.getObject()), &floors[0]);
+				enemyCell.getObject()->beStruckBy(*player, &floors[0]);
 			}
 			else {
 				player->shift(s, &floors[0]);
