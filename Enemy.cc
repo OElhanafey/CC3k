@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 Enemy::Enemy(int x, int y, char symbol, int health, int attack, int defense):
-	Character(x,y,symbol,health,attack,defense,0.5){}
+	Character(x,y,symbol,health,attack,defense){}
 
 Enemy::~Enemy() {}
 
