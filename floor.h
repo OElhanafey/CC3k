@@ -18,7 +18,7 @@ public:
     char getSymbol(int r, int c);
     GameObject* getObj(int r, int c);
     bool isCellValid(int r, int c, bool isPlayer);
-    void generate();
+    void generate(Floor* g, std::vector<Chamber> chambers);
     void print();
 };
 

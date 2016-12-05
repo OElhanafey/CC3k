@@ -184,6 +184,10 @@ void Cell::remove() {
    isPlayerValid = true;
 }
 
+void Cell::setSymbol(char sym) {
+  symbol = sym;
+}
+
 bool Cell::getPlayerValid() {
    return isPlayerValid;
 }
