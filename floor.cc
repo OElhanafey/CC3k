@@ -67,7 +67,7 @@ bool Floor::isCellValid(int r, int c, bool isPlayer) {
       return grid[r][c].getEnemyValid();
    }
 }
-//FUCK YOU GITHUB
+
 void Floor::generate(std::vector<Chamber> chambers, GameObject* player) {
 	//Player
 	std::srand(time(0));

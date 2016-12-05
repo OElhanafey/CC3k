@@ -49,6 +49,7 @@ int main() {
 		std::vector<Floor> floors;
 		std::vector<Chamber> chambers;
 		while(1) {
+            
 		if(read == "f") {
 			if(player->getLevel() == 5)  std::cout << "You have won ChamberCrawler3000!" << std::endl;
 			if(player->getLevel() == 0) {
