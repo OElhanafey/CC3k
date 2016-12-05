@@ -42,7 +42,7 @@ public:
     virtual int getPotionEffect();
     virtual void setMerchantHostile();
     virtual bool getMerchantHostile();
-    virtual void shift(std::string dir,Floor *g);
+    virtual void shift(std::string dir, int* floor, Floor *g);
     virtual void strike(GameObject &c, Floor *g);
     virtual void beStruckBy(GameObject &c, Floor *g);
     virtual void callAction(Floor *g);

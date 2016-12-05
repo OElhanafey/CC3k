@@ -69,9 +69,15 @@ int main() {
 		}
 		player->setx(3);
 		player->sety(10);
-		floors[0].print();
+		
+		int floorLevel = 0;
 		while(1) {
-			int floorLevel = 0;
+                        floors[floorLevel].print();
+                        std::cout << "Race : " << player->getRace() << " Gold: " << player->getGold() << std::endl;
+                        std::cout << "HP : " << player->getHP() << std::endl;
+                        std::cout << "Atk : " << player->getAtk() << std::endl;
+                        std::cout << "Def : " << player->getDef() << std::endl;
+
 			std::cin >> s;
 			if(std::cin.eof() || s == "q") {
 				return 0;
@@ -142,14 +148,8 @@ int main() {
 				player->strike(*(enemyCell.getObject()), &floors[floorLevel]);
 			}
 			else {
-				player->shift(s, &floors[floorLevel]);
-
+				player->shift(s, &floorLevel, &floors[floorLevel]);
 			}
-			floors[floorLevel].print();
-			std::cout << "Race : " << player->getRace() << " Gold: " << player->getGold() << std::endl;
-			std::cout << "HP : " << player->getHP() << std::endl;
-			std::cout << "Atk : " << player->getAtk() << std::endl;
-			std::cout << "Def : " << player->getDef() << std::endl;
 		}
 	}
 }
