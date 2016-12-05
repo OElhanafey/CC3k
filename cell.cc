@@ -11,7 +11,7 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
 	     isEnemyValid = true;
 	     isPlayerValid = true;
    }
-   else if(sym == '#' || sym == '+') {
+   else if(sym == '#' || sym == '+' || sym == 'G') {
 	     isPlayerValid = true;
 	     isEnemyValid = false;
    }
@@ -153,16 +153,13 @@ GameObject* Cell::getObject() {
 }
 
 void Cell::add(GameObject* object) {
-   if(dragonHoard == true){
+   if(symbol == 'G'){
       delete obj;
    }
    obj = object;
    symbol = obj->getSymbol();
    isEnemyValid = false;
    isPlayerValid = false;
-   if((symbol == 'G')||(symbol == '\\')) {
-      isPlayerValid = true;
-   }
 }
 
 void Cell::remove() {
@@ -173,6 +170,9 @@ void Cell::remove() {
       isEnemyValid = false;
    }
    else {
+       if(symbol == 'P'){
+           delete obj;
+       }
       obj = nullptr;
       symbol = getOrigSym();
       isEnemyValid = true;
