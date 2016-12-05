@@ -2,6 +2,7 @@
 #include "cell.h"
 #include "Enemy.h"
 #include "gold.h"
+#include "potion.h"
 #include <memory>
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
 
@@ -37,79 +38,85 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
         origSym = '.';
         GameObject* orc = new Orc(x,y);
         obj = orc;
-  }/*
+  }
    else if(sym == 'M') {
         symbol = 'M';
-        origSym = ',';
-        std::shared_ptr<Merchant> merchant(new Merchant(x,y));
-        obj = merchant.get();
+        origSym = '.';
+        GameObject* merchant = new Merchant(x,y);
+        obj = merchant;
    }
-   else if(sym == 'D') {
+  /* else if(sym == 'D') {
         symbol = 'D';
         origSym = '.';
-        std::shared_ptr<Dragon> dragon(new Dragon(x,y));
-        obj = dragon.get();
-   }
+        GameObject* dragon = new Dragon(x,y);
+        obj = dragon;
+   }*/
    else if(sym == 'L') {
         symbol = 'L';
         origSym = '.';
-        std::shared_ptr<Halfling> halfling(new Halfling(x,y));
-        obj = halfling.get();
+        GameObject* halfling = new Halfling(x,y);
+        obj = halfling;
    }
 
    else if(sym == '0') {
-	       symbol = 'P';
-	       origSym = '.';
-         std::shared_ptr<RestoreHp> restoreHp(new RestoreHp(x,y));
+	 symbol = 'P';
+	 origSym = '.';
+         GameObject* restoreHp = new RestoreHp(x,y);
          obj = restoreHp;
    }
    else if(sym == '1') {
         symbol = 'P';
         origSym = '.';
-        std::shared_ptr<RestoreHp> restoreHp(new RestoreHp(x,y));
-        obj = restoreHp;
+        GameObject* boostAtk = new BoostAtk(x,y);
+        obj = boostAtk;
    }
    else if(sym == '2') {
         symbol = 'P';
         origSym = '.';
-        std::shared_ptr<BoostDef> boostDef(new BoostDef(x,y));
+        GameObject* boostDef = new BoostDef(x,y);
         obj = boostDef;
    }
    else if(sym == '3') {
         symbol = 'P';
         origSym = '.';
-        std::shared_ptr<PoisonHp> poisonHp(new PosionHp(x,y));
-        obj = posionHp;
+        GameObject* poisonHp = new PoisonHp(x,y);
+        obj = poisonHp;
    }
    else if(sym == '4') {
         symbol = 'P';
         origSym = '.';
-	//obj = new WoundAtk();
+	GameObject* woundAtk = new WoundAtk(x,y);
+	obj = woundAtk;
    }
    else if(sym == '5') {
         symbol = 'P';
         origSym = '.';
-	//obj = new WoundDef();
+	GameObject* woundDef = new WoundDef(x,y);
+	obj = woundDef;
    }
    else if(sym == '6') {
         symbol = 'G';
         origSym = '.';
-	//obj = new Gold(x,y,2);
+	GameObject* regGold = new Gold(x,y,2);
+	obj = regGold;
    }
    else if(sym == '7') {
         symbol = 'G';
         origSym = '.';
-	//obj = new Gold(x,y,1);
+	GameObject* smGold = new Gold(x,y,1);
+	obj = smGold;
    }
    else if(sym == '8') {
         symbol = 'G';
         origSym = '.';
-	//obj = new Gold(x,y,4);
+	GameObject* merGold = new Gold(x,y,4);
+	obj = merGold;
    }
    else if(sym == '9') {
         symbol = 'G';
         origSym = '.';
-	//obj = new Gold(x,y,6);
+	GameObject* dragGold = new Gold(x,y,6);
+	obj = dragGold;
    }
    else if(sym == '@') {
 	    origSym = '.';
@@ -118,7 +125,7 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
    else if(sym == '\\') {
 	symbol = '\\';
 	origSym = '\\';
-   }*/
+   }
 	else {}
 }
 

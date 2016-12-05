@@ -109,7 +109,7 @@ int main() {
 					--newY;
 					++newX;
 				}
-				Cell potionCell = floors[floorLevel].getGrid()[newY][newX];
+				Cell potionCell = floors[floorLevel].getGrid()[newX][newY];
 				potionCell.getObject()->usePotion(*player);
 			}
 			else if(s == "a") {
@@ -146,6 +146,10 @@ int main() {
 
 			}
 			floors[floorLevel].print();
+			std::cout << "Race : " << player->getRace() << " Gold: " << player->getGold() << std::endl;
+			std::cout << "HP : " << player->getHP() << std::endl;
+			std::cout << "Atk : " << player->getAtk() << std::endl;
+			std::cout << "Def : " << player->getDef() << std::endl;
 		}
 	}
 }
