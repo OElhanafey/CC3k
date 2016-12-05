@@ -7,8 +7,8 @@ class Chamber{
     std::vector <std::pair<int,int>> possibleCell;
 public:
     Chamber();
-    void buildChamber(int initX, int initY, int lastX, int lastY)
-    ~Chamber();
+    std::vector <std::pair<int, int>> getCells();
+    void buildChamber(int initX, int initY, int lastX, int lastY);
 };
 #endif /* Chamber_h */
 

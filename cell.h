@@ -22,6 +22,7 @@ public:
     int gety();
     char getOrigSym();
     char getSymbol();
+    void setSymbol(char sym);
     GameObject *getObject();
     void add(GameObject* object);
     void remove();
