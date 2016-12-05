@@ -96,6 +96,7 @@ void Character::shift(std::string dir, Floor *g){
     if(getSymbol() == '@'){
         isPlayer = true;
     }
+    
     bool valid = g->isCellValid(new_x, new_y, isPlayer);
     if (valid) {
         if(this->getRace() == "Troll"){ //Every time troll moves, gets 5 points. 
@@ -116,7 +117,9 @@ void Character::shift(std::string dir, Floor *g){
         sety(new_y);
         g->objectAdd(new_x, new_y,this);
         g->objectRemove(old_x, old_y);
-        this->callAction(g);
+        if(getSymbol == '@'){
+            callAction(g);
+        }
     }
 }
 

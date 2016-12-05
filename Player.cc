@@ -2,7 +2,7 @@
 
 // Figure out the default potionEffect.
 Player::Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect):
-	Character(x,y,'@',health, attack, defense, 1),
+	Character(x,y,'@',health, attack, defense),
 	merchantHostile(false),
 	enemyMovable(true),
 	level(1),
@@ -27,13 +27,20 @@ void Player::setEnemyMovable() {
 
 // Calls action on all the enemies on the floor.
 void Player::callAction(Floor *g){
+    std::vector <GameObject*> myenemies;
     for(int i = 0; i < 25; i++){
         for(int j = 0; j < 79; j++){
-            GameObject *e = g->getObj(i,j);
-	    if(e != nullptr) {
-	       e->action(*this, g);
-	    }
+            char s = g->getSymbol;
+         //  GameObject *e = g->getObj(i,j);
+            if(s == 'H' || s == 'L' || s == 'W' ||
+               s == 'O' || s == 'E' || s == 'M'){
+                myenemies.emplace_back(g->getObj(i,j));
+            }
         }
+    }
+    int size = myenemies.size();
+    for(int i = 0; i < size; i++){
+	       e->action(myenemies[i], g);
     }
 }
 
