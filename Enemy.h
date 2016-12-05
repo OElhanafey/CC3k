@@ -18,7 +18,7 @@ class Player;
 
 class Enemy: public Character{
 public:
-    Enemy(int x, int y, char symbol, int health, int attack, int defense);
+    Enemy(int x, int y, char symbol, int health, int attack, int defense, std::string race);
     void enemyDeath(GameObject &p, Floor *g) override;
     void action(GameObject &p, Floor *g) override;
    /* virtual*/ ~Enemy();

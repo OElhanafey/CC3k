@@ -13,12 +13,14 @@ std::pair<int,int> Character::radius[8] = {std::make_pair(-1,0), std::make_pair(
 
 // Character Constructor, has the cell's location, the symbol, a pointer to the floor, the characteristics, and the amount of gold carried.
 
-Character::Character(int x, int y, char symbol, int health, int attack, int defense, int gold):
-GameObject(x,y,symbol /*grid*/),
+Character::Character(int x, int y, char symbol, int health, int attack, int defense, std::string race, int gold):
+GameObject(x,y,symbol),
 health(health),
 attack(attack),
 defense(defense),
-gold(gold){}
+race(race),
+gold(gold)
+{}
 
 // Character Destructor:
 Character::~Character() {}
@@ -37,6 +39,10 @@ int Character::getDef() {
 
 int Character::getGold(){
     return gold;
+}
+
+std::string Character::getRace() {
+    return race;
 }
 
 void Character::setHP(int hp){
@@ -117,6 +123,7 @@ void Character::shift(std::string dir, Floor *g){
     
     bool valid = g->isCellValid(new_x, new_y, isPlayer);
     if(isPlayer && g->getSymbol(new_x, new_y) == '\\') setLevel(getLevel() + 1);
+    std::ostringstream ss;
     if (valid) {
         if(this->getRace() == "Troll"){ //Every time troll moves, gets 5 points. 
             if(((this->getHP()) + 5) > 120){
@@ -129,6 +136,8 @@ void Character::shift(std::string dir, Floor *g){
         if((g->getSymbol(new_x, new_y)) == 'G'){
             GameObject *gold = g->getObj(new_x, new_y);
             if(gold->getPickable()){
+		ss << "PC picks up " << gold->getGold() << " gold. ";
+		std::string s = ss.str();
                 setGold(gold->getGold()+this->getGold());
             }
             delete gold;
@@ -141,7 +150,6 @@ void Character::shift(std::string dir, Floor *g){
             callAction(g);
         }
         if(isPlayer){
-            std::ostringstream ss;
             ss << "PC moves " << translation(dir);
             std::string s = ss.str();
             setMessage(s);
@@ -190,7 +198,7 @@ void Character::strike(GameObject *c, Floor *g){
     if(this->getSymbol() == '@'){
         //double oppDamage = ceil((100/(100+getDef()))*(c.getAtk()));
         std::ostringstream ss;
-        ss << "PC deals " << damage << " to " << c->getSymbol() << "(" << c->getHP() << ")";
+        ss << "PC deals " << damage << " to " << c->getRace() <<  ". HP left: " << c->getHP();
         std::string s = ss.str();
         setMessage(s);
     }

@@ -1,30 +1,30 @@
 #include "Enemy.h"
 
-Enemy::Enemy(int x, int y, char symbol, int health, int attack, int defense):
-	Character(x,y,symbol,health,attack,defense){}
+Enemy::Enemy(int x, int y, char symbol, int health, int attack, int defense, std::string race):
+	Character(x,y,symbol,health,attack,defense, race){}
 
 Enemy::~Enemy() {}
 
 Human::Human(int x, int y):
-Enemy(x,y,'H',140,20,20) {}
+Enemy(x,y,'H',140,20,20, "Human") {}
 
 Dwarf::Dwarf(int x, int y):
-Enemy(x,y,'W',100,20,30) {}
+Enemy(x,y,'W',100,20,30, "Dwarf") {}
 
 Elf::Elf(int x, int y):
-Enemy(x,y,'E',140,30,10) {}
+Enemy(x,y,'E',140,30,10, "Elf") {}
 
 Orc::Orc(int x, int y):
-Enemy(x,y,'O',180,30,25) {}
+Enemy(x,y,'O',180,30,25, "Orc") {}
 
 Merchant::Merchant(int x, int y):
-Enemy(x,y,'M',30,70,5) {}
+Enemy(x,y,'M',30,70,5, "Merchant") {}
 
 Dragon::Dragon(int x, int y, int hoardX, int hoardY):
-Enemy(x,y,'D',150,20,20) {}
+Enemy(x,y,'D',150,20,20, "Dragon") {}
 
 Halfling::Halfling(int x, int y):
-Enemy(x,y,'L',100,15,20) {}
+Enemy(x,y,'L',100,15,20, "Halfling") {}
 
 
 int Dragon::getHoardX() { return hoardX; }

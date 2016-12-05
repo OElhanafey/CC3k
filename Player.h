@@ -19,11 +19,9 @@ protected:
     int level;
     int maxhp, origAtk, origDef;
     std::string message;
-    std::string race;
     int potionEffect;
 public:
     Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect = 1);
-    std::string getRace();
     void setLevel(int floor);
     int getLevel();
     bool getEnemyMovable() override;

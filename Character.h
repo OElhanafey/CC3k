@@ -10,15 +10,16 @@
 class Character:public GameObject{
 protected:
     int health, attack, defense;
-    int gold;
-    
+    std::string race;
+    int gold;    
 public:
     static std::pair<int,int> radius[8];
-    Character(int x, int y, char symbol,int health, int attack, int defense, int gold = 0);
+    Character(int x, int y, char symbol,int health, int attack, int defense, std::string race = "", int gold = 0);
     int getHP() override;
     int getAtk() override;
     int getDef() override;
     int getGold() override;
+    std::string getRace() override;
     void setHP(int hp) override;
     void setAtk(int at) override;
     void setDef(int def) override;

@@ -63,7 +63,13 @@ int main() {
 		//TEMP
 		player->setHP(10000);
 		if(read == "f") {
-			if(player->getLevel() == 5)  std::cout << "You have won ChamberCrawler3000!" << std::endl;
+			if(player->getLevel() == 5)  {
+				std::cout << "You have won ChamberCrawler3000!" << std::endl;
+				std::cout << "Press r to restart or any other key to quit" << std::endl;
+				std::cin >> s;
+				if(s == "r") goto restart;
+				else return 0;
+			}
 			if(player->getLevel() == 0) {
 				std::cout << "Please enter the file name." << std::endl;
 				std::cin >> s;
@@ -107,7 +113,7 @@ int main() {
 			}
 			else if(s == "r") {
 				delete player;
-				break;
+				goto restart;
 			}
 			else if(s == "f") {
 				player->setEnemyMovable();

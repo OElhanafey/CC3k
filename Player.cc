@@ -2,23 +2,18 @@
 
 // Figure out the default potionEffect.
 Player::Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect):
-	Character(x,y,'@',health, attack, defense),
+	Character(x,y,'@',health, attack, defense, race),
 	merchantHostile(false),
 	enemyMovable(true),
 	level(0),
 	maxhp(health),
 	origAtk(attack),
 	origDef(defense),
-        message(""),
-	race(race),
+        message(""),   
 	potionEffect(potionEffect)
 {}
 
 Player::~Player() {}
-
-std::string Player::getRace(){
-	return race;
-}
 
 std::string Player::getMessage(){
     return message;
