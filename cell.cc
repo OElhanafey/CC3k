@@ -1,5 +1,6 @@
 #include <iostream>
 #include "cell.h"
+#include "Enemy.h"
 #include "gold.h"
 #include <memory>
 Cell::Cell(): x(-1), y(-1), symbol(' '), isPlayerValid(false), isEnemyValid(false), dragonHoard(false), obj(nullptr) {}
@@ -16,27 +17,27 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
    else if(sym == 'H') {
 	      symbol = 'H';
         origSym = '.';
-        std::shared_ptr<Human> human(new Human(x,y));
-        obj = human.get();
+        GameObject* human = new Human(x,y);
+        obj = human;
    }
    else if(sym == 'W') {
         symbol = 'W';
         origSym = '.';
-        std::shared_ptr<Dwarf> dwarf(new Dwarf(x,y));
-        obj = dwarf.get();
+        GameObject* dwarf = new Dwarf(x,y);
+        obj = dwarf;
    }
    else if(sym == 'E') {
         symbol = 'E';
         origSym = '.';
-        std::shared_ptr<Elf> elf(new Elf(x,y));
-        obj = elf.get();
+       	GameObject* elf = new Elf(x,y);
+        obj = elf;
    }
    else if(sym == 'O') {
         symbol = 'O';
         origSym = '.';
-        std::shared_ptr<Orc> orc(new Orc(x,y));
-        obj = orc.get();
-  }
+        GameObject* orc = new Orc(x,y);
+        obj = orc;
+  }/*
    else if(sym == 'M') {
         symbol = 'M';
         origSym = ',';
@@ -117,7 +118,8 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
    else if(sym == '\\') {
 	symbol = '\\';
 	origSym = '\\';
-   }
+   }*/
+	else {}
 }
 
 int Cell::getx() { return x; }

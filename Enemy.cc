@@ -47,10 +47,10 @@ void Merchant::enemyDeath(GameObject& p, Floor *g) {
     int e_x = this->getx();
     int e_y = this->gety();
     
-    std::shared_ptr<GameObject> gold(new Gold(e_x, e_y, 4));
+    Gold* gold = new Gold(e_x, e_y, 4);
     
     g->objectRemove(e_x, e_y);
-    g->objectAdd(e_x, e_y, gold.get());
+    g->objectAdd(e_x, e_y, gold);
 }
 
 // If a Human dies (MODIFY THIS LATER TO REDUCE REPEATING CODE):
@@ -77,13 +77,13 @@ void Human::enemyDeath(GameObject& p, Floor *g) {
         goldVal = 2;
         std::srand(time(NULL));
         int i = std::rand() % validDir.size();
-        std::shared_ptr<GameObject> gold(new Gold(validDir[i].first, validDir[i].second, goldVal));
-        g->objectAdd(validDir[i].first, validDir[i].second, gold.get());
+        Gold* gold = new Gold(validDir[i].first, validDir[i].second, goldVal);
+        g->objectAdd(validDir[i].first, validDir[i].second, gold);
     }
     
-    std::shared_ptr<GameObject> gold(new Gold(e_x, e_y, goldVal));
+    Gold* gold = new Gold(e_x, e_y, goldVal);
     g->objectRemove(e_x, e_y);
-    g->objectAdd(e_x, e_y, gold.get());
+    g->objectAdd(e_x, e_y, gold);
 }
 
 // Go into cell with coordinates HoardX HoardY on the floor
