@@ -14,28 +14,54 @@ int main() {
 	//Generate from file or randomly
 	std::string s;
 	while(1) {
-		std::cout << "Welcome to ChamberCrawler3000! Press 'F' to generate a floor from a file or 'G' to randomly generate it." << std::endl;
-		std::cin >> s;
-		std::vector<Floor> floors;
+                restart:
+		//Race Choice
+                std::cout << "Welcome to ChamberCrawler3000! Please choose a race." << std::endl;
+                std::cin >> s;
 		GameObject* player;
+                if(std::cin.eof() || s == "q") {
+                        return 0;
+                }
+                else if(s == "drow") {
+                        player = new Drow(0,0);
+                }
+                else if(s == "vampire") {
+                        player = new Vampire(0,0);
+                }
+                else if(s == "troll") {
+                        player = new Troll(0,0);
+                }
+                else if(s == "goblin") {
+                        player = new Goblin(0,0);
+                }
+                else {
+                        player = new Shade(0,0);
+                }
+		std::cout << "Press 'f' to generate a floor from a file or any other key to randomly generate it." << std::endl;
+		std::cin >> s;
 		if(std::cin.eof() || s == "q") {
 			return 0;
 		}
-		else if(s == "F") {
-			std::cout << "Please enter the file name.";
-			std::cin >> s;
-			std::ifstream layout;
-			layout.open(s);
-			int floorCount = 0;
-			while(floorCount < 5) {
+		std::ifstream layout;
+		std::string read;
+		read = s;
+		std::vector<Floor> floors;
+		while(1) {
+		if(read == "f") {
+			if(player->getLevel() == 5)  std::cout << "You have won ChamberCrawler3000!" << std::endl;
+			if(player->getLevel() == 0) {
+				std::cout << "Please enter the file name." << std::endl;
+				std::cin >> s;
+				layout.open(s);
 				Floor board(layout, *player);
 				floors.emplace_back(board);
-				++floorCount;
+			}
+			else {
+				Floor board(layout, *player);
+				floors[0] = board;
 			}
 		}
 		else {
-			std::ifstream layout;
-			std::vector<Floor> floors;
 			int floorCount = 0;
 			while(floorCount < 5) {
 				layout.open("floorLayout.txt");
@@ -44,35 +70,12 @@ int main() {
 				layout.close();
 				++floorCount;
 			}
-			layout.open("floorLayout.txt");
 		}
-		//Race Choice
-		std::cout << "Please choose a race." << std::endl;
-		std::cin >> s;
-		if(std::cin.eof() || s == "q") {
-			return 0;
-		}
-		else if(s == "drow") {
-			player = new Drow(0,0);
-		}
-		else if(s == "vampire") {
-			player = new Vampire(0,0);
-		}
-		else if(s == "troll") {
-			player = new Troll(0,0);
-		}
-		else if(s == "goblin") {
-			player = new Goblin(0,0);
-		}
-		else {
-			player = new Shade(0,0);
-		}
-		player->setx(3);
-		player->sety(10);
-		
-		int floorLevel = 0;
-		while(1) {
-                        floors[floorLevel].print();
+		int playerLevel = player->getLevel();
+		while(playerLevel == player->getLevel()) {
+			std::cout << "Player Coordinates : " << player->getx() << " " << player->gety() << std::endl;
+                        floors[0].print();
+			std::cout << "Floor : " << player->getLevel() + 1;
                         std::cout << "Race : " << player->getRace() << " Gold: " << player->getGold() << std::endl;
                         std::cout << "HP : " << player->getHP() << std::endl;
                         std::cout << "Atk : " << player->getAtk() << std::endl;
@@ -87,9 +90,7 @@ int main() {
 				break;
 			}
 			else if(s == "f") {
-				//NEED TO CHANGE ENEMY MOVABLE TO STATIC
-				//When it is static flipping the switch of movable will change all Enemies movable field to false
-				//Stops enemies from moving
+				player->setEnemyMovable();
 			}
 			else if(s == "u") {
 				std::cin >> s;
@@ -115,14 +116,13 @@ int main() {
 					--newY;
 					++newX;
 				}
-				Cell potionCell = floors[floorLevel].getGrid()[newX][newY];
+				Cell potionCell = floors[0].getGrid()[newX][newY];
 				potionCell.getObject()->usePotion(*player);
 			}
 			else if(s == "a") {
 				std::cin >> s;
 				int x = player->getx();
 				int y = player->gety();
-				std::cout << x << " " << y << std::endl;
 				if(s == "no") --x;
 				else if(s == "so") ++x;
 				else if(s == "ea") ++y;
@@ -143,13 +143,24 @@ int main() {
 					--y;
 					++x;
 				}
-				Cell enemyCell = floors[floorLevel].getGrid()[x][y];
-				std::cout << enemyCell.getSymbol() << enemyCell.getx() << enemyCell.gety() << std::endl;
-				player->strike(*(enemyCell.getObject()), &floors[floorLevel]);
+				Cell enemyCell = floors[0].getGrid()[x][y];;
+				player->strike(*(enemyCell.getObject()), &floors[0]);
 			}
 			else {
-				player->shift(s, &floorLevel, &floors[floorLevel]);
+				player->shift(s, &floors[0]);
 			}
+			if(player->getHP() == 0) {
+				std::cout << "Oh no! You are dead!" << std::endl;
+				std::cout << "Press 'r' to restart or any other key to quit." << std::endl;
+				std::cin >> s;
+				if(s == "r") {
+					goto restart;
+				}
+				else {
+					return 0;
+				}
+			}
+		}
 		}
 	}
 }

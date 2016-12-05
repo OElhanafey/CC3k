@@ -121,6 +121,8 @@ Cell::Cell(int x, int y, char sym, GameObject& player): x(x), y(y), symbol(sym),
    else if(sym == '@') {
 	    origSym = '.';
 	    obj = &player;
+	    player.setx(x);
+	    player.sety(y);
    }
    else if(sym == '\\') {
 	symbol = '\\';
