@@ -18,6 +18,7 @@ protected:
     bool enemyMovable;
     int level;
     int maxhp, origAtk, origDef;
+    std::string message;
     std::string race;
     int potionEffect;
 public:
@@ -28,6 +29,8 @@ public:
     bool getEnemyMovable() override;
     void setEnemyMovable() override;
     int getMaxHp() override;
+    std::string getMessage() override;
+    void setMessage(std::string) override;
     int getPotionEffect() override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;

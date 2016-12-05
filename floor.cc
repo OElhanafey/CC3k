@@ -176,7 +176,6 @@ bool Floor::isCellValid(int r, int c, bool isPlayer) {
       return grid[r][c].getEnemyValid();
    }
 }
-//FUCK YOU GITHUB
 void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
 	//Player
 	bool generated = false;

@@ -38,6 +38,8 @@ public:
     virtual void setHP(int);
     virtual void setAtk(int);
     virtual void setDef(int);
+    virtual void setMessage(std::string);
+    virtual std::string getMessage();
     virtual std::string getRace();
     virtual void setLevel(int);
     virtual int getLevel();

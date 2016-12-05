@@ -34,6 +34,8 @@ void RestoreHp::usePotion(GameObject& player, Floor *g) {
     // Remove the potion
     g->objectRemove(getx(), gety());
     
+    // Set action Message
+    p.setMessage("PC uses Restore Health");
 }
 
 // BOOST ATTACK: Increases the attack points
@@ -51,6 +53,9 @@ void BoostAtk::usePotion(GameObject& player, Floor *g) {
     
     // Remove the potion
     g->objectRemove(getx(), gety());
+    
+    // Set action Message
+    p.setMessage("PC uses Boost Attack");
 }
 
 // BOOST DEFENSE: Increases the defense points
@@ -68,6 +73,9 @@ void BoostDef::usePotion(GameObject& player, Floor *g) {
     
     // Remove the potion
     g->objectRemove(getx(), gety());
+    
+    // Set action Message
+    p.setMessage("PC uses Boost Defence");
 }
 
 // POISON HEALTH: Decreases the health points. Cannot fall before 0.
@@ -89,6 +97,9 @@ void PoisonHp::usePotion(GameObject& player, Floor *g) {
     
     // Remove the potion
     g->objectRemove(getx(), gety());
+    
+    // Set action Message
+    p.setMessage("PC uses Poison Health");
 }
 
 // WOUND ATTACK: Decreases the attack points.
@@ -109,6 +120,9 @@ void WoundAtk::usePotion(GameObject& player, Floor *g) {
     
     // Remove the potion
     g->objectRemove(getx(), gety());
+    
+    // Set action Message
+    p.setMessage("PC uses Wound Attack");
 }
 
 // WOUND DEFENSE: Decreases the defense points.
@@ -129,4 +143,7 @@ void WoundDef::usePotion(GameObject& player, Floor *g) {
     
     // Remove the potion
     g->objectRemove(getx(), gety());
+    
+    // Set action Message
+    p.setMessage("PC uses Wound Defence");
 }

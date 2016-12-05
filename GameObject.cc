@@ -45,6 +45,8 @@ int GameObject::getDef() { return 0; }
 void GameObject::setHP(int) { }
 void GameObject::setAtk(int) { }
 void GameObject::setDef(int) { }
+void GameObject::setMessage(std::string){ }
+std::string GameObject::getMessage(){ return "";}
 std::string GameObject::getRace() { return ""; }
 void GameObject::setLevel(int) { }
 int GameObject::getLevel() { return 0; }

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 #include "floor.h"
 using namespace std;
 
@@ -52,6 +53,17 @@ void Character::setDef(int def){
 void Character::setGold(int g){
     gold = g;
 } 
+
+std::string translation(std::string dir){
+    if(dir == "no") return "North";
+    else if(dir == "so") return "South";
+    else if(dir == "ea") return "East";
+    else if(dir == "we") return "West";
+    else if(dir == "ne") return "NorthEast";
+    else if(dir == "nw") return "NorthWest";
+    else if(dir == "se") return "SouthEast";
+    else if(dir == "sw") return "SouthWest";
+}
 
 // This function, moves/shifts the character in the specific direction.
 void Character::shift(std::string dir, Floor *g){
@@ -125,6 +137,12 @@ void Character::shift(std::string dir, Floor *g){
         if(getSymbol() == '@'){
             callAction(g);
         }
+        if(isPlayer){
+            std::ostringstream ss;
+            ss << "PC moves " << translation(dir);
+            std::string s = ss.str();
+            setMessage(s);
+        }
     }
 }
 
@@ -149,11 +167,11 @@ void Character::strike(GameObject &c, Floor *g){
     // Calculate damage
     double temp = c.getDef();
     double damage = ceil((100/(100+temp))*(this->getAtk()));
+    
     // Orcs do 50% more damage to goblins
     if ((this->getSymbol() == 'O') && (c.getRace() == "Goblin"))
         damage *= 1.5;
-    // If player dies then "Game Over" exception thrown (remember to catch in main - give player option to restart or quit)
-    // If enemy dies call their death function. 
+    // If enemy dies call their death function.
     if((c.getHP() - damage) < 0){
         c.setHP(0);
 
@@ -164,6 +182,13 @@ void Character::strike(GameObject &c, Floor *g){
     }
     else{
         c.setHP(c.getHP() - damage);
+    }
+    if(this->getSymbol() == '@'){
+        double oppDamage = ceil((100/(100+getDef()))*(c.getAtk()));
+        std::ostringstream ss;
+        ss << "PC deals " << damage << " to " << c.getSymbol() << "(" << c.getHP() << ")";
+        std::string s = ss.str();
+        setMessage(s);
     }
 }
 
