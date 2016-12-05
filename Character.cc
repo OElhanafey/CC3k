@@ -130,6 +130,7 @@ void Character::shift(std::string dir, Floor *g){
             GameObject *gold = g->getObj(new_x, new_y);
             if(gold->getPickable()){
                 setGold(gold->getGold()+this->getGold());
+                
             }
             delete gold;
         }

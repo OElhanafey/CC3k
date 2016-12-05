@@ -5,7 +5,7 @@
 class Gold: public GameObject {
 	int value;
 	bool pickable;
-
+    
 	public:
 	Gold(int x, int y, int value);
 	bool getPickable() override;
