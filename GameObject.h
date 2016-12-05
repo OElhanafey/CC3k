@@ -62,7 +62,7 @@ public:
 
     // Functions specific to Potion
     virtual std::string potionType();
-    virtual void usePotion(GameObject &p);
+    virtual void usePotion(GameObject &p, Floor* g);
 
     virtual ~GameObject() = 0;
 };

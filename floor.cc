@@ -25,116 +25,6 @@ Floor::Floor(std::ifstream& layout, GameObject& player) {
    }
 }
 
-void Floor::generate() {
-	//Player
-	bool generated = false;
-	int playerChamber = std::rand() % 5;
-	while(!generated) {
-		int array = std::rand() % chamber[playerChamber].size();
-		if(chamber[playerChamber]./*Access array*/.isPlayerValid()) {
-			//Generate Player
-			generated = true;
-		}
-	}
-	//Stairs
-	generated = false;
-	while(!generated) {
-		int chamber = std::rand() % 5;
-		if(chamber != playerChamber) {
-			generated = true;
-		}
-	}
-	generated = false;
-	while(!generated) {
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]./*Access array*/.isPlayerValid()) {
-			//Generate stairs
-			generated = true;
-		}
-	}
-	//Potions
-	int amountGen = 0;
-	while(amountGen < 10) {
-		int type = std::rand() % 6 + 1;
-		chamber = std::rand() % 5;
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]/*Access array*/.isEnemyValid()) {
-			if(type == 1) {
-				//Restore Health
-			}
-			else if(type == 2) {
-				//Boost Atk
-			}
-			else if(type == 3) {
-				//Boost Def
-			}
-			else if(type == 4) {
-				//Poison health
-			}
-			else if(type == 5) {
-				//Wound Atk
-			}
-			else {
-				//Wound Def
-			}
-			++amountGen;
-		}
-	}
-	//Gold
-	amountGen = 0;
-	while(amountGen < 10) {
-		type = std::rand() % 8 + 1;
-		chamber = std::rand() % 5;
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]/*Access array*/.isEnemyValid()) {
-			if(type >= 1 && type <= 5) {
-				GameObject* gold = new Gold(2);
-			}
-			else if(type == 6) {
-				GameObject* gold = new Gold(6);
-			}
-			else {
-				GameObject* gold = new Gold(1);
-			}
-			int x,y; //GET Coordinates
-			objectAdd(x,y,gold);
-			// setting the dragonhoard to true if the gold type is dragon gold.
-			if(gold->getGold() == 6){
-				setDragonHoard(x,y,true);
-			}
-			++amountGen
-		}
-	}
-	//Enemy
-	amountGen = 0;
-	while(amountGen < 20) {
-		type = std::rand() % 18 + 1;
-		chamber = std::rand() % 5;
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]/*Access array*/.isEnemyValid()) {
-			if(type >= 1 && type <= 4) {
-				//std::shared_ptr<Human> human(new Human(x,y));
-			}
-			else if(type >= 5 <= 7) {
-				//Dwarf
-			}
-			else if(type >= 8 && type <= 12) {
-				//Halfling
-			}
-			else if(type >= 13 && type <= 14) {
-				//Elf
-			}
-			else if(type >= 15 && type <= 16) {
-				//Orc
-			}
-			else if(type >= 17 && type <= 18) {
-				//Merchant
-			}
-			++amountGen;
-		}
-	}
-}
-
 void Floor::setGrid(int y, int x, Cell set) {
    grid[y][x] = set;
 }
@@ -182,15 +72,15 @@ void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
 	bool generated = false;
 	int playerChamber = std::rand() % 5;
 	while(!generated) {
-		int array = std::rand() % chamber[playerChamber].getCells().size();
+		int array = std::rand() % chambers[playerChamber].getCells().size();
     std::pair<int,int> coor = chambers[playerChamber].getCells()[array];
     int x = coor.first;
     int y = coor.second;
-		if(g->getGrid()[x][y].isPlayerValid()) {
+		if(g->getGrid()[x][y].getPlayerValid()) {
 			g->getGrid()[x][y].setSymbol('@');
 			generated = true;
 		}
-	}
+	}/*
 	//Stairs
 	generated = false;
 	while(!generated) {
@@ -217,7 +107,7 @@ void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
 		int type = std::rand() % 6 + 1;
 		chamber = std::rand() % 5;
 		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]/*Access array*/.isEnemyValid()) {
+		if(chamber[chamber]Access array.isEnemyValid()) {
 			if(type == 1) {
 				//Restore Health
 			}
@@ -245,7 +135,7 @@ void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
 		type = std::rand() % 8 + 1;
 		chamber = std::rand() % 5;
 		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]/*Access array*/.isEnemyValid()) {
+		if(chamber[chamber]Access array.isEnemyValid()) {
 			if(type >= 1 && type <= 5) {
 				GameObject* gold = new Gold(2);
 			}
@@ -270,7 +160,7 @@ void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
 		type = std::rand() % 18 + 1;
 		chamber = std::rand() % 55;
 		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]/*Access array*/.isEnemyValid()) {
+		if(chamber[chamber]Access array.isEnemyValid()) {
 			if(type >= 1 && type <= 4) {
 				//Human
 			}
@@ -292,7 +182,7 @@ void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
 			++amountGen;
 		}
 	}
-  #endif
+  #endif*/
 }
 
 void Floor::print() {

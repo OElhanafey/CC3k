@@ -2,6 +2,7 @@
 #define _FLOOR_H_
 #include <vector>
 #include "cell.h"
+#include "Chamber.h"
 
 class GameObject;
 

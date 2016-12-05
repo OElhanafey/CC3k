@@ -159,7 +159,7 @@ void Character::strike(GameObject &c, Floor *g){
 
         if (c.getSymbol() != '@'){
             c.enemyDeath(*this,g);
-            delete c;
+            //delete c;
         }
     }
     else{

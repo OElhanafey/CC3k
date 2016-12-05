@@ -133,7 +133,7 @@ int main() {
 				if (newX > -1) {
 					Cell potionCell = floors[0].getGrid()[newX][newY];
 					if(potionCell.getSymbol() != 'P') newX = -1;
-					if(newX > -1) potionCell.getObject()->usePotion(*player);
+					if(newX > -1) potionCell.getObject()->usePotion(*player, &floors[0]);
 				}
 			}
 			else if(s == "a") {

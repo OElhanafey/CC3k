@@ -73,4 +73,4 @@ void GameObject::setPickable(bool status) { }
 
 // Default definitions for functions specific to the Potion class
 std::string GameObject::potionType() { return ""; }
-void GameObject::usePotion(GameObject &p) { }
+void GameObject::usePotion(GameObject &p, Floor* g) { }
