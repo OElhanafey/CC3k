@@ -89,9 +89,6 @@ void PoisonHp::usePotion(GameObject& player, Floor *g) {
     
     // Remove the potion
     g->objectRemove(getx(), gety());
-
-   // Throw game over exception if health goes down to 0
-   if(player.getHP() == 0) throw "Game Over";
 }
 
 // WOUND ATTACK: Decreases the attack points.

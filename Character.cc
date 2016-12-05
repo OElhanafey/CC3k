@@ -156,10 +156,9 @@ void Character::strike(GameObject &c, Floor *g){
     // If enemy dies call their death function. 
     if((c.getHP() - damage) < 0){
         c.setHP(0);
-        if (c.getSymbol() == '@'){
-            throw "Game Over";
+        if (c.getSymbol() != '@'){
+            c.enemyDeath(*this,g);
         }
-        else c.enemyDeath(*this,g);
     }
     else{
         c.setHP(c.getHP() - damage);
