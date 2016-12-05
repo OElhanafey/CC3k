@@ -1,6 +1,7 @@
 #ifndef _FLOOR_H_
 #define _FLOOR_H_
 #include <vector>
+#include <sstream>
 #include "cell.h"
 #include "Chamber.h"
 

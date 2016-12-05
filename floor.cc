@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include "floor.h"
 #include "gold.h"
 #include "potion.h"
@@ -205,11 +206,20 @@ void Floor::generate(std::vector<Chamber> chambers, GameObject* player) {
 	}
 }
 
-void Floor::print() {
+void Floor::print(GameObject &player) {
    for(unsigned int i=0; i<grid.size(); ++i) {
       for(unsigned int j=0; j<grid[i].size(); ++j) {
 	 std::cout << grid[i][j].getSymbol();
       }
       std::cout << std::endl;
    }
+    
+    // Print out all the player statistics
+    std::cout << std::setw(10);
+    std::cout << "Race : " << player.getRace() <<
+          " Gold : " << player.getGold() << "Floor: " << player.getLevel() + 1;
+    std::cout << "HP : " << player.getHP() << std::endl;
+    std::cout << "Atk : " << player.getAtk() << std::endl;
+    std::cout << "Def : " << player.getDef() << std::endl;
+
 }

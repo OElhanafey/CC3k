@@ -137,12 +137,12 @@ void Character::shift(std::string dir, Floor *g){
         if(getSymbol() == '@'){
             callAction(g);
         }
-        if(isPlayer){
+       /* if(isPlayer){
             std::ostringstream ss;
             ss << "PC moves " << translation(dir);
             std::string s = ss.str();
             setMessage(s);
-        }
+        } */
     }
 }
 
