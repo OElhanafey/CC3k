@@ -128,11 +128,15 @@ static bool isNearby(GameObject &enemy, GameObject &player) {
 // Action function, if the player is within one block radius of the enemy or the dragon Hoard then the enemy strikes. But if the player is not within one block radius of the enemy or the dragon hoard, then the enemy moves randomly within the one block radius (Note only, where the enemy cell is valid).
 
 void Enemy::action(GameObject &p,Floor *g){
-    // Floor *g = getGrid();
     bool playerNearby = isNearby(*this, p);
+    bool canAttack = true;
+    
+    if (getSymbol() == 'M' && !p.getMerchantHostile()) {
+        canAttack = false;
+    }
  
     // If player is nearby strike the player
-    if(playerNearby){
+    if(playerNearby && canAttack){
         p.beStruckBy(*this,g);
     }
     
