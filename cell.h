@@ -28,6 +28,8 @@ public:
     void remove();
     bool getPlayerValid();
     bool getEnemyValid();
+    void setPlayerValid(bool valid);
+    void setEnemyValid(bool valid);
     bool getDragonHoard();
     void setDragonHoard(bool status);
 };

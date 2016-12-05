@@ -81,6 +81,7 @@ int main() {
 				chambers[4].buildChamber(16,65,18,75);
 			}
 			else floors[0] = board;
+			floors[0].generate(chambers, player);
 			layout.close();
 		}
 		int playerLevel = player->getLevel();
@@ -131,9 +132,9 @@ int main() {
 					newX = -1;
 				}
 				if (newX > -1) {
-					Cell potionCell = floors[0].getGrid()[newX][newY];
-					if(potionCell.getSymbol() != 'P') newX = -1;
-					if(newX > -1) potionCell.getObject()->usePotion(*player, &floors[0]);
+					Cell* potionCell = floors[0].getGrid(newX,newY);
+					if(potionCell->getSymbol() != 'P') newX = -1;
+					if(newX > -1) potionCell->getObject()->usePotion(*player, &floors[0]);
 				}
 			}
 			else if(s == "a") {
@@ -160,8 +161,8 @@ int main() {
 					--y;
 					++x;
 				}
-				Cell enemyCell = floors[0].getGrid()[x][y];;
-				enemyCell.getObject()->beStruckBy(*player, &floors[0]);
+				Cell* enemyCell = floors[0].getGrid(x,y);;
+				enemyCell->getObject()->beStruckBy(*player, &floors[0]);
 			}
 			else {
 				player->shift(s, &floors[0]);

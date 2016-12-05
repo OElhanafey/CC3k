@@ -2,7 +2,8 @@
 #include <iostream>
 #include "floor.h"
 #include "gold.h"
-
+#include "potion.h"
+#include "Enemy.h"
 
 Floor::Floor(std::ifstream& layout, GameObject& player) {
    grid.resize(25, std::vector<Cell>(79));
@@ -29,8 +30,8 @@ void Floor::setGrid(int y, int x, Cell set) {
    grid[y][x] = set;
 }
 
-std::vector<std::vector <Cell> > Floor::getGrid() {
-	return grid;
+Cell* Floor::getGrid(int x, int y) {
+	return &grid[x][y];
 }
 
 
@@ -67,8 +68,9 @@ bool Floor::isCellValid(int r, int c, bool isPlayer) {
    }
 }
 //FUCK YOU GITHUB
-void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
+void Floor::generate(std::vector<Chamber> chambers, GameObject* player) {
 	//Player
+	std::srand(time(0));
 	bool generated = false;
 	int playerChamber = std::rand() % 5;
 	while(!generated) {
@@ -76,113 +78,131 @@ void Floor::generate(Floor* g, std::vector<Chamber> chambers) {
     std::pair<int,int> coor = chambers[playerChamber].getCells()[array];
     int x = coor.first;
     int y = coor.second;
-		if(g->getGrid()[x][y].getPlayerValid()) {
-			g->getGrid()[x][y].setSymbol('@');
+		if(getGrid(x,y)->getPlayerValid()) {
+			getGrid(x,y)->setSymbol('@');
+			getGrid(x,y)->setPlayerValid(false);
+			getGrid(x,y)->setEnemyValid(false);
+			player->setx(x);
+			player->sety(y);
 			generated = true;
+			
 		}
-	}/*
+	}
 	//Stairs
 	generated = false;
+	int chamber = 0;
+	int array;
 	while(!generated) {
-		int chamber = std::rand() % 5;
+		chamber = std::rand() % 5;
 		if(chamber != playerChamber) {
 			generated = true;
 		}
 	}
 	generated = false;
 	while(!generated) {
-		array = std::rand() % chamber[chamber].size();
+		array = std::rand() % chambers[chamber].getCells().size();
     std::pair<int,int> coor = chambers[chamber].getCells()[array];
     int x = coor.first;
     int y = coor.second;
-		if(g->getGrid()[x][y].isPlayerValid()) {
-			g->getGrid[x][y].setSymbol('@');
+		if(getGrid(x,y)->getPlayerValid()) {
+			getGrid(x,y)->setSymbol('\\');
+			getGrid(x,y)->setEnemyValid(false);
 			generated = true;
 		}
 	}
-#ifndef DEBUG
   //Potions
 	int amountGen = 0;
 	while(amountGen < 10) {
 		int type = std::rand() % 6 + 1;
 		chamber = std::rand() % 5;
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]Access array.isEnemyValid()) {
+		array = std::rand() % chambers[chamber].getCells().size();
+		std::pair<int,int> coor = chambers[chamber].getCells()[array];
+		int x = coor.first;
+		int y = coor.second;
+		if(getGrid(x,y)->getEnemyValid()) {
+			GameObject* potion;
 			if(type == 1) {
-				//Restore Health
+				potion = new RestoreHp(x,y);
 			}
 			else if(type == 2) {
-				//Boost Atk
+				potion = new BoostAtk(x,y);
 			}
 			else if(type == 3) {
-				//Boost Def
+				potion = new BoostDef(x,y);
 			}
 			else if(type == 4) {
-				//Poison health
+				potion = new PoisonHp(x,y);
 			}
 			else if(type == 5) {
-				//Wound Atk
+				potion = new WoundAtk(x,y);
 			}
 			else {
-				//Wound Def
+				potion = new WoundDef(x,y);
 			}
+			getGrid(x,y)->add(potion);
 			++amountGen;
 		}
 	}
 	//Gold
 	amountGen = 0;
 	while(amountGen < 10) {
-		type = std::rand() % 8 + 1;
+		int type = std::rand() % 8 + 1;
 		chamber = std::rand() % 5;
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]Access array.isEnemyValid()) {
+		array = std::rand() % chambers[chamber].getCells().size();
+		std::pair<int,int> coor = chambers[chamber].getCells()[array];
+		int x = coor.first;
+		int y = coor.second;
+		if(getGrid(x,y)->getEnemyValid()) {
+			GameObject* gold;
 			if(type >= 1 && type <= 5) {
-				GameObject* gold = new Gold(2);
+				gold = new Gold(x,y,2);
 			}
 			else if(type == 6) {
-				GameObject* gold = new Gold(6);
+				gold = new Gold(x,y,6);
 			}
 			else {
-				GameObject* gold = new Gold(1);
+				gold = new Gold(x,y,1);
 			}
-			int x,y; //GET Coordinates
-			objectAdd(x,y,gold);
+			getGrid(x,y)->add(gold);
 			// setting the dragonhoard to true if the gold type is dragon gold.
 			if(gold->getGold() == 6){
 				setDragonHoard(x,y,true);
 			}
-			++amountGen
+			++amountGen;
 		}
-	}
-	//Enemy
+	}	//Enemy
 	amountGen = 0;
 	while(amountGen < 20) {
-		type = std::rand() % 18 + 1;
-		chamber = std::rand() % 55;
-		array = std::rand() % chamber[chamber].size();
-		if(chamber[chamber]Access array.isEnemyValid()) {
+		int type = std::rand() % 18 + 1;
+		chamber = std::rand() % 5;
+		array = std::rand() % chambers[chamber].getCells().size();
+		std::pair<int,int> coor = chambers[chamber].getCells()[array];
+		int x = coor.first;
+		int y = coor.second;
+		if(getGrid(x,y)->getEnemyValid()) {
+			GameObject* enemy;
 			if(type >= 1 && type <= 4) {
-				//Human
+				enemy = new Human(x,y);
 			}
-			else if(type >= 5 <= 7) {
-				//Dwarf
+			else if(type >= 5 && type <= 7) {
+				enemy = new Dwarf(x,y);
 			}
 			else if(type >= 8 && type <= 12) {
-				//Halfling
+				enemy = new Halfling(x,y);
 			}
 			else if(type >= 13 && type <= 14) {
-				//Elf
+				enemy = new Elf(x,y);
 			}
 			else if(type >= 15 && type <= 16) {
-				//Orc
+				enemy = new Orc(x,y);
 			}
 			else if(type >= 17 && type <= 18) {
-				//Merchant
+				enemy = new Merchant(x,y);
 			}
+			getGrid(x,y)->add(enemy);
 			++amountGen;
 		}
 	}
-  #endif*/
 }
 
 void Floor::print() {
