@@ -54,7 +54,7 @@ void Character::setGold(int g){
 } 
 
 // This function, moves/shifts the character in the specific direction.
-void Character::shift(std::string dir, int* floor, Floor *g){
+void Character::shift(std::string dir, Floor *g){
     int old_x = getx();
     int old_y = gety();
     int new_x,new_y;
@@ -98,7 +98,7 @@ void Character::shift(std::string dir, int* floor, Floor *g){
     }
     
     bool valid = g->isCellValid(new_x, new_y, isPlayer);
-    if(isPlayer && g->getSymbol(new_x, new_y) == '\\') ++(*floor);
+    if(isPlayer && g->getSymbol(new_x, new_y) == '\\') setLevel(getLevel() + 1);
     if (valid) {
         if(this->getRace() == "Troll"){ //Every time troll moves, gets 5 points. 
             if(((this->getHP()) + 5) > 120){
@@ -118,7 +118,7 @@ void Character::shift(std::string dir, int* floor, Floor *g){
         sety(new_y);
         g->objectAdd(new_x, new_y,this);
         g->objectRemove(old_x, old_y);
-        if(getSymbol == '@'){
+        if(getSymbol() == '@'){
             callAction(g);
         }
     }

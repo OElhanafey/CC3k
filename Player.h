@@ -23,13 +23,15 @@ protected:
 public:
     Player(int x, int y, int health, int attack, int defense, std::string race, int potionEffect = 1);
     std::string getRace();
+    void setLevel(int floor);
+    int getLevel();
     bool getEnemyMovable() override;
     void setEnemyMovable() override;
     int getMaxHp() override;
     int getPotionEffect() override;
     bool getMerchantHostile() override;
     void setMerchantHostile() override;
-    void callAction(Floor *g) override;
+    void callAction(Floor *g);
     std::vector<std::pair<std::string,int>> potionsNearby(Floor *g) override;
    /* virtual*/ ~Player();
 };
