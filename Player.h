@@ -29,6 +29,8 @@ public:
     bool getEnemyMovable() override;
     void setEnemyMovable() override;
     int getMaxHp() override;
+    int getOrigAtk() override;
+    int getOrigDef() override;
     std::string getMessage() override;
     void setMessage(std::string) override;
     int getPotionEffect() override;

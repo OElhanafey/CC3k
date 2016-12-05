@@ -33,6 +33,8 @@ public:
     virtual int getAtk();
     virtual int getDef();
     virtual int getMaxHp();
+    virtual int getOrigAtk();
+    virtual int getOrigDef();
 //    virtual int getMaxAtk();
 //    virtual int getMaxDef();
     virtual void setHP(int);
@@ -47,8 +49,8 @@ public:
     virtual void setMerchantHostile();
     virtual bool getMerchantHostile();
     virtual void shift(std::string dir, Floor *g);
-    virtual void strike(GameObject &c, Floor *g);
-    virtual void beStruckBy(GameObject &c, Floor *g);
+    virtual void strike(GameObject *c, Floor *g);
+    virtual void beStruckBy(GameObject *c, Floor *g);
     virtual void callAction(Floor *g);
     virtual void action(GameObject &p, Floor *g);
     virtual void enemyDeath(GameObject &p, Floor *g);

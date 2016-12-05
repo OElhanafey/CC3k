@@ -51,12 +51,14 @@ std::string GameObject::getRace() { return ""; }
 void GameObject::setLevel(int) { }
 int GameObject::getLevel() { return 0; }
 int GameObject::getMaxHp(){ return 0;}
+int GameObject::getOrigAtk() { return 0; }
+int GameObject::getOrigDef() { return 0; }
 int GameObject::getPotionEffect(){return 0;}
 void GameObject::setMerchantHostile() { }
 bool GameObject::getMerchantHostile() { return false; }
 void GameObject::shift(std::string dir,Floor *g) { }
-void GameObject::strike(GameObject &c, Floor *g) { }
-void GameObject::beStruckBy(GameObject &c, Floor *g) { }
+void GameObject::strike(GameObject *c, Floor *g) { }
+void GameObject::beStruckBy(GameObject *c, Floor *g) { }
 void GameObject::callAction(Floor *g){ }
 void GameObject::action(GameObject &p, Floor *g) { }
 void GameObject::enemyDeath(GameObject &p, Floor *g) { }

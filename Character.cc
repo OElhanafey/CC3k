@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <sstream>
+#include <iostream>
 #include "floor.h"
 using namespace std;
 
@@ -130,6 +131,7 @@ void Character::shift(std::string dir, Floor *g){
             if(gold->getPickable()){
                 setGold(gold->getGold()+this->getGold());
             }
+            delete gold;
         }
         setx(new_x);
         sety(new_y);
@@ -148,7 +150,7 @@ void Character::shift(std::string dir, Floor *g){
 }
 
 // The strike function calculates the damage when one character attacks the other, and it manipulates the health points.
-void Character::strike(GameObject &c, Floor *g){
+void Character::strike(GameObject *c, Floor *g){
     // Troll gains 5 HP every turn; Capped at Max Health
     if(this->getRace() == "Troll"){
         if(((this->getHP()) + 5) > 120){
@@ -160,62 +162,62 @@ void Character::strike(GameObject &c, Floor *g){
     }
     // Vampire gains 5 HP for every attack but loses 5HP for every attack on dwarf
     if(this->getRace() == "Vampire"){
-        if (c.getSymbol() != 'W')
+        if (c->getSymbol() != 'W')
             this->setHP(this->getHP() + 5);
         else
             this->setHP(this->getHP() - 5);
     }
     // Calculate damage
-    double temp = c.getDef();
+    double temp = c->getDef();
     double damage = ceil((100/(100+temp))*(this->getAtk()));
     
     // Orcs do 50% more damage to goblins
-    if ((this->getSymbol() == 'O') && (c.getRace() == "Goblin"))
+    if ((this->getSymbol() == 'O') && (c->getRace() == "Goblin"))
         damage *= 1.5;
     // If enemy dies call their death function.
-    if((c.getHP() - damage) < 0){
-        c.setHP(0);
+    if((c->getHP() - damage) <= 0){
+        c->setHP(0);
 
-        if (c.getSymbol() != '@'){
-            c.enemyDeath(*this,g);
-            //delete c;
+        if (c->getSymbol() != '@'){
+            c->enemyDeath(*this,g);
+            delete c;
+	    return;
         }
     }
     else{
-        c.setHP(c.getHP() - damage);
+        c->setHP(c->getHP() - damage);
     }
     if(this->getSymbol() == '@'){
         //double oppDamage = ceil((100/(100+getDef()))*(c.getAtk()));
         std::ostringstream ss;
-        ss << "PC deals " << damage << " to " << c.getSymbol() << "(" << c.getHP() << ")";
+        ss << "PC deals " << damage << " to " << c->getSymbol() << "(" << c->getHP() << ")";
         std::string s = ss.str();
         setMessage(s);
     }
 }
 
 // BeStruckBY function means Character A is struck by Character B. So, B strikes A, hence it calls the strike function.
-void Character::beStruckBy(GameObject &c, Floor *g){
+void Character::beStruckBy(GameObject *c, Floor *g){
     int hit = 1; // If 1 then hit; if 0 then miss
+    std::srand(time(0));
     // Enemies have a 50% chance of striking the player (ie if player is being struck by an enemy, there is a 50% chance of calling strike(player).Players have a 50% chance of striking a halfling, i.e if halfing is being struck by player, there is a 50% chance of calling strike(halfling)
     if((this->getSymbol() == '@') || (this->getSymbol() == 'L')){
-        std::srand(time(NULL));
         hit = std::rand() % 2;
     }
     if(hit == 1){
-        c.strike(*this,g);
+        c->strike(this,g);
         // If a Merchant is attacked for the first time; set merchantHostile to true
         if(this->getSymbol() == 'M'){
-            c.setMerchantHostile();
+            c->setMerchantHostile();
         }
         // Elf can strike each race except Drow twice (it still has 50% chance of hitting)
-        else if((c.getSymbol()) == 'E'){
-            std::srand(time(NULL)+1);
+        else if((c->getSymbol()) == 'E'){
             hit = std::rand() % 2;
             if(!(this->getRace() == "Drow") && (hit == 1)){
-                c.strike(*this,g);
+                if(c) c->strike(this,g);
             }
         }
     }
-    c.callAction(g);
+    c->callAction(g);
 }
 

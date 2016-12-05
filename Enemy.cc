@@ -137,7 +137,7 @@ void Enemy::action(GameObject &p,Floor *g){
  
     // If player is nearby strike the player
     if(playerNearby && canAttack){
-        p.beStruckBy(*this,g);
+        p.beStruckBy(this,g);
     }
     
     else{

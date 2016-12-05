@@ -96,6 +96,14 @@ int Player::getMaxHp() {
 	return maxhp;
 }
 
+int Player::getOrigAtk() {
+	return origAtk;
+}
+
+int Player::getOrigDef() {
+	return origDef;
+}
+
 int Player::getPotionEffect(){
     return potionEffect;
 }

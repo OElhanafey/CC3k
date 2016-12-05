@@ -162,16 +162,17 @@ void Cell::add(GameObject* object) {
 
 void Cell::remove() {
    if(dragonHoard == true){
-      GameObject *p = new Gold(getx(), gety(), 6);
-      obj=p;
-      symbol = obj->getSymbol();
-      isEnemyValid = false;
+      std::cout << "calling dragonhoard" << std::endl;
+      //GameObject *p = new Gold(getx(), gety(), 6);
+      //obj=p;
+      //symbol = obj->getSymbol();
+      //isEnemyValid = false;
    }
    else {
-       if(symbol == 'P'){
+       if(symbol == 'P' || symbol == 'G') {
            delete obj;
        }
-      obj = nullptr;
+       else if(obj && obj->getHP() >= 0) obj = nullptr;
       symbol = getOrigSym();
       isEnemyValid = true;
 

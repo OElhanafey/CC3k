@@ -21,6 +21,7 @@ int main() {
                 std::cin >> s;
 		GameObject* player;
                 if(std::cin.eof() || s == "q") {
+			if(player) delete player;
                         return 0;
                 }
                 else if(s == "drow") {
@@ -41,6 +42,7 @@ int main() {
 		std::cout << "Press 'f' to generate a floor from a file or any other key to randomly generate it." << std::endl;
 		std::cin >> s;
 		if(std::cin.eof() || s == "q") {
+			if(player) delete player;
 			return 0;
 		}
 		std::ifstream layout;
@@ -49,7 +51,17 @@ int main() {
 		std::vector<Floor> floors;
 		std::vector<Chamber> chambers;
 		while(1) {
-            
+           	if(floors.size() == 1) {
+			for(int i=0; i<25; ++i) {
+				for(int j=0; j<79; ++j) {
+					if(floors[0].getGrid(i,j)->getObject() && floors[0].getGrid(i,j)->getSymbol() != '@') delete floors[0].getGrid(i,j)->getObject();
+				}
+			}
+		}
+		player->setAtk(player->getOrigAtk());
+		player->setDef(player->getOrigDef());
+		//TEMP
+		player->setHP(10000);
 		if(read == "f") {
 			if(player->getLevel() == 5)  std::cout << "You have won ChamberCrawler3000!" << std::endl;
 			if(player->getLevel() == 0) {
@@ -157,8 +169,14 @@ int main() {
 					--y;
 					++x;
 				}
-				Cell* enemyCell = floors[0].getGrid(x,y);;
-				enemyCell->getObject()->beStruckBy(*player, &floors[0]);
+				Cell* enemyCell = floors[0].getGrid(x,y);
+				if(enemyCell->getSymbol() == 'H' ||
+				   enemyCell->getSymbol() == 'L' ||   
+				   enemyCell->getSymbol() == 'W' ||
+  				   enemyCell->getSymbol() == 'O' || 
+				   enemyCell->getSymbol() == 'E' ||
+                                   enemyCell->getSymbol() == 'M' || 
+                                   enemyCell->getSymbol() == 'D') enemyCell->getObject()->beStruckBy(player, &floors[0]);
 			}
 			else {
 				player->shift(s, &floors[0]);
