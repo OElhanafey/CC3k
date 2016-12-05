@@ -139,6 +139,7 @@ void Character::shift(std::string dir, Floor *g){
 		ss << "PC picks up " << gold->getGold() << " gold. ";
 		std::string s = ss.str();
                 setGold(gold->getGold()+this->getGold());
+                
             }
             delete gold;
         }

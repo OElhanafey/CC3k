@@ -160,6 +160,27 @@ void Floor::generate(std::vector<Chamber> chambers, GameObject* player) {
 			}
 			else if(type == 6) {
 				gold = new Gold(x,y,6);
+				std::vector<std::pair<int,int>> surrounding;
+				surrounding.emplace_back(std::make_pair(x,y+1));
+				surrounding.emplace_back(std::make_pair(x+1,y+1));
+				surrounding.emplace_back(std::make_pair(x+1,y));
+				surrounding.emplace_back(std::make_pair(x,y-1));
+				surrounding.emplace_back(std::make_pair(x-1,y-1));
+				surrounding.emplace_back(std::make_pair(x-1, y));
+				surrounding.emplace_back(std::make_pair(x-1,y+1));
+				surrounding.emplace_back(std::make_pair(x+1,y-1));
+				std::srand(time(0));
+				while(1) {
+					int random = std::rand() % 8;
+					int newx = surrounding[random].first;
+					int newy = surrounding[random].second;
+					if(getGrid(newx,newy)->getEnemyValid()) {
+						GameObject* dragon = new Dragon(newx,newy,x,y);
+						getGrid(newx,newy)->add(dragon);
+						break;
+					}
+				}
+				
 			}
 			else {
 				gold = new Gold(x,y,1);
@@ -168,6 +189,7 @@ void Floor::generate(std::vector<Chamber> chambers, GameObject* player) {
 			// setting the dragonhoard to true if the gold type is dragon gold.
 			if(gold->getGold() == 6){
 				setDragonHoard(x,y,true);
+				
 			}
 			++amountGen;
 		}
