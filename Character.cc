@@ -153,7 +153,7 @@ void Character::strike(GameObject &c, Floor *g){
     if((c.getHP() - damage) < 0){
         c.setHP(0);
         if (c.getSymbol() == '@'){
-            throw "Game Over";
+            
         }
         else c.enemyDeath(*this,g);
     }

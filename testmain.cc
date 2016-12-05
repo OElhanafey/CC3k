@@ -14,7 +14,8 @@ int main() {
 	//Generate from file or randomly
 	std::string s;
 	while(1) {
-                //Race Choice
+                restart:
+		//Race Choice
                 std::cout << "Welcome to ChamberCrawler3000! Please choose a race." << std::endl;
                 std::cin >> s;
 		GameObject* player;
@@ -47,8 +48,9 @@ int main() {
 		std::vector<Floor> floors;
 		while(1) {
 		if(read == "f") {
+			if(player->getLevel() == 5)  std::cout << "You have won ChamberCrawler3000!" << std::endl;
 			if(player->getLevel() == 0) {
-				std::cout << "Please enter the file name.";
+				std::cout << "Please enter the file name." << std::endl;
 				std::cin >> s;
 				layout.open(s);
 				Floor board(layout, *player);
@@ -146,6 +148,17 @@ int main() {
 			}
 			else {
 				player->shift(s, &floors[0]);
+			}
+			if(player->getHP() == 0) {
+				std::cout << "Oh no! You are dead!" << std::endl;
+				std::cout << "Press 'r' to restart or any other key to quit." << std::endl;
+				std::cin >> s;
+				if(s == "r") {
+					goto restart;
+				}
+				else {
+					return 0;
+				}
 			}
 		}
 		}
