@@ -1,35 +1,47 @@
 # CC3k
 
-<b>Chakshu</b>
-- Potion
- - Restore Health
- - Boost Attack
- - Boost Defence
- - Poison Health
- - Wound Attack
- - Wound Defence
-- Chamber
+A command-line based dungeon crawler game created for the final project of CS246.
 
-<b>Urja</b>
-- Character
- - Player
-   - Shade
-    - Drow
-    - Vampire
-    - Troll
-    - Goblin
- - NPC
-   - Human
-    - Dwarf
-    - Elf
-    - Orc
-    - Merchant
-    - Dragon
-    - Halfling
+![](Images/CC3K.png)
 
-<b>Oscar</b>
-- Gold
-- Cell
-- Floor
-  - Generation from file
-  - Random Generation
+### Features
+
+<u>Playable races</u>
+* Shade
+* Drow
+* Vampire
+* Goblin
+
+<u>Enemies</u>
+* Human
+* Dwarf
+* Elf
+* Merchant
+* Dragon
+* Orc
+* Halfling
+
+<u>Items</u>
+* Restore Health
+* Boost Attack
+* Boost Defence
+* Poison Health
+* Wound Attack
+* Wound Defence
+### Prerequisites
+
+* g++
+
+### Controls
+
+* no,so,ea,we - move north, south, east and west respectively
+* u <direction> - use an item in the direction specified
+* a <direction> - attack a monster in the direction specified
+* q - quit
+
+## Contributors
+
+* Urja Goyal
+* Chakshu Shah
+* Oscar Elhanafey
+
